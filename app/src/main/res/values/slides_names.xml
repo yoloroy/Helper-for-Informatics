@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="main">
+        <item>Курсы</item>
+        <item>Помощники</item>
+        <item>Задачник</item>
+        <item>Справочник</item>
+        <item>Остальное</item>
+    </string-array>
+
+    <string-array name="course_graphs">
+        <item>Графы</item>
+        <item>Графы</item>
+    </string-array>
+</resources>

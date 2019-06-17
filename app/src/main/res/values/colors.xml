@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#435A72</color>
+    <color name="colorPrimaryLight">#537AA2</color>
+    <color name="colorPrimaryDark">#333A42</color>
+
+    <color name="colorPrimaryQ">#4168A8</color>
+    <color name="colorPrimaryLightQ">#5188D8</color>
+    <color name="colorPrimaryDarkQ">#314888</color>
+
+    <color name="colorBackground">#EEEEEE</color>
+    <color name="colorBackContrast">#FCFCFC</color>
+    <color name="colorAccent">#000</color>
+    <color name="colorMenuButton">@color/colorPrimary</color>
+
+    <color name="colorAppRed">#D33</color>
+    <color name="colorAppGreen">#3C6</color>
+    <color name="colorAppBlue">#4168A8</color>
+
+    <color name="colorAppFalse">#F42</color>
+    <color name="colorAppTrue">@color/colorAppGreen</color>
+
+    <!--> calc colors </-->
+    <color name="colorCalcNums">#fff</color>
+    <color name="colorCalcMain">#555</color>
+    <color name="colorCalcData">#F70</color>
+    <color name="colorCalcMath">@color/colorAppRed</color>
+    <color name="colorCalcInf">@color/colorAppBlue</color>
+    <color name="colorTurner">#FFEE33</color>>
+</resources>

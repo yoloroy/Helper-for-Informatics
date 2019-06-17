@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/goto_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/toMain"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClickGoto"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:tint="@color/colorBackContrast"
+            app:srcCompat="@drawable/baseline_school_24"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="435dp" />
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/toEval"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClickGoto"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:tint="@color/colorBackContrast"
+            app:srcCompat="@drawable/baseline_play_arrow_24"
+            tools:layout_editor_absoluteX="104dp"
+            tools:layout_editor_absoluteY="247dp" />
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/toGener"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClickGoto"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:tint="@color/colorBackContrast"
+            app:srcCompat="@drawable/baseline_check_circle_outline_24"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="285dp" />
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/toGuide"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClickGoto"
+            android:tint="@color/colorBackContrast"
+            app:srcCompat="@drawable/baseline_local_library_24"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="198dp" />
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/toOther"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClickGoto"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:tint="@color/colorBackContrast"
+            app:srcCompat="@drawable/ic_menu_black_24dp"
+            tools:layout_editor_absoluteX="288dp"
+            tools:layout_editor_absoluteY="435dp" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
