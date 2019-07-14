@@ -1,1 +1,5 @@
-/build
+google-services.json
+/build/generated
+/build/intermediates
+/build/outputs/logs
+/build/outputs/apk/debug/output.json
