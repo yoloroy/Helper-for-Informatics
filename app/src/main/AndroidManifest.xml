@@ -41,7 +41,7 @@
             android:name=".EvalActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CalcActivity"
+            android:name=".CalcActivity1"
             android:screenOrientation="portrait" />
         <activity
             android:name=".CourseGraphsActivity"

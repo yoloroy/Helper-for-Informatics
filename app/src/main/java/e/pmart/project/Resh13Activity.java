@@ -68,7 +68,7 @@ public class Resh13Activity extends AppCompatActivity {
                 startActivity(Act);
                 break;
             case R.id.calc :
-                Act = new Intent(getApplicationContext(), CalcActivity.class);
+                Act = new Intent(getApplicationContext(), CalcActivity1.class);
                 startActivity(Act);
         }
         return super.onOptionsItemSelected(item);

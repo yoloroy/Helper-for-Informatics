@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CalculatorFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:paddingBottom="8dp">
+
+            <TextView
+                android:id="@+id/calc_enter"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:ems="10"
+                android:gravity="bottom|start"
+                android:paddingStart="12dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="8dp"
+                android:text="0"
+                android:textColor="#000"
+                android:textSize="64sp"
+                app:layout_constraintBottom_toTopOf="@id/calc_answer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/calc_answer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text=" = 0"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3">
+
+            <android.support.v7.widget.GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#aaa"
+                android:paddingStart="-1dp"
+                app:columnCount="5">
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="("
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text=")"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="!"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    android:id="@+id/calc_clear"
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="C"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <ImageButton
+                    android:id="@+id/calc_backspace"
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:src="@drawable/ic_outline_backspace_24px"
+                    android:textSize="24sp"
+                    android:tint="#555"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="7"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="8"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="9"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="ceil"
+                    android:textAllCaps="false"
+                    android:textColor="#555"
+                    android:textSize="14sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="³√"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="4"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="5"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="6"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="^"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="²√"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="1"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="2"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="3"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="*"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="/"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="0"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="."
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    android:id="@+id/calc_eval"
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="="
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="+"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="-"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1" />
+            </android.support.v7.widget.GridLayout>
+        </android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

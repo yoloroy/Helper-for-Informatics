@@ -12,8 +12,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import org.mariuszgromada.math.mxparser.Expression;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     Map<String, List<Fragment>> mode_fragments = new HashMap<>();
 
     ViewPager pager;
+
+    Animation animAlpha;
 
 
     @Override
@@ -48,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
         pager.setAdapter(slides);
 
         toMain();
+
+        animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -139,21 +149,24 @@ public class MainActivity extends AppCompatActivity {
         mode_fragments.put("main", new ArrayList<Fragment>());
 
         mode_fragments.get("main").add(new EducationFragment());
-        mode_fragments.get("main").add(new EvalFragment());
+        mode_fragments.get("main").add(new CalculatorFragment());
+        //mode_fragments.get("main").add(new EvalFragment());
         mode_fragments.get("main").add(new GenerFragment()
                 .setSupportActionBar(getSupportActionBar())
                 .setSupportFragmentManager(getSupportFragmentManager())
                 .setMainActivity(this));
+        mode_fragments.get("main").add(new GuideFragment()
+                .setSupportActionBar(getSupportActionBar())
+                .setSupportFragmentManager(getSupportFragmentManager())
+                .setMainActivity(this));
 
-        //mode_fragments.get("main").add(new GuideFragment());
         //mode_fragments.get("main").add(new OtherFragment());
 
         /*     course_graphs     */
         mode_fragments.put("course_graphs", new ArrayList<Fragment>());
         mode_fragments.get("course_graphs").add(new FactoryEducationFragment()
-        //        .newTitle(R.string.graphs_1)
-        //        .newText(R.string.graphs_2)
-                .newTextList(R.array.main));
+                .newTitle(R.string.graphs_1)
+                .newText(R.string.graphs_2));
         mode_fragments.get("course_graphs").add(new FactoryEducationFragment()
                 .newText(R.string.graphs_task1)
                 .newChoice(R.array.choice_graphs_task1));
@@ -161,6 +174,10 @@ public class MainActivity extends AppCompatActivity {
         /*     task     */
         mode_fragments.put("gener_task", new ArrayList<Fragment>());
         mode_fragments.get("gener_task").add(new TaskViewFragment());
+
+        /*     guide page     */
+        mode_fragments.put("guide_inner", new ArrayList<Fragment>());
+        //mode_fragments.get("guide_inner").add(new FactoryEducationFragment());
     }
     public void toMain() {
         mode = "main";
@@ -301,5 +318,63 @@ public class MainActivity extends AppCompatActivity {
         ((TaskViewFragment)
             ((MyFragmentPagerAdapter) pager.getAdapter())
                 .getItem(pager.getCurrentItem())).onClickCheckAnswer(view);
+    }
+
+    public void calc_onClickEvaluate(View view) {
+        CharSequence answer = ((TextView) findViewById(R.id.calc_answer)).getText();
+        ((TextView) findViewById(R.id.calc_enter))
+                .setText(answer.subSequence(3, answer.length()));
+    }
+
+    public void calc_onClickInstantEvaluate(View view) {
+        Expression e = new Expression(new ExtraCalcFuncs().getExtraCalcFuncs());
+
+        e.setExpressionString(((TextView) findViewById(R.id.calc_enter)).getText().toString()
+                .replace("²√", "square_root")
+                .replace("³√", "volume_root")
+                .replace("0(", "0*(")
+                .replace("1(", "1*(")
+                .replace("2(", "2*(")
+                .replace("3(", "3*(")
+                .replace("4(", "4*(")
+                .replace("5(", "5*(")
+                .replace("6(", "6*(")
+                .replace("7(", "7*(")
+                .replace("8(", "8*(")
+                .replace("9(", "9*("));
+
+        if (!MyProgram.StripInt(e.calculate()).equals("NaN"))
+            ((TextView) findViewById(R.id.calc_answer))
+                    .setText(" = " + MyProgram.StripInt(e.calculate()));
+    }
+
+    public void calc_onClickButton(View view) {
+        String text = (String) ((TextView) findViewById(R.id.calc_enter)).getText();
+        switch (view.getId()) {
+            case (R.id.calc_eval):
+                calc_onClickEvaluate(view);
+                return;
+            case (R.id.calc_backspace):
+                if (text.length() > 1 && !(text.length() == 2 == text.startsWith("-")))
+                    ((TextView) findViewById(R.id.calc_enter))
+                            .setText(text.substring(0, text.length() - 1));
+                else
+                    ((TextView) findViewById(R.id.calc_enter))
+                            .setText("0");
+                break;
+            case (R.id.calc_clear):
+                ((TextView) findViewById(R.id.calc_enter))
+                        .setText(0);
+                break;
+            default:
+                if ("0123456789".contains(((Button) view).getText()) && text.equals("0")) {
+                    ((TextView) findViewById(R.id.calc_enter))
+                            .setText(((Button) view).getText());
+                } else {
+                    ((TextView) findViewById(R.id.calc_enter))
+                            .setText(text + ((Button) view).getText());
+                }
+        }
+        calc_onClickInstantEvaluate(view);
     }
 }

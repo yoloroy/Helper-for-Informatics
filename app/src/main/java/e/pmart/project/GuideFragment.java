@@ -33,14 +33,10 @@ public class GuideFragment extends Fragment {
     FragmentManager supportFragmentManager;
 
 
-    public GuideFragment() {
-
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        root_view = inflater.inflate(R.layout.fragment_gener, container, false);
+        root_view = inflater.inflate(R.layout.fragment_guide, container, false);
         createList();
         return root_view;
     }
@@ -52,24 +48,18 @@ public class GuideFragment extends Fragment {
                 (getContext(), android.R.layout.simple_list_item_1, themesList);
         themesView.setAdapter(themesAdapter);
 
-
-
         themesView.setOnItemClickListener(
             new AdapterView.OnItemClickListener() {
-
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                    ActionBar actionBar = supportActionBar;
+                    {{/*ActionBar actionBar = supportActionBar;
                     if (actionBar != null) {
                         actionBar.setHomeButtonEnabled(true);
                         actionBar.setDisplayHomeAsUpEnabled(true);
-                    }
-                    ((TaskViewFragment)
-                            (mainActivity.mode_fragments.get("gener_task").get(0))).setRootView(root_view);
-                    ((TaskViewFragment)
-                            (mainActivity.mode_fragments.get("gener_task").get(0))).setTask(i+1);
-                    mainActivity.changeMode("gener_task");
+                    }*/}}
+                    mainActivity.mode_fragments.get("guide_inner")
+                            .add(new FactoryEducationFragment()
+                            .newTitle(new Integer("")));
                 }
         });
     }

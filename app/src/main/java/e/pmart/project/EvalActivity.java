@@ -13,7 +13,7 @@ public class EvalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eval);
 
-        Intent Act = new Intent(getApplicationContext(), CalcActivity.class);
+        Intent Act = new Intent(getApplicationContext(), CalcActivity1.class);
         startActivity(Act);
     }
 

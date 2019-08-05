@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="color1st_test">#000</color>
+    <color name="color2nd_test">#10FF30</color>
+
     <color name="colorPrimary">#435A72</color>
     <color name="colorPrimaryLight">#537AA2</color>
     <color name="colorPrimaryDark">#333A42</color>

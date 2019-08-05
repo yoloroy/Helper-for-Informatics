@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class CalcActivity extends AppCompatActivity {
+public class CalcActivity1 extends AppCompatActivity {
     public static final String NAME = EvalActivity.NAME;
     private static final String[] EVENTS = {};
     Boolean start = true;
@@ -28,7 +28,7 @@ public class CalcActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calc);
+        setContentView(R.layout.activity_calc1);
 
         display = findViewById(R.id.textView12);
 
