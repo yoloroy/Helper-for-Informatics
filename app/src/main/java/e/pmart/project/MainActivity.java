@@ -109,11 +109,19 @@ public class MainActivity extends AppCompatActivity {
                 .put(mode, ((MyFragmentPagerAdapter) pager.getAdapter())
                 .getFragments());
 
+        ActionBar actionBar = getSupportActionBar();
         switch (view.getId()) {
             case R.id.course_graphs:
                 mode = "course_graphs";
 
-                ActionBar actionBar = getSupportActionBar();
+                if (actionBar != null) {
+                    actionBar.setHomeButtonEnabled(true);
+                    actionBar.setDisplayHomeAsUpEnabled(true);
+                }
+                break;
+            case R.id.goto_about:
+                mode = "about";
+
                 if (actionBar != null) {
                     actionBar.setHomeButtonEnabled(true);
                     actionBar.setDisplayHomeAsUpEnabled(true);
@@ -165,8 +173,8 @@ public class MainActivity extends AppCompatActivity {
                 .setSupportFragmentManager(getSupportFragmentManager())
                 .setMainActivity(this));
         actionBarNames.get("main").add("Справочник");
-
-        //mode_fragments.get("main").add(new OtherFragment());
+        mode_fragments.get("main").add(new OtherFragment());
+        actionBarNames.get("main").add("Дополнительно");
 
         /*     course_graphs     */
         mode_fragments.put("course_graphs", new ArrayList<Fragment>());
@@ -191,7 +199,13 @@ public class MainActivity extends AppCompatActivity {
         /*     guide page     */
         mode_fragments.put("guide_inner", new ArrayList<Fragment>());
         actionBarNames.put("guide_inner", new ArrayList<String>());
-        //mode_fragments.get("guide_inner").add(new FactoryEducationFragment());
+
+        /*     about     */
+        mode_fragments.put("about", new ArrayList<Fragment>());
+        actionBarNames.put("about", new ArrayList<String>());
+
+        mode_fragments.get("about").add(new AboutFragment());
+        actionBarNames.get("about").add("О программе");
     }
     public void toMain() {
         mode = "main";
@@ -298,6 +312,10 @@ public class MainActivity extends AppCompatActivity {
             case "guide_inner":
                 toMain();
                 pager.setCurrentItem(3);
+                break;
+            case "about":
+                toMain();
+                pager.setCurrentItem(4);
         }
     }
 
@@ -319,6 +337,12 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                 }
             case "guide_inner":
+                switch (item.getItemId()) {
+                    case android.R.id.home:
+                        onBackPressed();
+                        return true;
+                }
+            case "about":
                 switch (item.getItemId()) {
                     case android.R.id.home:
                         onBackPressed();
