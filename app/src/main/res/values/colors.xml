@@ -14,7 +14,8 @@
     <color name="colorBackground">#EEEEEE</color>
     <color name="colorBackContrast">#FCFCFC</color>
     <color name="colorAccent">#000</color>
-    <color name="colorMenuButton">@color/colorPrimary</color>
+    <color name="colorMenuBackUnpressed">@color/colorPrimary</color>
+    <color name="colorMenuBackPressed">#FFF</color>
 
     <color name="colorAppRed">#D33</color>
     <color name="colorAppGreen">#3C6</color>

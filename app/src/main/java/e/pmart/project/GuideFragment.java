@@ -57,9 +57,15 @@ public class GuideFragment extends Fragment {
                         actionBar.setHomeButtonEnabled(true);
                         actionBar.setDisplayHomeAsUpEnabled(true);
                     }*/}}
+                    //Log.i("-4", "onItemClick: "+mainActivity.mode_fragments);
+                    mainActivity.mode_fragments.get("guide_inner").clear();
                     mainActivity.mode_fragments.get("guide_inner")
                             .add(new FactoryEducationFragment()
-                            .newTitle(new Integer("")));
+                            .newText(R.string.inf_IV)
+                            .enableContinue(false));
+                    mainActivity.actionBarNames.get("guide_inner")
+                            .add("Измерение информации");
+                    mainActivity.changeMode("guide_inner");
                 }
         });
     }

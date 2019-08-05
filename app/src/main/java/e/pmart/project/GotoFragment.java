@@ -27,12 +27,12 @@ public class GotoFragment extends Fragment {
 
         for (int i = 0; i < goto_layout.getChildCount(); i++) {
             curr = (ImageButton) goto_layout.getChildAt(i);
-            curr.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-            curr.setColorFilter(getResources().getColor(R.color.colorBackground));
+            curr.setBackgroundColor(getResources().getColor(R.color.colorMenuBackUnpressed));
+            curr.setColorFilter(getResources().getColor(R.color.colorMenuBackPressed));
         }
 
         curr = (ImageButton) goto_layout.getChildAt(num);
-        curr.setBackgroundColor(getResources().getColor(R.color.colorBackground));
-        curr.setColorFilter(getResources().getColor(R.color.colorPrimary));
+        curr.setBackgroundColor(getResources().getColor(R.color.colorMenuBackPressed));
+        curr.setColorFilter(getResources().getColor(R.color.colorMenuBackUnpressed));
     }
 }

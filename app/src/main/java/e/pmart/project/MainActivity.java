@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     FragmentStatePagerAdapter slides;
     String mode = "main";
     Map<String, List<Fragment>> mode_fragments = new HashMap<>();
+    Map<String, List<String>> actionBarNames = new HashMap<>();
 
     ViewPager pager;
 
@@ -147,36 +148,49 @@ public class MainActivity extends AppCompatActivity {
     public void create_fragment_unions() {
         /*     main     */
         mode_fragments.put("main", new ArrayList<Fragment>());
+        actionBarNames.put("main", new ArrayList<String>());
 
         mode_fragments.get("main").add(new EducationFragment());
+        actionBarNames.get("main").add("Курсы");
         mode_fragments.get("main").add(new CalculatorFragment());
-        //mode_fragments.get("main").add(new EvalFragment());
+        actionBarNames.get("main").add("Решатор");
+            //mode_fragments.get("main").add(new EvalFragment());
         mode_fragments.get("main").add(new GenerFragment()
                 .setSupportActionBar(getSupportActionBar())
                 .setSupportFragmentManager(getSupportFragmentManager())
                 .setMainActivity(this));
+        actionBarNames.get("main").add("Задачник");
         mode_fragments.get("main").add(new GuideFragment()
                 .setSupportActionBar(getSupportActionBar())
                 .setSupportFragmentManager(getSupportFragmentManager())
                 .setMainActivity(this));
+        actionBarNames.get("main").add("Справочник");
 
         //mode_fragments.get("main").add(new OtherFragment());
 
         /*     course_graphs     */
         mode_fragments.put("course_graphs", new ArrayList<Fragment>());
+        actionBarNames.put("course_graphs", new ArrayList<String>());
+
         mode_fragments.get("course_graphs").add(new FactoryEducationFragment()
                 .newTitle(R.string.graphs_1)
                 .newText(R.string.graphs_2));
+        actionBarNames.get("course_graphs").add("Графы");
         mode_fragments.get("course_graphs").add(new FactoryEducationFragment()
                 .newText(R.string.graphs_task1)
                 .newChoice(R.array.choice_graphs_task1));
+        actionBarNames.get("course_graphs").add("Графы");
 
         /*     task     */
         mode_fragments.put("gener_task", new ArrayList<Fragment>());
+        actionBarNames.put("gener_task", new ArrayList<String>());
+
         mode_fragments.get("gener_task").add(new TaskViewFragment());
+        actionBarNames.get("gener_task").add("Задача");
 
         /*     guide page     */
         mode_fragments.put("guide_inner", new ArrayList<Fragment>());
+        actionBarNames.put("guide_inner", new ArrayList<String>());
         //mode_fragments.get("guide_inner").add(new FactoryEducationFragment());
     }
     public void toMain() {
@@ -195,6 +209,8 @@ public class MainActivity extends AppCompatActivity {
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                setTitleFromModeNames(position);
+
                 goto_fragment.setSelection(position);
             }
 
@@ -212,9 +228,40 @@ public class MainActivity extends AppCompatActivity {
     public void toInnerPages() {
         findViewById(R.id.down_menu_main).setVisibility(View.GONE);
 
+        pager.clearOnPageChangeListeners();
+        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                onPageSelected(position);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                setTitleFromModeNames(position);
+                goto_fragment.setSelection(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         ((MyFragmentPagerAdapter) pager.getAdapter()).setList(mode_fragments.get(mode));
 
         pager.clearOnPageChangeListeners();
+    }
+
+    public void setTitleFromModeNames(int position) {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
+            getSupportActionBar().setTitle((String) actionBarNames.get(mode).get(position));
+        }
     }
 
 
@@ -247,6 +294,10 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     ((EditText) findViewById(R.id.task_answer)).setText("");
                 }
+                break;
+            case "guide_inner":
+                toMain();
+                pager.setCurrentItem(3);
         }
     }
 
@@ -265,7 +316,14 @@ public class MainActivity extends AppCompatActivity {
                     case android.R.id.home:
                         toMain();
                         pager.setCurrentItem(2);
-            }
+                        return true;
+                }
+            case "guide_inner":
+                switch (item.getItemId()) {
+                    case android.R.id.home:
+                        onBackPressed();
+                        return true;
+                }
         }
         return super.onOptionsItemSelected(item);
     }

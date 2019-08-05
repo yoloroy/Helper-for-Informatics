@@ -30,6 +30,7 @@ public class FactoryEducationFragment extends Fragment {
     final String[] TASKS = {"image", "text", "title", "choice", "enter", "text_list"};
     String answer = null;
     String user_answer = "";
+    boolean enable_continue = true;
 
     EditText enter;
 
@@ -45,6 +46,10 @@ public class FactoryEducationFragment extends Fragment {
                              Bundle savedInstanceState) {
         root_view = inflater.inflate(R.layout.fragment_factory_education, container, false);
         evaluateTasks();
+        if (enable_continue)
+            root_view.findViewById(R.id.button5).setVisibility(View.VISIBLE);
+        else
+            root_view.findViewById(R.id.button5).setVisibility(View.INVISIBLE);
         return root_view;
     }
 
@@ -65,6 +70,10 @@ public class FactoryEducationFragment extends Fragment {
     }
     public FactoryEducationFragment newTextList(int text_array_id) {
         return newTask("text_list", text_array_id);
+    }
+    public FactoryEducationFragment enableContinue(boolean a) {
+        enable_continue = a;
+        return this;
     }
 
     public FactoryEducationFragment newTask(String name, int obj_id) {
