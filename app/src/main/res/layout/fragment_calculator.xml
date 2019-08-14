@@ -54,11 +54,56 @@
             android:layout_weight="3">
 
             <android.support.v7.widget.GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#aaa"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="#ddd"
                 android:paddingStart="-1dp"
-                app:columnCount="5">
+                app:columnCount="5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1">
+
+                    <Spinner
+                        android:id="@+id/calc_num_system_spinner"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:background="#0000"
+                        android:dropDownWidth="wrap_content"
+                        android:foregroundGravity="center"
+                        android:gravity="center"
+                        android:spinnerMode="dropdown"
+                        app:layout_columnWeight="1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_rowWeight="1"
+                        tools:listitem="@layout/my_simple_dropdown_spinner_item" />
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/ic_arrow_drop_down_black_24dp"
+                        android:backgroundTint="#555"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.constraint.ConstraintLayout>
 
                 <Button
                     style="@style/Widget.AppCompat.Button.Small"
@@ -69,25 +114,13 @@
                     android:background="@drawable/calc_button"
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
-                    android:text="("
+                    android:text=" ^ "
+                    android:textAllCaps="false"
                     android:textColor="#555"
                     android:textSize="24sp"
+                    app:layout_column="1"
                     app:layout_columnWeight="1"
-                    app:layout_rowWeight="1" />
-
-                <Button
-                    style="@style/Widget.AppCompat.Button.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginTop="1dp"
-                    android:background="@drawable/calc_button"
-                    android:focusableInTouchMode="false"
-                    android:onClick="calc_onClickButton"
-                    android:text=")"
-                    android:textColor="#555"
-                    android:textSize="24sp"
-                    app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -100,9 +133,11 @@
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
                     android:text="!"
+                    android:textAllCaps="false"
                     android:textColor="#555"
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -116,9 +151,11 @@
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
                     android:text="C"
+                    android:textAllCaps="false"
                     android:textColor="#555"
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
                     app:layout_rowWeight="1" />
 
                 <ImageButton
@@ -135,6 +172,93 @@
                     android:textSize="24sp"
                     android:tint="#555"
                     app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text=" and "
+                    android:textAllCaps="false"
+                    android:textColor="#555"
+                    android:textSize="22sp"
+                    app:layout_column="0"
+                    app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text=" or "
+                    android:textAllCaps="false"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text=" not "
+                    android:textAllCaps="false"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text=" div "
+                    android:textAllCaps="false"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text=" mod "
+                    android:textAllCaps="false"
+                    android:textColor="#555"
+                    android:textSize="21dp"
+                    app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -147,9 +271,12 @@
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
                     android:text="7"
+                    android:textAllCaps="false"
                     android:textColor="#555"
                     android:textSize="24sp"
+                    app:layout_column="0"
                     app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -162,9 +289,11 @@
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
                     android:text="8"
+                    android:textAllCaps="false"
                     android:textColor="#555"
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -177,25 +306,11 @@
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
                     android:text="9"
-                    android:textColor="#555"
-                    android:textSize="24sp"
-                    app:layout_columnWeight="1"
-                    app:layout_rowWeight="1" />
-
-                <Button
-                    style="@style/Widget.AppCompat.Button.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginTop="1dp"
-                    android:background="@drawable/calc_button"
-                    android:focusableInTouchMode="false"
-                    android:onClick="calc_onClickButton"
-                    android:text="ceil"
                     android:textAllCaps="false"
                     android:textColor="#555"
-                    android:textSize="14sp"
+                    android:textSize="24sp"
                     app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -207,10 +322,29 @@
                     android:background="@drawable/calc_button"
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
-                    android:text="³√"
+                    android:text="log"
+                    android:textAllCaps="false"
                     android:textColor="#555"
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text="log2"
+                    android:textAllCaps="false"
+                    android:textColor="#555"
+                    android:textSize="20sp"
+                    app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -223,9 +357,12 @@
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
                     android:text="4"
+                    android:textAllCaps="false"
                     android:textColor="#555"
                     android:textSize="24sp"
+                    app:layout_column="0"
                     app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -238,9 +375,11 @@
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
                     android:text="5"
+                    android:textAllCaps="false"
                     android:textColor="#555"
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -253,9 +392,11 @@
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
                     android:text="6"
+                    android:textAllCaps="false"
                     android:textColor="#555"
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -267,10 +408,12 @@
                     android:background="@drawable/calc_button"
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
-                    android:text="^"
+                    android:text="("
+                    android:textAllCaps="false"
                     android:textColor="#555"
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -282,10 +425,13 @@
                     android:background="@drawable/calc_button"
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
-                    android:text="²√"
+                    android:text=")"
+                    android:textAllCaps="false"
                     android:textColor="#555"
                     android:textSize="24sp"
+                    app:layout_column="4"
                     app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -298,9 +444,12 @@
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
                     android:text="1"
+                    android:textAllCaps="false"
                     android:textColor="#555"
                     android:textSize="24sp"
+                    app:layout_column="0"
                     app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -313,9 +462,11 @@
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
                     android:text="2"
+                    android:textAllCaps="false"
                     android:textColor="#555"
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -328,9 +479,11 @@
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
                     android:text="3"
+                    android:textAllCaps="false"
                     android:textColor="#555"
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -342,10 +495,12 @@
                     android:background="@drawable/calc_button"
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
-                    android:text="*"
+                    android:text=" * "
+                    android:textAllCaps="false"
                     android:textColor="#555"
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -357,10 +512,12 @@
                     android:background="@drawable/calc_button"
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
-                    android:text="/"
+                    android:text=" / "
+                    android:textAllCaps="false"
                     android:textColor="#555"
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -373,9 +530,12 @@
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
                     android:text="0"
+                    android:textAllCaps="false"
                     android:textColor="#555"
                     android:textSize="24sp"
+                    app:layout_column="0"
                     app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -388,9 +548,45 @@
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
                     android:text="."
+                    android:textAllCaps="false"
                     android:textColor="#555"
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text=" - "
+                    android:textAllCaps="false"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/calc_button"
+                    android:focusableInTouchMode="false"
+                    android:onClick="calc_onClickButton"
+                    android:text=" + "
+                    android:textAllCaps="false"
+                    android:textColor="#555"
+                    android:textSize="24sp"
+                    app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -404,40 +600,12 @@
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
                     android:text="="
+                    android:textAllCaps="false"
                     android:textColor="#555"
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
-                    app:layout_rowWeight="1" />
+                    app:layout_gravity="fill" />
 
-                <Button
-                    style="@style/Widget.AppCompat.Button.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginTop="1dp"
-                    android:background="@drawable/calc_button"
-                    android:focusableInTouchMode="false"
-                    android:onClick="calc_onClickButton"
-                    android:text="+"
-                    android:textColor="#555"
-                    android:textSize="24sp"
-                    app:layout_columnWeight="1"
-                    app:layout_rowWeight="1" />
-
-                <Button
-                    style="@style/Widget.AppCompat.Button.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginTop="1dp"
-                    android:background="@drawable/calc_button"
-                    android:focusableInTouchMode="false"
-                    android:onClick="calc_onClickButton"
-                    android:text="-"
-                    android:textColor="#555"
-                    android:textSize="24sp"
-                    app:layout_columnWeight="1"
-                    app:layout_rowWeight="1" />
             </android.support.v7.widget.GridLayout>
         </android.support.constraint.ConstraintLayout>
 

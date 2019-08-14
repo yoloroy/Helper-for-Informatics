@@ -9,6 +9,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.mariuszgromada.math.mxparser.Expression;
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
     Animation animAlpha;
 
+    MyArrayList<String> calc_text = new MyArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +60,47 @@ public class MainActivity extends AppCompatActivity {
         slides = new MyFragmentPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(slides);
 
+        pager.clearOnPageChangeListeners();
+        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                onPageSelected(position);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                setTitleFromModeNames(position);
+
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+                }
+
+                if (mode.equals("main")) {
+                    if (pager.getCurrentItem() == 1) {
+                        if (menu != null) {
+                            menu.clear();
+                            getMenuInflater().inflate(R.menu.calc_bar, menu);
+                        }
+                    } else {
+                        if (menu != null) {
+                            menu.clear();
+                        }
+                    }
+                }
+                goto_fragment.setSelection(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
         toMain();
 
         animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
+
+        calc_text.add("0");
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -218,48 +260,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.down_menu_main).setVisibility(View.VISIBLE);
 
         ((MyFragmentPagerAdapter) pager.getAdapter()).setList(mode_fragments.get(mode));
-
-        pager.clearOnPageChangeListeners();
-        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                setTitleFromModeNames(position);
-
-                goto_fragment.setSelection(position);
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                goto_fragment.setSelection(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
     }
     public void toInnerPages() {
         findViewById(R.id.down_menu_main).setVisibility(View.GONE);
-
-        pager.clearOnPageChangeListeners();
-        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                onPageSelected(position);
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                setTitleFromModeNames(position);
-                goto_fragment.setSelection(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setHomeButtonEnabled(true);
@@ -267,14 +270,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         ((MyFragmentPagerAdapter) pager.getAdapter()).setList(mode_fragments.get(mode));
-
-        pager.clearOnPageChangeListeners();
     }
 
     public void setTitleFromModeNames(int position) {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(true);
-            getSupportActionBar().setTitle((String) actionBarNames.get(mode).get(position));
+            getSupportActionBar().setTitle(actionBarNames.get(mode).get(position));
         }
     }
 
@@ -397,23 +398,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickCheckAnswer(View view) {
+
         ((TaskViewFragment)
             ((MyFragmentPagerAdapter) pager.getAdapter())
                 .getItem(pager.getCurrentItem())).onClickCheckAnswer(view);
+
     }
 
+    // #calculator
     public void calc_onClickEvaluate(View view) {
         CharSequence answer = ((TextView) findViewById(R.id.calc_answer)).getText();
+        calc_text.clear();
+        calc_text.add((String) answer.subSequence(3, answer.length()));
         ((TextView) findViewById(R.id.calc_enter))
-                .setText(answer.subSequence(3, answer.length()));
+                .setText(calc_text.toText());
     }
 
     public void calc_onClickInstantEvaluate(View view) {
         Expression e = new Expression(new ExtraCalcFuncs().getExtraCalcFuncs());
 
-        e.setExpressionString(((TextView) findViewById(R.id.calc_enter)).getText().toString()
-                .replace("²√", "square_root")
-                .replace("³√", "volume_root")
+        e.setExpressionString(calc_text.toText()
+                .replace("log", "my_log")
+                .replace("log2", "my_log2")
+                .replace("not", "@~")
+                .replace("and", "@&")
+                .replace("or", "@|")
                 .replace("0(", "0*(")
                 .replace("1(", "1*(")
                 .replace("2(", "2*(")
@@ -427,7 +436,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (!MyProgram.StripInt(e.calculate()).equals("NaN"))
             ((TextView) findViewById(R.id.calc_answer))
-                    .setText(" = " + MyProgram.StripInt(e.calculate()));
+                    .setText(" = " + ToNumSystem.run(e.calculate(),
+                                    (int)((Spinner) findViewById(R.id.calc_num_system_spinner)).getSelectedItem()));
     }
 
     public void calc_onClickButton(View view) {
@@ -437,26 +447,53 @@ public class MainActivity extends AppCompatActivity {
                 calc_onClickEvaluate(view);
                 return;
             case (R.id.calc_backspace):
-                if (text.length() > 1 && !(text.length() == 2 == text.startsWith("-")))
-                    ((TextView) findViewById(R.id.calc_enter))
-                            .setText(text.substring(0, text.length() - 1));
-                else
-                    ((TextView) findViewById(R.id.calc_enter))
-                            .setText("0");
+                if ("0123456789".contains(String.valueOf(calc_text.getLast().charAt(0)))) {
+                    if (calc_text.getLast().length() > 2 ||
+                            !(calc_text.getLast().length() == 2
+                                    == calc_text.getLast().startsWith("-"))) {
+                        calc_text.setLast(calc_text.getLast()
+                                .substring(0, calc_text.getLast().length() - 1));
+                    } else {
+                        calc_text.removeLast();
+                    }
+                } else {
+                    calc_text.removeLast();
+                }
+                if (calc_text.size() == 0)
+                    calc_text.add("0");
                 break;
             case (R.id.calc_clear):
-                ((TextView) findViewById(R.id.calc_enter))
-                        .setText(0);
+                calc_text.clear();
+                calc_text.add("0");
                 break;
             default:
-                if ("0123456789".contains(((Button) view).getText()) && text.equals("0")) {
-                    ((TextView) findViewById(R.id.calc_enter))
-                            .setText(((Button) view).getText());
+                if ("0123456789".contains(((Button) view).getText())) {
+                    if (calc_text.getLast().equals("0")) {
+                        calc_text.setLast((String) ((Button) view).getText());
+                    } else if ("0123456789".contains(String.valueOf(calc_text.getLast().charAt(0))) ||
+                            (calc_text.getLast().charAt(0) == '-' &&
+                                    "0123456789".contains(String.valueOf(calc_text.getLast().charAt(1))))) {
+                        calc_text.setLast(calc_text.getLast() + ((Button) view).getText());
+                    } else {
+                        if (calc_text.size() == 2) {  // for assert
+                            if (calc_text.getLast().equals(" - ") && calc_text.get(0).equals("0")) {
+                                calc_text.clear();
+                                calc_text.add("-" + ((Button) view).getText());
+                            } else
+                                calc_text.add((String) ((Button) view).getText());
+                        } else
+                            calc_text.add((String) ((Button) view).getText());
+                    }
                 } else {
-                    ((TextView) findViewById(R.id.calc_enter))
-                            .setText(text + ((Button) view).getText());
+                    calc_text.add(((String) ((Button) view).getText())
+                            .replace("log", "log(")
+                            .replace("log2", "log2(")
+                            .replace("!", "! "));
                 }
         }
+        Log.i("-1", "calc_onClickButton: "+calc_text);
+        ((TextView) findViewById(R.id.calc_enter))
+                .setText(calc_text.toText());
         calc_onClickInstantEvaluate(view);
     }
 }

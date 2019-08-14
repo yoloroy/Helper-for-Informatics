@@ -49,18 +49,6 @@ public class CalcActivity1 extends AppCompatActivity {
                 Act = new Intent(getApplicationContext(), Resh13Activity.class);
                 startActivity(Act);
                 break;
-            case R.id.colorOnOff :
-                colorAccent = !colorAccent;
-                setColors();
-                break;
-            case R.id.calc_c :
-                colorAccent = true;
-                start = true;
-                lastCommand = "=";
-                result = 0.0d;
-                data = 0.0d;
-                display.setText("0");
-                break;
         }
         return super.onOptionsItemSelected(item);
     }

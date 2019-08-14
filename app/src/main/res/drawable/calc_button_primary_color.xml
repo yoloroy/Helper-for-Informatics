@@ -3,13 +3,13 @@
     <item android:state_pressed="true" >
         <shape>
             <solid
-                android:color="@color/colorBackground" />
+                android:color="@color/colorPrimaryLightQ" />
         </shape>
     </item>
     <item>
         <shape>
             <solid
-                android:color="@color/colorBackContrast" />
+                android:color="@color/colorPrimaryLight" />
         </shape>
     </item>
 </selector>

@@ -3,19 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/colorOnOff"
-        android:icon="@drawable/ic_wb_sunny_yellow_24dp"
-        android:title="colorOnOff"
-        app:showAsAction="always" />
-    <item
         android:id="@+id/calc"
         android:title="Calc"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/calc_c"
-        android:icon="@drawable/ic_refresh_black_24dp"
-        android:title="C"
-        app:showAsAction="always" />
     <item android:title="Решаторы" >
         <menu >
             <item
