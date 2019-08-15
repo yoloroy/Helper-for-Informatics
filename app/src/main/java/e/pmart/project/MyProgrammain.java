@@ -151,11 +151,11 @@ class MyProgram {
     public void main(double units) {
         solution = "";
 
-        solution = "Дано:";
+        /*solution = "Дано:";
         for (String i : given_val.keySet())
             solution += "\n" + i + " = " + StripInt(given_val.get(i));
         solution += "\n" + find + "  -  ?";
-        solution += "\n";
+        solution += "\n";*/
         solution += "\nРешение:";
 
         try {

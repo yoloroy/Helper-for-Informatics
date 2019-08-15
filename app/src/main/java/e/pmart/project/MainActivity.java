@@ -202,9 +202,8 @@ public class MainActivity extends AppCompatActivity {
 
         mode_fragments.get("main").add(new EducationFragment());
         actionBarNames.get("main").add("Курсы");
-        mode_fragments.get("main").add(new CalculatorFragment());
-        actionBarNames.get("main").add("Решатор");
-            //mode_fragments.get("main").add(new EvalFragment());
+        mode_fragments.get("main").add(new EvalFragment());
+        actionBarNames.get("main").add("Калькулятор");
         mode_fragments.get("main").add(new GenerFragment()
                 .setSupportActionBar(getSupportActionBar())
                 .setSupportFragmentManager(getSupportFragmentManager())
@@ -323,6 +322,33 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (mode) {
             case "main":
+                switch(item.getItemId()) {
+                    case R.id.restart:
+                        /*variable1.setSelectedItem(0);
+                        variable1.setValue("");
+                        variable2.setSelectedItem(0);
+                        variable2.setValue("");
+                        variable3.setSelectedItem(0);
+                        variable3.setValue("");
+                        variable4.setSelectedItem(0);*/
+                        break;
+                    /*case R.id.info:
+                        Act = new Intent(getApplicationContext(), EvalInfoIVActivity.class);
+                        startActivity(Act);
+                        break;*/
+                    case R.id.calc:
+                        mode_fragments.get("main").set(1, new CalculatorFragment());
+                        actionBarNames.get("main").set(1, "Калькулятор");
+                        toMain();
+                        pager.setCurrentItem(1);
+                        break;
+                    case R.id.resh13:
+                        mode_fragments.get("main").set(1, new Resh13Fragment());
+                        actionBarNames.get("main").set(1, "Решатор");
+                        toMain();
+                        pager.setCurrentItem(1);
+                        break;
+                }
                 return super.onOptionsItemSelected(item);
             case "course_graphs":
                 switch (item.getItemId()) {
@@ -405,7 +431,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // #calculator
+    // calculator
     public void calc_onClickEvaluate(View view) {
         CharSequence answer = ((TextView) findViewById(R.id.calc_answer)).getText();
         calc_text.clear();
@@ -413,7 +439,6 @@ public class MainActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.calc_enter))
                 .setText(calc_text.toText());
     }
-
     public void calc_onClickInstantEvaluate(View view) {
         Expression e = new Expression(new ExtraCalcFuncs().getExtraCalcFuncs());
 
@@ -439,7 +464,6 @@ public class MainActivity extends AppCompatActivity {
                     .setText(" = " + ToNumSystem.run(e.calculate(),
                                     (int)((Spinner) findViewById(R.id.calc_num_system_spinner)).getSelectedItem()));
     }
-
     public void calc_onClickButton(View view) {
         String text = (String) ((TextView) findViewById(R.id.calc_enter)).getText();
         switch (view.getId()) {
@@ -495,5 +519,10 @@ public class MainActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.calc_enter))
                 .setText(calc_text.toText());
         calc_onClickInstantEvaluate(view);
+    }
+
+    public void onClickStart(View view) {
+        ((Resh13Fragment) ((MyFragmentPagerAdapter) pager.getAdapter())
+                .getItem(pager.getCurrentItem())).onClickStart(view);
     }
 }
