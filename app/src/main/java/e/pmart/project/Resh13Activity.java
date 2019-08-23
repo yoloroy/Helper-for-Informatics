@@ -39,7 +39,7 @@ public class Resh13Activity extends AppCompatActivity {
 
         textView = findViewById(R.id.DecisionWindow);
         scrollView = findViewById(R.id.scrollView2);
-        run = findViewById(R.id.run);
+        run = findViewById(R.id.run13);
 
         variableData = createData();
         createSpinnersEnvironment();

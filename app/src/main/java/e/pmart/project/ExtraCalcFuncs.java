@@ -178,13 +178,9 @@ class ToNumSystem {
             answer += ".";
 
             for (int i = 0; i <= 16; i++) {
-                Log.i("####", "run: ");
                 answer += (int) (temp * num_syst);
-                Log.i("    ", "run: " + (temp * num_syst));
-                Log.i("    ", "run: " + (int) (temp * num_syst));
 
                 temp = temp * num_syst - (int) (temp * num_syst);
-                Log.i("    ", "run: " + (temp * num_syst));
 
                 if (temp == 0)
                     break;

@@ -44,7 +44,7 @@ public class Resh13Fragment extends Fragment {
 
         textView = root_view.findViewById(R.id.resh13_answer);
         scrollView = root_view.findViewById(R.id.scrollView2);
-        run = root_view.findViewById(R.id.run);
+        run = root_view.findViewById(R.id.run13);
 
         variableData = createData();
         createSpinnersEnvironment();
