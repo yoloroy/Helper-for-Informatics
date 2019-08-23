@@ -6,19 +6,10 @@
     tools:context="e.pmart.project.FactoryEducationFragment">
 
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </android.support.constraint.ConstraintLayout>
-
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:fillViewport="true"
+        android:fillViewport="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -27,9 +18,23 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="right"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/colorBackContrast"
+            android:elevation="4dp"
+            android:gravity="right|top"
+            android:orientation="vertical"
+            android:paddingStart="12dp"
+            android:paddingLeft="12dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="8dp">
 
             <LinearLayout
                 android:id="@+id/factory_base"
@@ -44,6 +49,7 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:backgroundTint="@color/colorAppGreen"
                 android:onClick="onClickNext"
                 android:text="Продолжить"

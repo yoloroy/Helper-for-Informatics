@@ -1,6 +1,5 @@
 package e.pmart.project;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -50,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        test();
 
         goto_fragment = (GotoFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.down_menu_main);
@@ -109,10 +110,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //  main part
-    public void onClickBackToOld(View view) {
-        Intent Act = new Intent(getApplicationContext(), MainActivity1.class);
-        startActivity(Act);
-    }
     public void onClickGoto (View view) {
         LinearLayout goto_layout = findViewById(R.id.goto_layout);
 
@@ -348,6 +345,12 @@ public class MainActivity extends AppCompatActivity {
                         toMain();
                         pager.setCurrentItem(1);
                         break;
+                    case R.id.resh26:
+                        mode_fragments.get("main").set(1, new Resh26Fragment());
+                        actionBarNames.get("main").set(1, "Решатор");
+                        toMain();
+                        pager.setCurrentItem(1);
+                        break;
                 }
                 return super.onOptionsItemSelected(item);
             case "course_graphs":
@@ -424,7 +427,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickCheckAnswer(View view) {
-
         ((TaskViewFragment)
             ((MyFragmentPagerAdapter) pager.getAdapter())
                 .getItem(pager.getCurrentItem())).onClickCheckAnswer(view);
@@ -509,10 +511,13 @@ public class MainActivity extends AppCompatActivity {
                             calc_text.add((String) ((Button) view).getText());
                     }
                 } else {
-                    calc_text.add(((String) ((Button) view).getText())
-                            .replace("log", "log(")
-                            .replace("log2", "log2(")
-                            .replace("!", "! "));
+                    if (((String) ((Button) view).getText()).contains("log2"))
+                        calc_text.add(((String) ((Button) view).getText())
+                                .replace("log2", "log2("));
+                    else
+                        calc_text.add(((String) ((Button) view).getText())
+                                .replace("log", "log(")
+                                .replace("!", "! "));
                 }
         }
         Log.i("-1", "calc_onClickButton: "+calc_text);
@@ -524,5 +529,21 @@ public class MainActivity extends AppCompatActivity {
     public void onClickStart(View view) {
         ((Resh13Fragment) ((MyFragmentPagerAdapter) pager.getAdapter())
                 .getItem(pager.getCurrentItem())).onClickStart(view);
+    }
+
+    private void test() {
+        Integer[] start_pos = new Integer[] {2, 3, 4};
+
+        String[] end = new String[] {"ANY > 15", "SUM >= 25"};
+        String[] steps = new String[] {"ALL + 2", "ALL * 2"};
+
+        String[] players = new String[] {"Pasha", "Vova"};
+
+        Resh26 resh = new Resh26();
+
+        Map<String, Object> tree = resh.call(start_pos, end, steps);
+
+        Log.i("test 26", "test: " + tree);
+        Log.i("test 26", "test: " + resh.calculate_winner(tree, players));
     }
 }

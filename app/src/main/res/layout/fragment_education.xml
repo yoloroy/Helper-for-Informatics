@@ -9,9 +9,9 @@
         android:id="@+id/scrollView4"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_marginEnd="6dp"
         android:layout_marginStart="6dp"
         android:layout_marginTop="6dp"
+        android:layout_marginEnd="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,9 +32,10 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:backgroundTint="@color/colorBackContrast"
+                android:elevation="8dp"
                 android:onClick="changeMode"
-                android:text="Графы"
 
+                android:text="Графы"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill" />
 
@@ -42,6 +43,7 @@
                 android:id="@+id/course_none"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
+                android:elevation="4dp"
                 android:text="Button"
                 android:visibility="invisible"
                 app:layout_columnWeight="1"
