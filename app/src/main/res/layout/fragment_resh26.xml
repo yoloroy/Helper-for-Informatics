@@ -58,7 +58,6 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="4dp"
-                        android:background="@drawable/edit_text_cage"
                         android:elevation="4dp"
                         android:inputType="number"
                         android:paddingStart="8dp"
