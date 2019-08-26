@@ -8,7 +8,26 @@
     tools:context=".Resh26Fragment">
 
 
+    <e.pmart.project.QuadButton
+        android:id="@+id/run26_back"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/ic_play_circle_filled_black_24dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:elevation="4dp"
+        android:onClick="onClickBack26"
+        android:rotation="180"
+        android:src="@drawable/ic_play_circle_filled_black_24dp"
+        android:tint="@color/colorPrimary"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <ScrollView
+        android:id="@+id/scrollView5"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -25,6 +44,53 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/textView28"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:text="Имена игроков:"
+                android:textColor="#000"
+                android:textSize="22sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/name1_26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="Игрок1"
+                    android:inputType="textPersonName"
+                    android:text="Игрок1" />
+
+                <EditText
+                    android:id="@+id/name2_26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="Игрок2"
+                    android:inputType="textPersonName"
+                    android:text="Игрок2" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/colorBackground" />
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -39,6 +105,7 @@
                 android:layout_height="wrap_content">
 
                 <android.support.v7.widget.GridLayout
+                    android:id="@+id/pos_26"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -51,20 +118,12 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <EditText
-                        android:id="@+id/pos0"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="4dp"
-                        android:elevation="4dp"
                         android:inputType="number"
                         android:paddingStart="8dp"
-                        android:paddingLeft="8dp"
                         android:paddingTop="4dp"
                         android:paddingEnd="8dp"
-                        android:paddingRight="8dp"
                         android:paddingBottom="4dp"
                         android:text="0"
                         android:textSize="22sp" />
@@ -83,7 +142,8 @@
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0">
 
                     <Button
                         style="@style/Widget.AppCompat.Button.Small"
@@ -92,6 +152,7 @@
                         android:layout_weight="1"
                         android:backgroundTint="#fff"
                         android:elevation="4dp"
+                        android:onClick="corrEdits"
                         android:text="−"
                         android:textColor="@color/colorPrimary"
                         android:textSize="20sp" />
@@ -103,6 +164,7 @@
                         android:layout_weight="1"
                         android:backgroundTint="#fff"
                         android:elevation="4dp"
+                        android:onClick="corrEdits"
                         android:text="+"
                         android:textColor="@color/colorPrimary"
                         android:textSize="20sp" />
@@ -141,6 +203,7 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
+                    android:id="@+id/paths_26"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -184,7 +247,8 @@
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0">
 
                     <Button
                         style="@style/Widget.AppCompat.Button.Small"
@@ -193,6 +257,7 @@
                         android:layout_weight="1"
                         android:backgroundTint="#fff"
                         android:elevation="4dp"
+                        android:onClick="corrEdits"
                         android:text="−"
                         android:textColor="@color/colorPrimary"
                         android:textSize="20sp" />
@@ -204,6 +269,7 @@
                         android:layout_weight="1"
                         android:backgroundTint="#fff"
                         android:elevation="4dp"
+                        android:onClick="corrEdits"
                         android:text="+"
                         android:textColor="@color/colorPrimary"
                         android:textSize="20sp" />
@@ -244,6 +310,7 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
+                    android:id="@+id/ends_26"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -287,7 +354,8 @@
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0">
 
                     <Button
                         style="@style/Widget.AppCompat.Button.Small"
@@ -296,6 +364,7 @@
                         android:layout_weight="1"
                         android:backgroundTint="#fff"
                         android:elevation="4dp"
+                        android:onClick="corrEdits"
                         android:text="−"
                         android:textColor="@color/colorPrimary"
                         android:textSize="20sp" />
@@ -307,6 +376,7 @@
                         android:layout_weight="1"
                         android:backgroundTint="#fff"
                         android:elevation="4dp"
+                        android:onClick="corrEdits"
                         android:text="+"
                         android:textColor="@color/colorPrimary"
                         android:textSize="20sp" />
@@ -333,16 +403,52 @@
                 android:background="@color/colorBackground" />
 
             <e.pmart.project.QuadButton
-                android:id="@+id/run26"
+                android:id="@+id/run26_start"
                 style="@style/Widget.AppCompat.Button.Small"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginTop="24dp"
                 android:background="@drawable/ic_play_circle_filled_black_24dp"
                 android:backgroundTint="@color/colorPrimary"
+                android:elevation="4dp"
+                android:onClick="onClickRun26"
                 android:src="@drawable/ic_play_circle_filled_black_24dp"
                 android:tint="@color/colorPrimary" />
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/answer_26_papa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingLeft="16dp"
+        android:paddingEnd="16dp"
+        android:paddingRight="16dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/scrollView5"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/winner_26"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp"
+            android:visibility="visible" />
+
+        <de.blox.graphview.GraphView
+            android:id="@+id/answer_26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            android:visibility="visible">
+
+        </de.blox.graphview.GraphView>
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

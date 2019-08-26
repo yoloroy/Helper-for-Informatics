@@ -159,13 +159,15 @@ class EndResh26 {
                         .calculate() == 1)
                     return true;
             }
+            return false;
         } else if (expression.contains("ALL")) {
             for (Integer item: arr) {
                 if (new Expression(expression
-                        .replace("ANY", String.valueOf(item)))
+                        .replace("ALL", String.valueOf(item)))
                         .calculate() != 1)
                     return false;
             }
+            return true;
         } else if (expression.contains("SUM")) {
             int sum = 0;
             for (Integer item: arr) {
