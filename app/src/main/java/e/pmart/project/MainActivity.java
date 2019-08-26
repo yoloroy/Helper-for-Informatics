@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        //test();
-
         goto_fragment = (GotoFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.down_menu_main);
 
