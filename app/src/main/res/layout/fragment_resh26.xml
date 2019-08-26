@@ -169,14 +169,6 @@
                         android:textColor="@color/colorPrimary"
                         android:textSize="20sp" />
 
-                    <ImageButton
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/ic_info_black_24dp"
-                        android:backgroundTint="@color/colorPrimaryLight"
-                        android:elevation="4dp"
-                        android:visibility="invisible" />
                 </LinearLayout>
 
             </android.support.constraint.ConstraintLayout>
@@ -223,7 +215,7 @@
                         android:elegantTextHeight="true"
                         android:elevation="4dp"
                         android:ems="10"
-                        android:hint="ONE * 3 / ALL + 3"
+                        android:hint="один * 3 / все + 3"
                         android:paddingStart="8dp"
                         android:paddingLeft="8dp"
                         android:paddingTop="4dp"
@@ -274,15 +266,6 @@
                         android:textColor="@color/colorPrimary"
                         android:textSize="20sp" />
 
-                    <ImageButton
-                        style="@style/Widget.AppCompat.Button.Small"
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/ic_info_black_24dp"
-                        android:backgroundTint="@android:color/darker_gray"
-                        android:elevation="4dp"
-                        android:visibility="visible" />
                 </LinearLayout>
 
             </android.support.constraint.ConstraintLayout>
@@ -330,7 +313,7 @@
                         android:elegantTextHeight="true"
                         android:elevation="4dp"
                         android:ems="10"
-                        android:hint="ANY / ALL / SUM>25"
+                        android:hint="любой / все / сумма >25"
                         android:paddingStart="8dp"
                         android:paddingLeft="8dp"
                         android:paddingTop="4dp"
@@ -381,15 +364,6 @@
                         android:textColor="@color/colorPrimary"
                         android:textSize="20sp" />
 
-                    <ImageButton
-                        style="@style/Widget.AppCompat.Button.Small"
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/ic_info_black_24dp"
-                        android:backgroundTint="@android:color/darker_gray"
-                        android:elevation="4dp"
-                        android:visibility="visible" />
                 </LinearLayout>
 
             </android.support.constraint.ConstraintLayout>

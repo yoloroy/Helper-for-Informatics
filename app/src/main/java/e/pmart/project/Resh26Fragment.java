@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayout;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -196,27 +195,17 @@ public class Resh26Fragment extends Fragment {
 
         Resh26 resh = new Resh26();
         Map<String, Object> tree = resh.call(start_pos, ends, steps);
-
-        Log.i("test 26", "onClickRun26: " + tree);
-        Log.i("test 26", "onClickRun26: " + resh.calculate_winner(tree, players));
-
         ((TextView) root_view.findViewById(R.id.winner_26)).setText(resh.calculate_winner(tree, players));
-
 
         root_view.findViewById(R.id.scrollView5).setVisibility(View.INVISIBLE);
         root_view.findViewById(R.id.answer_26_papa).setVisibility(View.VISIBLE);
         root_view.findViewById(R.id.run26_back).setVisibility(View.VISIBLE);
 
-        Log.i("sebrew", "onClickRun26: "+graphView);
-
         create_res_to_visualisation(tree);
-        Log.i("test 26", "onClickRun26: " + convert_data);
-        Log.i("test 26", "onClickRun26: " + relatives);
 
         Graph graph = new Graph();
         List<Integer> nodes = new ArrayList<>();
         nodes.add(0);
-        Log.i("test ending_leafs", "onClickRun26: "+ending_leafs);
         while ((graph.getEdges().size()) < (relatives.size() - 1 + ending_leafs)) {
             for (Integer parent : relatives.keySet()) {
                 for (Integer child : relatives.get(parent)) {
@@ -228,13 +217,6 @@ public class Resh26Fragment extends Fragment {
                 }
             }
         }
-
-
-        Log.i("dfgjrm", "onClickRun26: "+graph.getNodeCount());
-        Log.i("dfgjrm", "onClickRun26: "+graph.getNodes());
-        Log.i("dfgjrm", "onClickRun26: "+graph.getEdges());
-
-
 
         graphView.getAdapter().setGraph(graph);
         graphView.getAdapter().notifyInvalidated();
@@ -291,7 +273,9 @@ public class Resh26Fragment extends Fragment {
         String[] steps = new String
                 [steps_26.getChildCount()];
         for (int i = 0; i < steps.length; i++) {
-            steps[i] = ((EditText) steps_26.getChildAt(i)).getText().toString().toUpperCase();
+            steps[i] = ((EditText) steps_26.getChildAt(i)).getText().toString().toUpperCase()
+                    .replace("ОДИН", "ONE")
+                    .replace("ВСЕ", "ALL");
         }
         return steps;
     }
@@ -301,7 +285,10 @@ public class Resh26Fragment extends Fragment {
         String[] ends = new String
                 [ends_26.getChildCount()];
         for (int i = 0; i < ends.length; i++) {
-            ends[i] = ((EditText) ends_26.getChildAt(i)).getText().toString().toUpperCase();
+            ends[i] = ((EditText) ends_26.getChildAt(i)).getText().toString().toUpperCase()
+                    .replace("ЛЮБОЙ", "ANY")
+                    .replace("ВСЕ", "ALL")
+                    .replace("СУММА", "SUM");
         }
         return ends;
     }
