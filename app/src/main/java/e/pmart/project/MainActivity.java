@@ -29,6 +29,8 @@ import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
+    private int nodeCount = 0;
+
     GotoFragment goto_fragment;
     Menu menu;
 
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        test();
+        //test();
 
         goto_fragment = (GotoFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.down_menu_main);
@@ -531,19 +533,16 @@ public class MainActivity extends AppCompatActivity {
                 .getItem(pager.getCurrentItem())).onClickStart(view);
     }
 
-    private void test() {
-        Integer[] start_pos = new Integer[] {2, 3, 4};
-
-        String[] end = new String[] {"ANY > 15", "SUM >= 25"};
-        String[] steps = new String[] {"ALL + 2", "ALL * 2"};
-
-        String[] players = new String[] {"Pasha", "Vova"};
-
-        Resh26 resh = new Resh26();
-
-        Map<String, Object> tree = resh.call(start_pos, end, steps);
-
-        Log.i("test 26", "test: " + tree);
-        Log.i("test 26", "test: " + resh.calculate_winner(tree, players));
+    public void onClickRun26(View view) {
+        ((Resh26Fragment) ((MyFragmentPagerAdapter) pager.getAdapter())
+                .getItem(pager.getCurrentItem())).onClickRun26(view);
+    }
+    public void onClickBack26(View view) {
+        ((Resh26Fragment) ((MyFragmentPagerAdapter) pager.getAdapter())
+                .getItem(pager.getCurrentItem())).onClickBack26(view);
+    }
+    public void corrEdits(View view) {
+        ((Resh26Fragment) ((MyFragmentPagerAdapter) pager.getAdapter())
+                .getItem(pager.getCurrentItem())).corrEdits(view);
     }
 }
