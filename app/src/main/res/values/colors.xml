@@ -7,6 +7,10 @@
     <color name="colorPrimaryLightQ">#537AA2</color>
     <color name="colorPrimaryDarkQ">#333A42</color>
 
+    <!--<color name="colorPrimary">#0aaf96</color>
+    <color name="colorPrimaryLight">#c3fffb</color>
+    <color name="colorPrimaryDark">#006359</color>-->
+
     <color name="colorPrimary">#4168A8</color>
     <color name="colorPrimaryLight">#5188D8</color>
     <color name="colorPrimaryDark">#314888</color>

@@ -147,6 +147,7 @@ class MyProgram {
     private Map<String, Double> given_val = new HashMap<String, Double>();
     private String find;
     private String sol;
+    public Double answer = Double.NaN;
 
     public void main(double units) {
         solution = "";
@@ -159,12 +160,14 @@ class MyProgram {
         solution += "\nРешение:";
 
         try {
-            sol = "\n\nОтвет: " + StripInt(main_func(given_val, find) / units);
+            answer = main_func(given_val, find) / units;
+            //sol = "\n\nОтвет: " + StripInt(answer);
         } catch (ArithmeticException e) {
-            sol = "\nОтвет не может быть получен из-за неверных входных данных";
+            answer = Double.NaN;
+            //sol = "\nОтвет не может быть получен из-за неверных входных данных";
         }
 
-        solution += sol;
+        //solution += sol;
     }
 
     private double main_func(Map<String, Double> given_val, String find) {

@@ -29,17 +29,23 @@
     <ScrollView
         android:id="@+id/scrollView5"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/rect_corners_s"
+        android:backgroundTint="#fff"
+        android:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/colorBackContrast"
-            android:elevation="4dp"
             android:gravity="end"
             android:orientation="vertical">
 
@@ -213,7 +219,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:elegantTextHeight="true"
-                        android:elevation="4dp"
                         android:ems="10"
                         android:hint="один * 3 / все + 3"
                         android:paddingStart="8dp"
@@ -311,7 +316,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:elegantTextHeight="true"
-                        android:elevation="4dp"
                         android:ems="10"
                         android:hint="любой / все / сумма >25"
                         android:paddingStart="8dp"
@@ -381,7 +385,9 @@
                 style="@style/Widget.AppCompat.Button.Small"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/ic_play_circle_filled_black_24dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:elevation="4dp"

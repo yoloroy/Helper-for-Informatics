@@ -33,8 +33,8 @@
                 android:adjustViewBounds="true"
                 android:backgroundTint="@color/colorBackContrast"
                 android:elevation="8dp"
-                android:onClick="changeMode"
 
+                android:onClick="changeMode"
                 android:text="Графы"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill" />

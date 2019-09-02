@@ -36,13 +36,24 @@
                 app:autoSizeTextType="uniform" />
 
             <TextView
-                android:id="@+id/calc_answer"
+                android:id="@+id/calc_preview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:elegantTextHeight="true"
+                android:textSize="30sp"
+                app:autoSizeMaxTextSize="30dp"
+                app:autoSizeTextType="uniform" />
+
+            <TextView
+                android:id="@+id/calc_answer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:elegantTextHeight="false"
                 android:text=" = 0"
                 android:textSize="30sp"
                 app:autoSizeMaxTextSize="30dp"
@@ -220,7 +231,7 @@
                     android:background="@drawable/calc_button"
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
-                    android:text=" not "
+                    android:text="not"
                     android:textAllCaps="false"
                     android:textColor="#555"
                     android:textSize="24sp"

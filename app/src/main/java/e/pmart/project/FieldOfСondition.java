@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import org.mariuszgromada.math.mxparser.Expression;
+
 import java.util.HashMap;
 
 
@@ -121,7 +123,11 @@ class FieldOfСondition {
         return unitsData.get(data[spinner.getSelectedItemPosition()])[unitsSpinner.getSelectedItemPosition()];
     }
     Double getValue() {
-        return Double.valueOf(getText().toString()) * getUnits();
+        Expression e = new Expression();
+
+        e.setExpressionString(getText().toString());
+
+        return e.calculate() * getUnits();
     }
     Object getSelectedItem() {
         return spinner.getSelectedItem();

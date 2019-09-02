@@ -29,8 +29,6 @@ import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
-    private int nodeCount = 0;
-
     GotoFragment goto_fragment;
     Menu menu;
 
@@ -444,10 +442,10 @@ public class MainActivity extends AppCompatActivity {
     public void calc_onClickInstantEvaluate(View view) {
         Expression e = new Expression(new ExtraCalcFuncs().getExtraCalcFuncs());
 
+
         e.setExpressionString(calc_text.toText()
                 .replace("log", "my_log")
-                .replace("log2", "my_log2")
-                .replace("not", "@~")
+                .replace("not", "bnot")
                 .replace("and", "@&")
                 .replace("or", "@|")
                 .replace("0(", "0*(")
@@ -459,7 +457,11 @@ public class MainActivity extends AppCompatActivity {
                 .replace("6(", "6*(")
                 .replace("7(", "7*(")
                 .replace("8(", "8*(")
-                .replace("9(", "9*("));
+                .replace("9(", "9*(")
+                .replace("my_log2*", "my_log2"));
+
+        Log.i("-calc", "calc_onClickInstantEvaluate: "+e.getExpressionString());
+        Log.i("-calc", "calc_onClickInstantEvaluate: "+e.calculate());
 
         if (!MyProgram.StripInt(e.calculate()).equals("NaN"))
             ((TextView) findViewById(R.id.calc_answer))
@@ -516,6 +518,7 @@ public class MainActivity extends AppCompatActivity {
                                 .replace("log2", "log2("));
                     else
                         calc_text.add(((String) ((Button) view).getText())
+                                .replace("not", "not(")
                                 .replace("log", "log(")
                                 .replace("!", "! "));
                 }
@@ -523,6 +526,11 @@ public class MainActivity extends AppCompatActivity {
         Log.i("-1", "calc_onClickButton: "+calc_text);
         ((TextView) findViewById(R.id.calc_enter))
                 .setText(calc_text.toText());
+        if ((int)((Spinner) findViewById(R.id.calc_num_system_spinner)).getSelectedItem() != 10)
+            ((TextView) findViewById(R.id.calc_preview))
+                    .setText(calc_text.toText((int)((Spinner) findViewById(R.id.calc_num_system_spinner)).getSelectedItem()));
+        else
+            ((TextView) findViewById(R.id.calc_preview)).setText("");
         calc_onClickInstantEvaluate(view);
     }
 

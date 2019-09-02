@@ -48,21 +48,17 @@ class ExtraCalcFuncs {
 
     public class BinaryNot implements FunctionExtension {
         double a;
-        double b;
         public BinaryNot() {
             a = Double.NaN;
-            b = Double.NaN;
         }
-        public BinaryNot(double a, double b) {
+        public BinaryNot(double a) {
             this.a = a;
-            this.b = b;
         }
         public int getParametersNumber() {
-            return 2;
+            return 1;
         }
         public void setParameterValue(int parameterIndex, double parameterValue) {
             if (parameterIndex == 0) a = parameterValue;
-            if (parameterIndex == 1) b = parameterValue;
         }
         @Override
         public double calculate(double... parameters) {
@@ -72,13 +68,13 @@ class ExtraCalcFuncs {
             num = num.replace('1', '0');
             num = num.replace('2', '1');
 
-            while (num.length() <= b)
+            while (num.length() <= Integer.toBinaryString((int) a).length()-1)
                 num = "1" + num;
             return (double) (Integer.parseInt(num, 2));
         }
 
         public BinaryNot clone() {
-            return new BinaryNot(a, b);
+            return new BinaryNot(a);
         }
     }
     public class MathRoot implements FunctionExtension {
@@ -111,7 +107,6 @@ class ExtraCalcFuncs {
     public class MyLog implements FunctionExtension {
         double a;
 
-
         public MyLog() {
             a = Double.NaN;
         }
@@ -135,7 +130,6 @@ class ExtraCalcFuncs {
     }
     public class MyLog2 implements FunctionExtension {
         double a;
-
 
         public MyLog2() {
             a = Double.NaN;

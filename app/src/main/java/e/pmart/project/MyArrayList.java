@@ -19,6 +19,21 @@ public class MyArrayList<E> extends ArrayList<E> {
         remove(size()-1);
     }
     
+    public String toText(int num_syst) {
+        if (getLast().getClass().equals("".getClass())) {
+            String a = "";
+            for (int i = 0; i < size(); i++) {
+                try {
+                    a += ToNumSystem.run(Double.parseDouble((String) get(i)),
+                                         num_syst);
+                } catch (NumberFormatException nfe) {
+                    a += (String) get(i);
+                }
+            }
+            return a;
+        } else throw new RuntimeException("method work only with strings!");
+    }
+
     public String toText() {
         if (getLast().getClass().equals("".getClass())) {
             String a = "";
@@ -27,6 +42,5 @@ public class MyArrayList<E> extends ArrayList<E> {
             }
             return a;
         } else throw new RuntimeException("method work only with strings!");
-
     }
 }

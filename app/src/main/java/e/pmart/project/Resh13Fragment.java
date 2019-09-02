@@ -88,6 +88,7 @@ public class Resh13Fragment extends Fragment {
     public void onClickStart(View view) {
         if (textView.getVisibility() == View.GONE) {
             Map<String, Double> given_val = new HashMap<>();
+
             if (!variable1.getSelectedItem().toString().equals(" "))
                 given_val.put(variable1.getSelectedItem().toString(),
                         variable1.getValue());
@@ -104,9 +105,13 @@ public class Resh13Fragment extends Fragment {
             String y = zee.getSolution();
 
             Log.d("STATE", y);
-            textView.setText(y);
+            if (zee.answer.isNaN())
+                textView.setText(y + "\nОтвет не может быть получен из-за неверных входных данных");
+            else
+                textView.setText(y +
+                        "\n\nОтвет: " +
+                        MyProgram.StripInt(zee.answer / variable4.getUnits()));
             textView.setVisibility(View.VISIBLE);
-            Log.d("STATE", String.valueOf(textView.getVisibility() == View.VISIBLE));
 
             run.setRotation(180.0f);
         }

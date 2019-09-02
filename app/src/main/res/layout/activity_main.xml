@@ -19,11 +19,20 @@
 
     </android.support.v4.view.ViewPager>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#1444"
+        app:layout_constraintBottom_toTopOf="@+id/down_menu_main">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <fragment
         android:id="@+id/down_menu_main"
         android:name="e.pmart.project.GotoFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
