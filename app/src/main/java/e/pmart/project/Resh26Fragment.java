@@ -42,6 +42,7 @@ public class Resh26Fragment extends Fragment {
     int node_num = 0;
     int ending_leafs = 0;
 
+    String[] players;
 
     public Resh26Fragment() {
         // Required empty public constructor
@@ -189,7 +190,7 @@ public class Resh26Fragment extends Fragment {
         Integer[] start_pos = collectPos();
         String[] steps = collectSteps();
         String[] ends = collectEnds();
-        String[] players = new String[] {
+        players = new String[] {
                 ((EditText) root_view.findViewById(R.id.name1_26)).getText().toString(),
                 ((EditText) root_view.findViewById(R.id.name2_26)).getText().toString()};
 
@@ -243,7 +244,7 @@ public class Resh26Fragment extends Fragment {
             try {
                 create_res_to_visualisation((Map<String, Object>) tree.get(key), node_num);
             } catch (Exception e) {
-                convert_data.put(node_num+1, new Node(node_num+1 + " " + (tree.get(key))));
+                convert_data.put(node_num+1, new Node(node_num+1 + " " + players[(Integer) tree.get(key)]));
                 relatives.put(node_num, new ArrayList<>());
                 relatives.get(node_num).add(node_num+1);
                 node_num++;
