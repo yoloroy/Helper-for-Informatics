@@ -463,6 +463,12 @@ public class MainActivity extends AppCompatActivity {
         Log.i("-calc", "calc_onClickInstantEvaluate: "+e.getExpressionString());
         Log.i("-calc", "calc_onClickInstantEvaluate: "+e.calculate());
 
+        if ((int)((Spinner) findViewById(R.id.calc_num_system_spinner)).getSelectedItem() != 10)
+            ((TextView) findViewById(R.id.calc_preview))
+                    .setText(calc_text.toText((int)((Spinner) findViewById(R.id.calc_num_system_spinner)).getSelectedItem()));
+        else
+            ((TextView) findViewById(R.id.calc_preview)).setText("");
+
         if (!MyProgram.StripInt(e.calculate()).equals("NaN"))
             ((TextView) findViewById(R.id.calc_answer))
                     .setText(" = " + ToNumSystem.run(e.calculate(),
@@ -526,11 +532,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i("-1", "calc_onClickButton: "+calc_text);
         ((TextView) findViewById(R.id.calc_enter))
                 .setText(calc_text.toText());
-        if ((int)((Spinner) findViewById(R.id.calc_num_system_spinner)).getSelectedItem() != 10)
-            ((TextView) findViewById(R.id.calc_preview))
-                    .setText(calc_text.toText((int)((Spinner) findViewById(R.id.calc_num_system_spinner)).getSelectedItem()));
-        else
-            ((TextView) findViewById(R.id.calc_preview)).setText("");
+
         calc_onClickInstantEvaluate(view);
     }
 

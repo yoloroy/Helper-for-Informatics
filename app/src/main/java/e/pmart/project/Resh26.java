@@ -5,6 +5,7 @@ import org.mariuszgromada.math.mxparser.Expression;
 import org.mariuszgromada.math.mxparser.Function;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -51,12 +52,16 @@ class Resh26 {
         List<Object[]> temp = new ArrayList<>();
         Object[] temp_arr = arr.clone();
         Object[] temp_temp_arr;
+        List<Object> arr_list = Arrays.asList(arr);
 
         for (String i: steps) {
             for (String e: end) {
                 if (EndResh26.run((Integer[]) arr, e))
                     return new ArrayList<>();
             }
+            if (i.contains("*") && arr_list.contains(0))
+                continue;
+
             temp_arr = StepResh26.run((Integer[]) arr, i);
             if (i.contains("ONE")) {
                 for (int j = 0; j < arr.length; j++) {
