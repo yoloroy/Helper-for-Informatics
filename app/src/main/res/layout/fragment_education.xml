@@ -17,39 +17,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <android.support.v7.widget.GridLayout
+        <GridView
             android:id="@+id/education_grid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:columnCount="2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <e.pmart.project.QuadButton
-                android:id="@+id/course_graphs"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:backgroundTint="@color/colorBackContrast"
-                android:elevation="8dp"
-
-                android:onClick="changeMode"
-                android:text="Графы"
-                app:layout_columnWeight="1"
-                app:layout_gravity="fill" />
-
-            <e.pmart.project.QuadButton
-                android:id="@+id/course_none"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:elevation="4dp"
-                android:text="Button"
-                android:visibility="invisible"
-                app:layout_columnWeight="1"
-                app:layout_gravity="fill" />
-        </android.support.v7.widget.GridLayout>
-
+            android:horizontalSpacing="16dp"
+            android:numColumns="2"
+            android:verticalSpacing="12dp"
+            tools:listitem="@layout/education_link_node" />
     </ScrollView>
+
+    <include
+        layout="@layout/education_link_node"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:visibility="invisible"
+        app:layout_columnWeight="1"
+        tools:layout_editor_absoluteX="14dp"
+        tools:layout_editor_absoluteY="14dp" />
 
 </android.support.constraint.ConstraintLayout>

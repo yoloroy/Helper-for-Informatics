@@ -124,7 +124,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:background="@android:drawable/btn_default"
-            android:backgroundTint="@color/colorAppGreen"
+            android:backgroundTint="@color/colorAppTrue"
             android:onClick="onClickCheckAnswer"
             android:text="Проверить"
             android:textColor="#FFF"

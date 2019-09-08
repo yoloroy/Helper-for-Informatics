@@ -1,5 +1,8 @@
 package e.pmart.project;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,6 +10,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -42,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
     Animation animAlpha;
 
     MyArrayList<String> calc_text = new MyArrayList<>();
+
+    public static final String APP_TEMP = "temp";
+    public static final String APP_TEMP_OPENED = "opened";
+    private SharedPreferences mSettings;
 
 
     @Override
@@ -100,11 +108,40 @@ public class MainActivity extends AppCompatActivity {
         animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
 
         calc_text.add("0");
+
+        mSettings = getSharedPreferences(APP_TEMP, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = mSettings.edit();
+
+        if (mSettings.contains(APP_TEMP_OPENED)) {
+            if (!mSettings.getBoolean(APP_TEMP_OPENED, true)) {
+                showHello();
+            }
+        } else {
+            showHello();
+        }
+
+        editor.putBoolean(APP_TEMP_OPENED, true);
+        editor.apply();
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
         this.menu = menu;
         return true;
+    }
+
+    public void showHello() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Добро пожаловать в \"Помощник по информатике\"!")
+                .setMessage("Мы вам поможем справиться с заданиями по информатике и легче усвоить материал.")
+                .setCancelable(false)
+                .setNegativeButton("Спасибо",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     //  main part
@@ -132,6 +169,10 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
             if (pager.getCurrentItem() == (pager.getAdapter().getCount() - 1)) {
+                SharedPreferences.Editor editor = mSettings.edit();
+                editor.putBoolean(mode, true);
+                editor.apply();
+
                 toMain();
                 pager.setCurrentItem(0);
                 return;
@@ -148,14 +189,14 @@ public class MainActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         switch (view.getId()) {
-            case R.id.course_graphs:
+            /*case R.id.course_graphs:
                 mode = "course_graphs";
 
                 if (actionBar != null) {
                     actionBar.setHomeButtonEnabled(true);
                     actionBar.setDisplayHomeAsUpEnabled(true);
                 }
-                break;
+                break;*/
             case R.id.goto_about:
                 mode = "about";
 
@@ -190,6 +231,28 @@ public class MainActivity extends AppCompatActivity {
         this.mode = mode;
         toInnerPages();
     }
+    public void toMain() {
+        mode = "main";
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(false);
+            actionBar.setDisplayHomeAsUpEnabled(false);
+        }
+
+        findViewById(R.id.down_menu_main).setVisibility(View.VISIBLE);
+
+        ((MyFragmentPagerAdapter) pager.getAdapter()).setList(mode_fragments.get(mode));
+    }
+    public void toInnerPages() {
+        findViewById(R.id.down_menu_main).setVisibility(View.GONE);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
+        ((MyFragmentPagerAdapter) pager.getAdapter()).setList(mode_fragments.get(mode));
+    }
     public void create_fragment_unions() {
         /*     main     */
         mode_fragments.put("main", new ArrayList<Fragment>());
@@ -214,19 +277,8 @@ public class MainActivity extends AppCompatActivity {
         //mode_fragments.get("main").add(new OtherFragment());
         //actionBarNames.get("main").add("Дополнительно");
 
-        /*     course_graphs     */
-        mode_fragments.put("course_graphs", new ArrayList<Fragment>());
-        actionBarNames.put("course_graphs", new ArrayList<String>());
-
-        mode_fragments.get("course_graphs").add(new FactoryEducationFragment()
-                .newTitle(R.string.graphs_1)
-                .newText(R.string.graphs_2)
-                .newImage(R.mipmap.graph_visualisation));
-        actionBarNames.get("course_graphs").add("Графы");
-        mode_fragments.get("course_graphs").add(new FactoryEducationFragment()
-                .newText(R.string.graphs_task1)
-                .newChoice(R.array.choice_graphs_task1));
-        actionBarNames.get("course_graphs").add("Графы");
+        /*     courses     */
+        upload_courses();
 
         /*     task     */
         mode_fragments.put("gener_task", new ArrayList<Fragment>());
@@ -246,27 +298,21 @@ public class MainActivity extends AppCompatActivity {
         mode_fragments.get("about").add(new AboutFragment());
         actionBarNames.get("about").add("О программе");
     }
-    public void toMain() {
-        mode = "main";
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setHomeButtonEnabled(false);
-            actionBar.setDisplayHomeAsUpEnabled(false);
-        }
+    private void upload_courses() {
+        // if you update courses - go to educationFragment too
 
-        findViewById(R.id.down_menu_main).setVisibility(View.VISIBLE);
+        mode_fragments.put("course_graphs", new ArrayList<Fragment>());
+        actionBarNames.put("course_graphs", new ArrayList<String>());
 
-        ((MyFragmentPagerAdapter) pager.getAdapter()).setList(mode_fragments.get(mode));
-    }
-    public void toInnerPages() {
-        findViewById(R.id.down_menu_main).setVisibility(View.GONE);
-
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-
-        ((MyFragmentPagerAdapter) pager.getAdapter()).setList(mode_fragments.get(mode));
+        mode_fragments.get("course_graphs").add(new FactoryEducationFragment()
+                .newTitle(R.string.graphs_1)
+                .newText(R.string.graphs_2)
+                .newImage(R.mipmap.graph_visualisation));
+        actionBarNames.get("course_graphs").add("Графы");
+        mode_fragments.get("course_graphs").add(new FactoryEducationFragment()
+                .newText(R.string.graphs_task1)
+                .newChoice(R.array.choice_graphs_task1));
+        actionBarNames.get("course_graphs").add("Графы");
     }
 
     public void setTitleFromModeNames(int position) {
@@ -383,50 +429,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    class MyFragmentPagerAdapter extends FragmentStatePagerAdapter {
-        List<Fragment> fragments = new ArrayList<>();
-
-        public MyFragmentPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-
-
-            if ((0 <= position) && (position < getCount())) {
-                return fragments.get(position);
-            }
-            return fragments.get(0);
-        }
-        @Override
-        public int getCount() {
-            return fragments.size();
-        }
-
-        public List<Fragment> getFragments() {
-            return fragments;
-        }
-        private void addFragment(Fragment fragment) {
-            fragments.add(fragment);
-            notifyDataSetChanged();
-        }
-        private void setList(List<Fragment> fragments) {
-            this.fragments = fragments;
-            notifyDataSetChanged();
-        }
-        private void clearList() {
-            fragments = new ArrayList<>();
-            notifyDataSetChanged();
-        }
-
-        @Override
-        public int getItemPosition(Object object) {
-            return PagerAdapter.POSITION_NONE;
-        }
-
-    }
-
     public void onClickCheckAnswer(View view) {
         ((TaskViewFragment)
             ((MyFragmentPagerAdapter) pager.getAdapter())
@@ -462,9 +464,6 @@ public class MainActivity extends AppCompatActivity {
                 .replace("8(", "8*(")
                 .replace("9(", "9*(")
                 .replace("my_log2*", "my_log2"));
-
-        Log.i("-calc", "calc_onClickInstantEvaluate: "+e.getExpressionString());
-        Log.i("-calc", "calc_onClickInstantEvaluate: "+e.calculate());
 
         if ((int)((Spinner) findViewById(R.id.calc_num_system_spinner)).getSelectedItem() != 10)
             ((TextView) findViewById(R.id.calc_preview))
@@ -539,11 +538,13 @@ public class MainActivity extends AppCompatActivity {
         calc_onClickInstantEvaluate(view);
     }
 
+    // 13
     public void onClickStart(View view) {
         ((Resh13Fragment) ((MyFragmentPagerAdapter) pager.getAdapter())
                 .getItem(pager.getCurrentItem())).onClickStart(view);
     }
 
+    // 26
     public void onClickRun26(View view) {
         ((Resh26Fragment) ((MyFragmentPagerAdapter) pager.getAdapter())
                 .getItem(pager.getCurrentItem())).onClickRun26(view);
@@ -555,5 +556,49 @@ public class MainActivity extends AppCompatActivity {
     public void corrEdits(View view) {
         ((Resh26Fragment) ((MyFragmentPagerAdapter) pager.getAdapter())
                 .getItem(pager.getCurrentItem())).corrEdits(view);
+    }
+
+    class MyFragmentPagerAdapter extends FragmentStatePagerAdapter {
+        List<Fragment> fragments = new ArrayList<>();
+
+        public MyFragmentPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+
+
+            if ((0 <= position) && (position < getCount())) {
+                return fragments.get(position);
+            }
+            return fragments.get(0);
+        }
+        @Override
+        public int getCount() {
+            return fragments.size();
+        }
+
+        public List<Fragment> getFragments() {
+            return fragments;
+        }
+        private void addFragment(Fragment fragment) {
+            fragments.add(fragment);
+            notifyDataSetChanged();
+        }
+        private void setList(List<Fragment> fragments) {
+            this.fragments = fragments;
+            notifyDataSetChanged();
+        }
+        private void clearList() {
+            fragments = new ArrayList<>();
+            notifyDataSetChanged();
+        }
+
+        @Override
+        public int getItemPosition(Object object) {
+            return PagerAdapter.POSITION_NONE;
+        }
+
     }
 }

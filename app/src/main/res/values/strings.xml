@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Помощник по информатике</string>
+    <string name="app_name">Инфа на 5</string>
 
     <!-- Down menu buttons  -->
     <string name="toMain">Lessons</string>

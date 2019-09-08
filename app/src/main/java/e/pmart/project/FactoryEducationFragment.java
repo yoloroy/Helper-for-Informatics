@@ -6,13 +6,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.AppCompatImageView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -110,9 +110,17 @@ public class FactoryEducationFragment extends Fragment {
     }
 
     private void addImage(List task) {
-        AppCompatImageView imageView = new AppCompatImageView(getContext());
+        QuadImage imageView = new QuadImage(getContext());
         imageView.setImageBitmap(BitmapFactory.decodeResource(getResources(), (int) task.get(1)));
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         LinearLayout.LayoutParams imageViewLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        float scale = getResources().getDisplayMetrics().density;
+        imageViewLayoutParams.setMargins(
+                (int) (64 * scale + 0.5f),
+                (int) (8 * scale + 0.5f),
+                (int) (64 * scale + 0.5f),
+                (int) (8 * scale + 0.5f));
 
         imageView.setLayoutParams(imageViewLayoutParams);
         ((LinearLayout) root_view.findViewById(R.id.factory_base)).addView(imageView);

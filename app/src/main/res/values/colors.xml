@@ -25,8 +25,8 @@
     <color name="colorAppGreen">#1d4</color>
     <color name="colorAppBlue">#4168A8</color>
 
-    <color name="colorAppFalse">#F42</color>
-    <color name="colorAppTrue">@color/colorAppGreen</color>
+    <color name="colorAppFalse">#Ff9800</color>
+    <color name="colorAppTrue">#2c9</color>
 
     <!--> calc colors </-->
     <color name="colorCalcNums">#fff</color>
