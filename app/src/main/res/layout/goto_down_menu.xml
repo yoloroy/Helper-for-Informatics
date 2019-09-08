@@ -81,7 +81,7 @@
             android:scaleX="1"
             android:scaleY="1"
             android:tint="@android:color/darker_gray"
-            app:srcCompat="@drawable/ic_menu_black_24dp"
+            app:srcCompat="@drawable/ic_info_black_24dp"
             tools:layout_editor_absoluteX="288dp"
             tools:layout_editor_absoluteY="435dp" />
     </LinearLayout>

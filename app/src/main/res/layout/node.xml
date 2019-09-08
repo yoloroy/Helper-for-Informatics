@@ -11,6 +11,7 @@
     android:paddingEnd="8dp"
     android:paddingRight="8dp"
     card_view:cardBackgroundColor="#fff"
+    card_view:cardCornerRadius="8dp"
     card_view:cardElevation="8dp"
     card_view:contentPadding="10dp">
 
@@ -21,8 +22,8 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:textColor="#000"
             android:textSize="12sp"
             android:textStyle="bold" />

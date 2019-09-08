@@ -1,8 +1,10 @@
 package e.pmart.project;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayout;
 import android.util.TypedValue;
@@ -15,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,6 +76,10 @@ public class Resh26Fragment extends Fragment {
                     temp += temp_arr[i];
                 }
 
+                if (Arrays.asList(players).contains(temp) || position == 0) {
+                    ((SimpleViewHolder) viewHolder).setColor(R.color.colorPrimary);
+                    ((SimpleViewHolder) viewHolder).setTextColor(Color.WHITE);
+                }
                 ((SimpleViewHolder) viewHolder).textView.setText(temp);
             }
         };
@@ -244,7 +251,7 @@ public class Resh26Fragment extends Fragment {
             try {
                 create_res_to_visualisation((Map<String, Object>) tree.get(key), node_num);
             } catch (Exception e) {
-                convert_data.put(node_num+1, new Node(node_num+1 + " " + players[(Integer) tree.get(key)]));
+                convert_data.put(node_num+1, new Node(node_num+1 + " " + players[1 - (Integer) tree.get(key)]));
                 relatives.put(node_num, new ArrayList<>());
                 relatives.get(node_num).add(node_num+1);
                 node_num++;
@@ -296,10 +303,30 @@ public class Resh26Fragment extends Fragment {
 
     class SimpleViewHolder extends ViewHolder {
         TextView textView;
+        View view;
 
         SimpleViewHolder(View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.textView);
+            view = itemView;
+        }
+
+        @RequiresApi(26)
+        public void setColor(Color color) {
+            itemView.getBackground().setTint(color.toArgb());
+        }
+
+        public void setColor(int color) {
+            itemView.getBackground().setTint(getResources().getColor(color));
+        }
+
+        @RequiresApi(26)
+        public void setTextColor(Color color) {
+            textView.setTextColor(color.toArgb());
+        }
+
+        public void setTextColor(int color) {
+            textView.setTextColor(color);
         }
     }
 }

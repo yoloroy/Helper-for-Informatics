@@ -209,8 +209,10 @@ public class MainActivity extends AppCompatActivity {
                 .setSupportFragmentManager(getSupportFragmentManager())
                 .setMainActivity(this));
         actionBarNames.get("main").add("Справочник");
-        mode_fragments.get("main").add(new OtherFragment());
-        actionBarNames.get("main").add("Дополнительно");
+        mode_fragments.get("main").add(new AboutFragment());
+        actionBarNames.get("main").add("О программе");
+        //mode_fragments.get("main").add(new OtherFragment());
+        //actionBarNames.get("main").add("Дополнительно");
 
         /*     course_graphs     */
         mode_fragments.put("course_graphs", new ArrayList<Fragment>());
@@ -218,7 +220,8 @@ public class MainActivity extends AppCompatActivity {
 
         mode_fragments.get("course_graphs").add(new FactoryEducationFragment()
                 .newTitle(R.string.graphs_1)
-                .newText(R.string.graphs_2));
+                .newText(R.string.graphs_2)
+                .newImage(R.mipmap.graph_visualisation));
         actionBarNames.get("course_graphs").add("Графы");
         mode_fragments.get("course_graphs").add(new FactoryEducationFragment()
                 .newText(R.string.graphs_task1)
