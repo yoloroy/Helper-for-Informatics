@@ -10,44 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity1"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name=".Resh13Activity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".GenerActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".GuideActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".OtherActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".AboutActivity"
-            android:parentActivityName=".OtherActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".EvalInfoIVActivity"
-            android:parentActivityName=".Resh13Activity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".GuidePageActivity"
-            android:parentActivityName=".GuideActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".EvalActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".CalcActivity1"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".CourseGraphsActivity"
-            android:parentActivityName=".MainActivity1"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" >
             <intent-filter>
