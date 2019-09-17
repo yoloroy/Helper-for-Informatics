@@ -12,7 +12,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -504,7 +503,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             default:
                 if ("0123456789".contains(((Button) view).getText())) {
-                    if (calc_text.getLast().equals("0")) {
+                    if (calc_text.getLast().equals("0") && calc_text.size() == 1) {
                         calc_text.setLast((String) ((Button) view).getText());
                     } else if ("0123456789".contains(String.valueOf(calc_text.getLast().charAt(0))) ||
                             (calc_text.getLast().charAt(0) == '-' &&
@@ -531,7 +530,6 @@ public class MainActivity extends AppCompatActivity {
                                 .replace("!", "! "));
                 }
         }
-        Log.i("-1", "calc_onClickButton: "+calc_text);
         ((TextView) findViewById(R.id.calc_enter))
                 .setText(calc_text.toText());
 

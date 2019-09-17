@@ -7,9 +7,9 @@
     <color name="colorPrimaryLightQ">#537AA2</color>
     <color name="colorPrimaryDarkQ">#333A42</color>
 
-    <!--<color name="colorPrimary">#0aaf96</color>
-    <color name="colorPrimaryLight">#c3fffb</color>
-    <color name="colorPrimaryDark">#006359</color>-->
+    <color name="colorPrimaryZ">#0aaf96</color>
+    <color name="colorPrimaryLightZ">#c3fffb</color>
+    <color name="colorPrimaryDarkZ">#006359</color>
 
     <color name="colorPrimary">#4168A8</color>
     <color name="colorPrimaryLight">#5188D8</color>
@@ -25,8 +25,10 @@
     <color name="colorAppGreen">#1d4</color>
     <color name="colorAppBlue">#4168A8</color>
 
-    <color name="colorAppFalse">#Ff9800</color>
-    <color name="colorAppTrue">#2c9</color>
+    <!--<color name="colorAppFalse">#Ff9800</color>
+    <color name="colorAppTrue">#2c9</color>-->
+    <color name="colorAppFalse">@color/colorPrimaryQ</color>
+    <color name="colorAppTrue">@color/colorPrimaryLight</color>
 
     <!--> calc colors </-->
     <color name="colorCalcNums">#fff</color>

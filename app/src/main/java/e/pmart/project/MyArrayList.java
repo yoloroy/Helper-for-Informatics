@@ -21,13 +21,34 @@ public class MyArrayList<E> extends ArrayList<E> {
     
     public String toText(int num_syst) {
         if (getLast().getClass().equals("".getClass())) {
-            String a = "";
-            for (int i = 0; i < size(); i++) {
+            // unchecked cast checked above
+            /*if(this.clone() instanceof MyArrayList) {
+                MyArrayList<String> fixed_this = (MyArrayList) this.clone();
+            }*/
+            MyArrayList<String> fixed_this = (MyArrayList<String>) this.clone();
+            while (fixed_this.contains(".")) {
                 try {
-                    a += ToNumSystem.run(Double.parseDouble((String) get(i)),
+                    fixed_this.set(fixed_this.indexOf(".") - 1,
+                                  get(fixed_this.indexOf(".") - 1) +
+                            "." + get(fixed_this.indexOf(".") + 1));
+                    fixed_this.remove(fixed_this.indexOf(".") + 1);
+                    fixed_this.remove(fixed_this.indexOf("."));
+                } catch (NumberFormatException nfe) {
+                    // pass
+                } catch (IndexOutOfBoundsException eoobe) {
+                    fixed_this.set(fixed_this.indexOf(".") - 1,
+                            get(fixed_this.indexOf(".") - 1)+"");
+                    fixed_this.remove(fixed_this.indexOf("."));
+                }
+            }
+
+            String a = "";
+            for (int i = 0; i < fixed_this.size(); i++) {
+                try {
+                    a += ToNumSystem.run(Double.parseDouble(fixed_this.get(i)),
                                          num_syst);
                 } catch (NumberFormatException nfe) {
-                    a += (String) get(i);
+                    a += fixed_this.get(i);
                 }
             }
             return a;
