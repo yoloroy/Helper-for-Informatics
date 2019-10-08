@@ -53,7 +53,8 @@ public class TaskViewFragment extends Fragment {
         if (tasks[num*2+1].equals(((EditText) rootView.findViewById(R.id.task_answer)).getText().toString())) {
             rootView.findViewById(R.id.task_check).getBackground().setTint(getResources().getColor(R.color.colorAppTrue));
             ((EditText) rootView.findViewById(R.id.task_answer)).setText("");
-            setTask(curr);
+            //setTask(curr);
+            startTaskSet();
         }
         else
             rootView.findViewById(R.id.task_check).getBackground().setTint(getResources().getColor(R.color.colorAppFalse));
