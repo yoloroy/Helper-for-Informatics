@@ -30,7 +30,7 @@ public class TaskViewFragment extends Fragment {
         curr = i;
         switch(i) {
             case 13 :
-                tasks = rootView.getResources().getStringArray(R.array.task_group_13);
+                //tasks = rootView.getResources().getStringArray(R.array.task_group_13);
                 break;
             default :
                 tasks = new String[]{"We have't tasks for this number yet, *answer is \"\"*", ""};

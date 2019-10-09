@@ -446,8 +446,21 @@ public class MainActivity extends AppCompatActivity {
     public void calc_onClickInstantEvaluate(View view) {
         Expression e = new Expression(new ExtraCalcFuncs().getExtraCalcFuncs());
 
+        int div_i;
+        while (calc_text.contains(" div ")) {
+            div_i = calc_text.indexOf(" div ");
+            try {
+                calc_text.set(div_i-1, String.valueOf(Math.floor(
+                        Double.valueOf(calc_text.get(div_i-1)) /
+                        Double.valueOf(calc_text.get(div_i+1)))));
+                calc_text.remove(div_i); calc_text.remove(div_i);
+            } catch (Exception ex) {
+                break;
+            }
+        }
 
         e.setExpressionString(calc_text.toText()
+                .replace("mod", "#")
                 .replace("log", "my_log")
                 .replace("not", "bnot")
                 .replace("and", "@&")
@@ -535,6 +548,7 @@ public class MainActivity extends AppCompatActivity {
 
         calc_onClickInstantEvaluate(view);
     }
+
 
     // 13
     public void onClickStart(View view) {
