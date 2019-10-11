@@ -10,11 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
-
-import java.util.Random;
 
 
 public class GenerFragment extends Fragment {
@@ -72,35 +68,7 @@ public class GenerFragment extends Fragment {
             }
         });
     }
-    public void setTask(int i) {
-        curr = i;
-        switch(i) {
-            case 13 :
-                //tasks = getResources().getStringArray(R.array.task_group_13);
-                break;
-            default :
-                tasks = new String[]{"We have't tasks for this number yet, *answer is \"\"*", ""};
-        }
 
-        Random random = new Random();
-        num = random.nextInt(tasks.length / 2);
-        ((TextView) root_view.findViewById(R.id.task_theme)).setText("№ " + i);
-        ((TextView) root_view.findViewById(R.id.task_text)).setText(tasks[num*2]);
-        (root_view.findViewById(R.id.task_answer))
-                .setMinimumWidth(  (int)((EditText) root_view.findViewById(R.id.task_answer))
-                        .getTextSize() * tasks[num*2+1].length());
-        //            (                                          )
-    }
-
-    public void onClickCheckAnswer(View view) {
-        if (tasks[num*2+1].equals(((EditText) root_view.findViewById(R.id.task_answer)).getText().toString())) {
-            root_view.findViewById(R.id.task_check).getBackground().setTint(getResources().getColor(R.color.colorAppGreen));
-            ((EditText) root_view.findViewById(R.id.task_answer)).setText("");
-            setTask(curr);
-        }
-        else
-            root_view.findViewById(R.id.task_check).getBackground().setTint(getResources().getColor(R.color.colorAppRed));
-    }
 
 
     public GenerFragment setSupportActionBar(ActionBar supportActionBar) {

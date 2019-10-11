@@ -11,9 +11,17 @@
     <color name="colorPrimaryLightZ">#c3fffb</color>
     <color name="colorPrimaryDarkZ">#006359</color>
 
-    <color name="colorPrimary">#4168A8</color>
-    <color name="colorPrimaryLight">#5188D8</color>
-    <color name="colorPrimaryDark">#314888</color>
+    <color name="colorPrimaryP">#4168A8</color>
+    <color name="colorPrimaryLightP">#5188D8</color>
+    <color name="colorPrimaryDarkP">#314888</color>
+
+    <color name="colorPrimary">@color/colorPrimaryL</color>
+    <color name="colorPrimaryLight">@color/colorPrimaryLightL</color>
+    <color name="colorPrimaryDark">@color/colorPrimaryDarkL</color>
+
+    <color name="colorPrimaryL">#5188D8</color>
+    <color name="colorPrimaryLightL">#89b0ff</color>
+    <color name="colorPrimaryDarkL">#4168A8</color>
 
     <color name="colorBackground">#EEEEEE</color>
     <color name="colorBackContrast">#FCFCFC</color>
@@ -28,7 +36,7 @@
     <!--<color name="colorAppFalse">#Ff9800</color>
     <color name="colorAppTrue">#2c9</color>-->
     <color name="colorAppFalse">@color/colorPrimaryQ</color>
-    <color name="colorAppTrue">@color/colorPrimaryLight</color>
+    <color name="colorAppTrue">@color/colorPrimary</color>
 
     <!--> calc colors </-->
     <color name="colorCalcNums">#fff</color>

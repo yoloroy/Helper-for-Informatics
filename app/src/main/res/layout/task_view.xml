@@ -123,7 +123,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:background="@android:drawable/btn_default"
+            android:background="@android:drawable/editbox_background"
             android:backgroundTint="@color/colorAppTrue"
             android:onClick="onClickCheckAnswer"
             android:text="Проверить"
