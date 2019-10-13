@@ -29,10 +29,12 @@ public class GotoFragment extends Fragment {
             curr = (ImageButton) goto_layout.getChildAt(i);
             //curr.setBackgroundColor(getResources().getColor(R.color.colorMenuBackUnpressed));
             curr.setColorFilter(getResources().getColor(android.R.color.darker_gray));
+            curr.setActivated(false);
         }
 
         curr = (ImageButton) goto_layout.getChildAt(num);
         //curr.setBackgroundColor(getResources().getColor(R.color.colorMenuBackPressed));
         curr.setColorFilter(getResources().getColor(R.color.colorMenuBackUnpressed));
+        curr.setActivated(true);
     }
 }

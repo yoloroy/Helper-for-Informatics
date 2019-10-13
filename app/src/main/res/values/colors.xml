@@ -19,9 +19,9 @@
     <color name="colorPrimaryLight">@color/colorPrimaryLightL</color>
     <color name="colorPrimaryDark">@color/colorPrimaryDarkL</color>
 
-    <color name="colorPrimaryL">#5188D8</color>
+    <color name="colorPrimaryL">#5188e5</color>
     <color name="colorPrimaryLightL">#89b0ff</color>
-    <color name="colorPrimaryDarkL">#4168A8</color>
+    <color name="colorPrimaryDarkL">#4168b5</color>
 
     <color name="colorBackground">#EEEEEE</color>
     <color name="colorBackContrast">#FCFCFC</color>
@@ -29,14 +29,14 @@
     <color name="colorMenuBackUnpressed">@color/colorPrimary</color>
     <color name="colorMenuBackPressed">#FFF</color>
 
-    <color name="colorAppRed">#f73</color>
-    <color name="colorAppGreen">#1d4</color>
+    <color name="colorAppRed">#f53</color>
+    <color name="colorAppGreen">#5c8</color>
     <color name="colorAppBlue">#4168A8</color>
 
     <!--<color name="colorAppFalse">#Ff9800</color>
     <color name="colorAppTrue">#2c9</color>-->
-    <color name="colorAppFalse">@color/colorPrimaryQ</color>
-    <color name="colorAppTrue">@color/colorPrimary</color>
+    <color name="colorAppFalse">@color/colorAppRed</color>
+    <color name="colorAppTrue">@color/colorPrimaryZ</color>
 
     <!--> calc colors </-->
     <color name="colorCalcNums">#fff</color>

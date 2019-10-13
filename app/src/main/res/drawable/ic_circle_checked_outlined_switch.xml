@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_activated="true"
+        android:drawable="@drawable/ic_check_circle_filled">
+    </item>
+    <item android:state_activated="false"
+        android:drawable="@drawable/baseline_check_circle_outline_24">
+    </item>
+</selector>

@@ -3,6 +3,7 @@ package e.pmart.project;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -56,6 +58,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Window window = this.getWindow();
+        window.setStatusBarColor(getResources().getColor(R.color.colorPrimary));
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            Drawable actionBar_back = getDrawable(R.drawable.action_bar_background);
+            actionBar.setBackgroundDrawable(actionBar_back);
+        }
 
         goto_fragment = (GotoFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.down_menu_main);
@@ -445,21 +455,23 @@ public class MainActivity extends AppCompatActivity {
     }
     public void calc_onClickInstantEvaluate(View view) {
         Expression e = new Expression(new ExtraCalcFuncs().getExtraCalcFuncs());
+        
+        MyArrayList<String> calc_text_copy = (MyArrayList<String>) calc_text.clone();
 
         int div_i;
-        while (calc_text.contains(" div ")) {
-            div_i = calc_text.indexOf(" div ");
+        while (calc_text_copy.contains(" div ")) {
+            div_i = calc_text_copy.indexOf(" div ");
             try {
-                calc_text.set(div_i-1, String.valueOf(Math.floor(
-                        Double.valueOf(calc_text.get(div_i-1)) /
-                        Double.valueOf(calc_text.get(div_i+1)))));
-                calc_text.remove(div_i); calc_text.remove(div_i);
+                calc_text_copy.set(div_i-1, String.valueOf(Math.floor(
+                        Double.valueOf(calc_text_copy.get(div_i-1)) /
+                        Double.valueOf(calc_text_copy.get(div_i+1)))));
+                calc_text_copy.remove(div_i); calc_text_copy.remove(div_i);
             } catch (Exception ex) {
                 break;
             }
         }
 
-        e.setExpressionString(calc_text.toText()
+        e.setExpressionString(calc_text_copy.toText()
                 .replace("mod", "#")
                 .replace("log", "my_log")
                 .replace("not", "bnot")
@@ -479,7 +491,7 @@ public class MainActivity extends AppCompatActivity {
 
         if ((int)((Spinner) findViewById(R.id.calc_num_system_spinner)).getSelectedItem() != 10)
             ((TextView) findViewById(R.id.calc_preview))
-                    .setText(calc_text.toText((int)((Spinner) findViewById(R.id.calc_num_system_spinner)).getSelectedItem()));
+                    .setText(calc_text_copy.toText((int)((Spinner) findViewById(R.id.calc_num_system_spinner)).getSelectedItem()));
         else
             ((TextView) findViewById(R.id.calc_preview)).setText("");
 

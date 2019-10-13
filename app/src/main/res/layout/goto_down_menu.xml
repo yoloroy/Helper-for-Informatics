@@ -27,7 +27,7 @@
             android:scaleX="1"
             android:scaleY="1"
             android:tint="@android:color/darker_gray"
-            app:srcCompat="@drawable/baseline_school_24"
+            app:srcCompat="@drawable/ic_education_bottom_menu"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="435dp" />
 
@@ -41,7 +41,7 @@
             android:scaleX="1"
             android:scaleY="1"
             android:tint="@android:color/darker_gray"
-            app:srcCompat="@drawable/baseline_play_arrow_24"
+            app:srcCompat="@drawable/ic_play_outlined_switch"
             tools:layout_editor_absoluteX="104dp"
             tools:layout_editor_absoluteY="247dp" />
 
@@ -55,7 +55,7 @@
             android:scaleX="1"
             android:scaleY="1"
             android:tint="@android:color/darker_gray"
-            app:srcCompat="@drawable/baseline_check_circle_outline_24"
+            app:srcCompat="@drawable/ic_circle_checked_outlined_switch"
             tools:layout_editor_absoluteX="148dp"
             tools:layout_editor_absoluteY="285dp" />
 
@@ -67,7 +67,7 @@
             android:layout_weight="1"
             android:onClick="onClickGoto"
             android:tint="@android:color/darker_gray"
-            app:srcCompat="@drawable/baseline_local_library_24"
+            app:srcCompat="@drawable/ic_library_outlined_switch"
             tools:layout_editor_absoluteX="148dp"
             tools:layout_editor_absoluteY="198dp" />
 
@@ -81,7 +81,7 @@
             android:scaleX="1"
             android:scaleY="1"
             android:tint="@android:color/darker_gray"
-            app:srcCompat="@drawable/ic_info_black_24dp"
+            app:srcCompat="@drawable/ic_info_outlined_switch"
             tools:layout_editor_absoluteX="288dp"
             tools:layout_editor_absoluteY="435dp" />
     </LinearLayout>

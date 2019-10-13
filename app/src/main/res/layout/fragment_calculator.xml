@@ -11,7 +11,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/rect_corners_s"
+        android:backgroundTint="#fff"
+        android:elevation="4dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -82,6 +89,7 @@
                     android:layout_marginStart="1dp"
                     android:layout_marginTop="1dp"
                     android:background="@drawable/calc_button"
+                    android:backgroundTint="@color/colorPrimary"
                     app:layout_columnWeight="1"
                     app:layout_rowWeight="1">
 
@@ -107,7 +115,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:background="@drawable/ic_arrow_drop_down_black_24dp"
-                        android:backgroundTint="#555"
+                        android:backgroundTint="#fff"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
@@ -160,11 +168,12 @@
                     android:layout_marginStart="1dp"
                     android:layout_marginTop="1dp"
                     android:background="@drawable/calc_button"
+                    android:backgroundTint="@color/colorCalcData"
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
                     android:text="C"
                     android:textAllCaps="false"
-                    android:textColor="#555"
+                    android:textColor="#fff"
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
@@ -178,11 +187,12 @@
                     android:layout_marginStart="1dp"
                     android:layout_marginTop="1dp"
                     android:background="@drawable/calc_button"
+                    android:backgroundTint="@color/colorCalcData"
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
                     android:src="@drawable/ic_outline_backspace_24px"
                     android:textSize="24sp"
-                    android:tint="#555"
+                    android:tint="#fff"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
                     app:layout_rowWeight="1" />
@@ -609,11 +619,12 @@
                     android:layout_marginStart="1dp"
                     android:layout_marginTop="1dp"
                     android:background="@drawable/calc_button"
+                    android:backgroundTint="@color/colorCalcData"
                     android:focusableInTouchMode="false"
                     android:onClick="calc_onClickButton"
                     android:text="="
                     android:textAllCaps="false"
-                    android:textColor="#555"
+                    android:textColor="#fff"
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill" />
