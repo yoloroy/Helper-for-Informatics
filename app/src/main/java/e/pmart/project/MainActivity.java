@@ -62,10 +62,6 @@ public class MainActivity extends AppCompatActivity {
         window.setStatusBarColor(getResources().getColor(R.color.colorPrimary));
 
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            Drawable actionBar_back = getDrawable(R.drawable.action_bar_background);
-            actionBar.setBackgroundDrawable(actionBar_back);
-        }
 
         goto_fragment = (GotoFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.down_menu_main);
@@ -244,9 +240,12 @@ public class MainActivity extends AppCompatActivity {
         mode = "main";
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
+            Drawable actionBar_back = getDrawable(R.drawable.action_bar_background);
+            actionBar.setBackgroundDrawable(actionBar_back);
             actionBar.setHomeButtonEnabled(false);
             actionBar.setDisplayHomeAsUpEnabled(false);
         }
+        pager.setBackground(getDrawable(R.color.colorBackground));
 
         findViewById(R.id.down_menu_main).setVisibility(View.VISIBLE);
 
@@ -256,9 +255,13 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.down_menu_main).setVisibility(View.GONE);
 
         if (getSupportActionBar() != null) {
+            Drawable actionBar_back = getDrawable(R.color.colorPrimary);
+            getSupportActionBar().setBackgroundDrawable(actionBar_back);
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+        pager.setBackground(getDrawable(R.drawable.rect_corners_u));
+        //pager.setBackgroundColor(getResources().getColor(R.color.colorBackground));
 
         ((MyFragmentPagerAdapter) pager.getAdapter()).setList(mode_fragments.get(mode));
     }

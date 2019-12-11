@@ -18,14 +18,9 @@
             android:id="@+id/education_grid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginLeft="6dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="6dp"
-            android:layout_marginRight="6dp"
-            android:layout_marginBottom="6dp"
             android:horizontalSpacing="16dp"
             android:numColumns="2"
+            android:stretchMode="columnWidth"
             android:verticalSpacing="12dp"
             tools:listitem="@layout/education_link_node" />
     </ScrollView>
