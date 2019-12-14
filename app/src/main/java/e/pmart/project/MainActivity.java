@@ -18,7 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -61,8 +60,6 @@ public class MainActivity extends AppCompatActivity {
         Window window = this.getWindow();
         window.setStatusBarColor(getResources().getColor(R.color.colorPrimary));
 
-        ActionBar actionBar = getSupportActionBar();
-
         goto_fragment = (GotoFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.down_menu_main);
 
@@ -77,18 +74,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 onPageSelected(position);
+
+                if (positionOffset > 0.5) {
+                    setTitleFromModeNames(position+1);
+                    goto_fragment.setSelection(position+1);
+                }
+                else {
+                    setTitleFromModeNames(position);
+                    goto_fragment.setSelection(position);
+                }
             }
 
             @Override
             public void onPageSelected(int position) {
                 setTitleFromModeNames(position);
+                goto_fragment.setSelection(position);
 
                 if (getSupportActionBar() != null) {
                     getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
                 }
 
                 if (mode.equals("main")) {
-                    if (pager.getCurrentItem() == 1) {
+                    if (pager.getCurrentItem() == 2) {
                         if (menu != null) {
                             menu.clear();
                             getMenuInflater().inflate(R.menu.calc_bar, menu);
@@ -99,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
-                goto_fragment.setSelection(position);
             }
 
             @Override
@@ -109,8 +115,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         toMain();
-
-        animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
+        pager.setCurrentItem(2);
+        setTitleFromModeNames(2);
 
         calc_text.add("0");
 
@@ -179,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.apply();
 
                 toMain();
-                pager.setCurrentItem(0);
+                pager.setCurrentItem(1);
                 return;
             }
         }
@@ -264,12 +270,18 @@ public class MainActivity extends AppCompatActivity {
         //pager.setBackgroundColor(getResources().getColor(R.color.colorBackground));
 
         ((MyFragmentPagerAdapter) pager.getAdapter()).setList(mode_fragments.get(mode));
+        pager.setCurrentItem(0);
     }
     public void create_fragment_unions() {
         /*     main     */
         mode_fragments.put("main", new ArrayList<Fragment>());
         actionBarNames.put("main", new ArrayList<String>());
 
+        mode_fragments.get("main").add(new GuideFragment()
+                .setSupportActionBar(getSupportActionBar())
+                .setSupportFragmentManager(getSupportFragmentManager())
+                .setMainActivity(this));
+        actionBarNames.get("main").add("Справочник");
         mode_fragments.get("main").add(new EducationFragment());
         actionBarNames.get("main").add("Курсы");
         mode_fragments.get("main").add(new EvalFragment());
@@ -279,11 +291,6 @@ public class MainActivity extends AppCompatActivity {
                 .setSupportFragmentManager(getSupportFragmentManager())
                 .setMainActivity(this));
         actionBarNames.get("main").add("Задачник");
-        mode_fragments.get("main").add(new GuideFragment()
-                .setSupportActionBar(getSupportActionBar())
-                .setSupportFragmentManager(getSupportFragmentManager())
-                .setMainActivity(this));
-        actionBarNames.get("main").add("Справочник");
         mode_fragments.get("main").add(new AboutFragment());
         actionBarNames.get("main").add("О программе");
         //mode_fragments.get("main").add(new OtherFragment());
@@ -351,7 +358,8 @@ public class MainActivity extends AppCompatActivity {
                             .put(mode, ((MyFragmentPagerAdapter) pager.getAdapter())
                                     .getFragments());
                     toMain();
-                    pager.setCurrentItem(0);
+                    pager.setCurrentItem(1);
+                    return;
                 }
                 pager.setCurrentItem(pager.getCurrentItem() - 1);
                 break;
@@ -359,7 +367,7 @@ public class MainActivity extends AppCompatActivity {
                 if (((EditText) findViewById(R.id.task_answer))
                         .getText().toString().equals("")) {
                     toMain();
-                    pager.setCurrentItem(2);
+                    pager.setCurrentItem(3);
                 }
                 else {
                     ((EditText) findViewById(R.id.task_answer)).setText("");
@@ -367,7 +375,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "guide_inner":
                 toMain();
-                pager.setCurrentItem(3);
+                pager.setCurrentItem(0);
                 break;
             case "about":
                 toMain();
@@ -379,36 +387,23 @@ public class MainActivity extends AppCompatActivity {
         switch (mode) {
             case "main":
                 switch(item.getItemId()) {
-                    case R.id.restart:
-                        /*variable1.setSelectedItem(0);
-                        variable1.setValue("");
-                        variable2.setSelectedItem(0);
-                        variable2.setValue("");
-                        variable3.setSelectedItem(0);
-                        variable3.setValue("");
-                        variable4.setSelectedItem(0);*/
-                        break;
-                    /*case R.id.info:
-                        Act = new Intent(getApplicationContext(), EvalInfoIVActivity.class);
-                        startActivity(Act);
-                        break;*/
                     case R.id.calc:
-                        mode_fragments.get("main").set(1, new CalculatorFragment());
-                        actionBarNames.get("main").set(1, "Калькулятор");
+                        mode_fragments.get("main").set(2, new CalculatorFragment());
+                        actionBarNames.get("main").set(2, "Калькулятор");
                         toMain();
-                        pager.setCurrentItem(1);
+                        pager.setCurrentItem(2);
                         break;
                     case R.id.resh13:
-                        mode_fragments.get("main").set(1, new Resh13Fragment());
-                        actionBarNames.get("main").set(1, "Решатор");
+                        mode_fragments.get("main").set(2, new Resh13Fragment());
+                        actionBarNames.get("main").set(2, "Решатор");
                         toMain();
-                        pager.setCurrentItem(1);
+                        pager.setCurrentItem(2);
                         break;
                     case R.id.resh26:
-                        mode_fragments.get("main").set(1, new Resh26Fragment());
-                        actionBarNames.get("main").set(1, "Решатор");
+                        mode_fragments.get("main").set(2, new Resh26Fragment());
+                        actionBarNames.get("main").set(2, "Решатор");
                         toMain();
-                        pager.setCurrentItem(1);
+                        pager.setCurrentItem(2);
                         break;
                 }
                 return super.onOptionsItemSelected(item);
@@ -422,7 +417,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case android.R.id.home:
                         toMain();
-                        pager.setCurrentItem(2);
+                        pager.setCurrentItem(3);
                         return true;
                 }
             case "guide_inner":
@@ -594,8 +589,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-
-
             if ((0 <= position) && (position < getCount())) {
                 return fragments.get(position);
             }

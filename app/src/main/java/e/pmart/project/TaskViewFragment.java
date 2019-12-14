@@ -3,13 +3,14 @@ package e.pmart.project;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -56,26 +57,25 @@ public class TaskViewFragment extends Fragment {
 
         Cursor cursor;
         Random random = new Random();
-        if (curr == 1 || curr == 5 || curr == 6) {
-            String product = "";
 
-            cursor = mDb.rawQuery("SELECT task, answer FROM tasks WHERE number="+curr, null);
-            cursor.moveToFirst();
+        cursor = mDb.rawQuery("SELECT task, answer FROM tasks WHERE number="+curr, null);
+        cursor.moveToFirst();
 
-            num = random.nextInt(cursor.getCount() / 2);
-            cursor.moveToPosition(num*2);
-            tasks = new String[]{cursor.getString(0), cursor.getString(1)};
-            cursor.close();
+        num = random.nextInt(cursor.getCount() / 2);
+        cursor.moveToPosition(num*2);
+        tasks = new String[]{cursor.getString(0), cursor.getString(1)};
+        cursor.close();
 
-        } else {
-            tasks = new String[]{"We have't tasks for this number yet, *answer is \"\"*", ""};
-            num = 0;
-        }
-
-
-        Log.i("fak", "setTask: "+rootView.getContext());
         ((TextView) rootView.findViewById(R.id.task_theme)).setText("№ " + curr);
-        ((TextView) rootView.findViewById(R.id.task_text)).setText(tasks[0]);
+        WebView task_text = rootView.findViewById(R.id.task_text);
+        task_text.loadDataWithBaseURL(null, tasks[0].replaceFirst("\"width:650px\"", "\"width:300px\""),
+                "text/html", "en_US", null);
+        task_text.getSettings().setJavaScriptEnabled(true);
+        task_text.setBackgroundColor(Color.WHITE);
+        //task_text.getSettings().setUseWideViewPort(true);
+        //task_text.getSettings().setLoadWithOverviewMode(true);
+        task_text.getSettings().setBuiltInZoomControls(true);
+        //((TextView) rootView.findViewById(R.id.task_text)).setText(tasks[0]);
         (rootView.findViewById(R.id.task_answer))
                 .setMinimumWidth(  (int)((EditText) rootView.findViewById(R.id.task_answer))
                         .getTextSize() * tasks[1].length());
@@ -93,7 +93,7 @@ public class TaskViewFragment extends Fragment {
     }
     public void toNULL() {
         ((TextView) rootView.findViewById(R.id.task_theme)).setText("Theme");
-        ((TextView) rootView.findViewById(R.id.task_text)).setText("Task");
+        //((TextView) rootView.findViewById(R.id.task_text)).setText("Task");
         rootView.findViewById(R.id.task_check).getBackground().setTint(getResources().getColor(R.color.colorAppGreen));
         ((EditText) rootView.findViewById(R.id.task_answer)).setText("");
     }

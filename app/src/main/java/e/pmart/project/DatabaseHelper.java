@@ -18,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private SQLiteDatabase mDataBase;
     private final Context mContext;
-    private boolean mNeedUpdate = false;
+    private boolean mNeedUpdate = true;
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);

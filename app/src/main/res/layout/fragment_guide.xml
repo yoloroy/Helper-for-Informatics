@@ -1,19 +1,20 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="e.pmart.project.GuideFragment">
 
+    <!-- TODO: для того, чтоб всё крутилось так, как хочется, нужно менять элементы, а не список, чтоб скругление крутилось тоже -->
     <ListView
         android:id="@+id/inf_themes"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="1dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/rect_corners_s"
+        android:background="@drawable/rect_corners_u"
         android:backgroundTint="#fff"
         android:elevation="2dp"
         android:visibility="visible"
