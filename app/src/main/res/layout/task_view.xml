@@ -70,7 +70,8 @@
                     <WebView
                         android:id="@+id/task_text"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:backgroundTint="#0000" />
                 </android.support.constraint.ConstraintLayout>
 
             </LinearLayout>

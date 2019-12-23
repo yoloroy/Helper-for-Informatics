@@ -68,14 +68,11 @@ public class TaskViewFragment extends Fragment {
 
         ((TextView) rootView.findViewById(R.id.task_theme)).setText("№ " + curr);
         WebView task_text = rootView.findViewById(R.id.task_text);
-        task_text.loadDataWithBaseURL(null, tasks[0].replaceFirst("\"width:650px\"", "\"width:300px\""),
+        task_text.loadDataWithBaseURL(null, tasks[0].replaceFirst("\"width:650px\"", "\"width:90%\""),
                 "text/html", "en_US", null);
-        task_text.getSettings().setJavaScriptEnabled(true);
-        task_text.setBackgroundColor(Color.WHITE);
-        //task_text.getSettings().setUseWideViewPort(true);
-        //task_text.getSettings().setLoadWithOverviewMode(true);
+        task_text.setBackgroundColor(Color.TRANSPARENT);
         task_text.getSettings().setBuiltInZoomControls(true);
-        //((TextView) rootView.findViewById(R.id.task_text)).setText(tasks[0]);
+
         (rootView.findViewById(R.id.task_answer))
                 .setMinimumWidth(  (int)((EditText) rootView.findViewById(R.id.task_answer))
                         .getTextSize() * tasks[1].length());
@@ -90,12 +87,6 @@ public class TaskViewFragment extends Fragment {
         }
         else
             rootView.findViewById(R.id.task_check).getBackground().setTint(getResources().getColor(R.color.colorAppFalse));
-    }
-    public void toNULL() {
-        ((TextView) rootView.findViewById(R.id.task_theme)).setText("Theme");
-        //((TextView) rootView.findViewById(R.id.task_text)).setText("Task");
-        rootView.findViewById(R.id.task_check).getBackground().setTint(getResources().getColor(R.color.colorAppGreen));
-        ((EditText) rootView.findViewById(R.id.task_answer)).setText("");
     }
     public void setRootView(View rootView) {
         this.rootView = rootView;
