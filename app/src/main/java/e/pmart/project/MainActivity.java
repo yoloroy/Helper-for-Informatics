@@ -137,6 +137,8 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu) {
         this.menu = menu;
+        menu.clear();
+        getMenuInflater().inflate(R.menu.calc_bar, menu);
         return true;
     }
 
@@ -447,11 +449,45 @@ public class MainActivity extends AppCompatActivity {
 
     // calculator
     public void calc_onClickEvaluate(View view) {
-        CharSequence answer = ((TextView) findViewById(R.id.calc_answer)).getText();
-        calc_text.clear();
-        calc_text.add((String) answer.subSequence(3, answer.length()));
+        Expression e = new Expression(new ExtraCalcFuncs().getExtraCalcFuncs());
+
+        MyArrayList<String> calc_text_copy = (MyArrayList<String>) calc_text.clone();
+
+        int div_i;
+        while (calc_text_copy.contains(" div ")) {
+            div_i = calc_text_copy.indexOf(" div ");
+            try {
+                calc_text_copy.set(div_i-1, String.valueOf(Math.floor(
+                        Double.valueOf(calc_text_copy.get(div_i-1)) /
+                                Double.valueOf(calc_text_copy.get(div_i+1)))));
+                calc_text_copy.remove(div_i); calc_text_copy.remove(div_i);
+            } catch (Exception ex) {
+                break;
+            }
+        }
+
+        e.setExpressionString(calc_text_copy.toText()
+                .replace("mod", "#")
+                .replace("log", "my_log")
+                .replace("not", "bnot")
+                .replace("and", "@&")
+                .replace("or", "@|")
+                .replace("0(", "0*(")
+                .replace("1(", "1*(")
+                .replace("2(", "2*(")
+                .replace("3(", "3*(")
+                .replace("4(", "4*(")
+                .replace("5(", "5*(")
+                .replace("6(", "6*(")
+                .replace("7(", "7*(")
+                .replace("8(", "8*(")
+                .replace("9(", "9*(")
+                .replace("my_log2*", "my_log2"));
+
         ((TextView) findViewById(R.id.calc_enter))
-                .setText(calc_text.toText());
+                .setText(ToNumSystem.run(e.calculate(), 10));
+        calc_text.clear();
+        calc_text.add(ToNumSystem.run(e.calculate(), 10));
     }
     public void calc_onClickInstantEvaluate(View view) {
         Expression e = new Expression(new ExtraCalcFuncs().getExtraCalcFuncs());
