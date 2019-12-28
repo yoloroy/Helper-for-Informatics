@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void showHello() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Добро пожаловать в \"Помощник по информатике\"!")
+        builder.setTitle("Добро пожаловать в \"Инфу на 5\"!")
                 .setMessage("Мы вам поможем справиться с заданиями по информатике и легче усвоить материал.")
                 .setCancelable(false)
                 .setNegativeButton("Спасибо",
@@ -151,7 +151,9 @@ public class MainActivity extends AppCompatActivity {
                                 dialog.cancel();
                             }
                         });
+
         AlertDialog alert = builder.create();
+        //alert.setFeatureDrawable(Color.WHITE, getDrawable(R.drawable.rect_corners_s));
         alert.show();
     }
 

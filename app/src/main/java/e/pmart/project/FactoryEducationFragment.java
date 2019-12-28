@@ -221,5 +221,4 @@ public class FactoryEducationFragment extends Fragment {
                 Log.i("-----------------------", "save: " + user_answer);
         }
     }
-    public void onClickNext(View view) {}
 }
