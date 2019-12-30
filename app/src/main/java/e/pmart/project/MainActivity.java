@@ -2,8 +2,10 @@ package e.pmart.project;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,7 +21,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -94,17 +95,25 @@ public class MainActivity extends AppCompatActivity {
                     getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
                 }
 
-                if (mode.equals("main")) {
-                    if (pager.getCurrentItem() == 2) {
+                switch (mode) {
+                    case "main":
+                        if (pager.getCurrentItem() == 2) {
+                            if (menu != null) {
+                                menu.clear();
+                                getMenuInflater().inflate(R.menu.calc_bar, menu);
+                            }
+                        } else {
+                            if (menu != null) {
+                                menu.clear();
+                            }
+                        }
+                        break;
+                    case "gener_task":
                         if (menu != null) {
                             menu.clear();
-                            getMenuInflater().inflate(R.menu.calc_bar, menu);
+                            getMenuInflater().inflate(R.menu.task_view_bar, menu);
                         }
-                    } else {
-                        if (menu != null) {
-                            menu.clear();
-                        }
-                    }
+                        break;
                 }
             }
 
@@ -368,14 +377,14 @@ public class MainActivity extends AppCompatActivity {
                 pager.setCurrentItem(pager.getCurrentItem() - 1);
                 break;
             case "gener_task":
-                if (((EditText) findViewById(R.id.task_answer))
-                        .getText().toString().equals("")) {
+                //if (((EditText) findViewById(R.id.task_answer))
+                //        .getText().toString().equals("")) {
                     toMain();
                     pager.setCurrentItem(3);
-                }
-                else {
-                    ((EditText) findViewById(R.id.task_answer)).setText("");
-                }
+                //}
+                //else {
+                //    ((EditText) findViewById(R.id.task_answer)).setText("");
+                //}
                 break;
             case "guide_inner":
                 toMain();
@@ -422,6 +431,10 @@ public class MainActivity extends AppCompatActivity {
                     case android.R.id.home:
                         toMain();
                         pager.setCurrentItem(3);
+                        return true;
+                    case R.id.sdamgia_link:
+                        Intent open_link = new Intent(Intent.ACTION_VIEW, Uri.parse("https://inf-ege.sdamgia.ru/"));
+                        startActivity(open_link);
                         return true;
                 }
             case "guide_inner":
