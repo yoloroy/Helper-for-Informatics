@@ -95,6 +95,8 @@
                     android:background="@drawable/calc_button"
                     android:backgroundTint="@color/colorPrimary"
                     app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
+                    app:layout_row="0"
                     app:layout_rowWeight="1">
 
                     <Spinner
@@ -145,6 +147,7 @@
                     app:layout_column="1"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="0"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -162,6 +165,7 @@
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="0"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -181,6 +185,7 @@
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="0"
                     app:layout_rowWeight="1" />
 
                 <ImageButton
@@ -199,6 +204,7 @@
                     android:tint="#fff"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="0"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -217,6 +223,7 @@
                     app:layout_column="0"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="1"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -234,6 +241,7 @@
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="1"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -251,6 +259,7 @@
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="1"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -268,6 +277,7 @@
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="1"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -285,6 +295,7 @@
                     android:textSize="21dp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="1"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -303,6 +314,7 @@
                     app:layout_column="0"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="2"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -320,6 +332,7 @@
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="2"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -337,6 +350,7 @@
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="2"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -354,6 +368,7 @@
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="2"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -371,6 +386,7 @@
                     android:textSize="20sp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="2"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -389,6 +405,7 @@
                     app:layout_column="0"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="3"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -406,6 +423,7 @@
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="3"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -423,6 +441,7 @@
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="3"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -440,6 +459,7 @@
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="3"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -458,6 +478,7 @@
                     app:layout_column="4"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="3"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -476,6 +497,7 @@
                     app:layout_column="0"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="4"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -493,6 +515,7 @@
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="4"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -510,6 +533,7 @@
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="4"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -527,6 +551,7 @@
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="4"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -544,6 +569,7 @@
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="4"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -562,6 +588,7 @@
                     app:layout_column="0"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="5"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -579,6 +606,7 @@
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="5"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -596,6 +624,7 @@
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="5"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -613,6 +642,7 @@
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
                     app:layout_gravity="fill"
+                    app:layout_row="5"
                     app:layout_rowWeight="1" />
 
                 <Button
@@ -631,7 +661,9 @@
                     android:textColor="#fff"
                     android:textSize="24sp"
                     app:layout_columnWeight="1"
-                    app:layout_gravity="fill" />
+                    app:layout_gravity="fill"
+                    app:layout_row="5"
+                    app:layout_rowWeight="1" />
 
             </android.support.v7.widget.GridLayout>
         </android.support.constraint.ConstraintLayout>

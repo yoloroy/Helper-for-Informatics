@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/sdamgia_link"
-        android:icon="@drawable/ic_sdamgia_logo"
+        android:icon="@mipmap/ic_sdamgia_logo"
         android:title="РешуЕгэ"
         app:showAsAction="always" />
 </menu>
