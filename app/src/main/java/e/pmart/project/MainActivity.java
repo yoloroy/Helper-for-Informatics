@@ -406,6 +406,12 @@ public class MainActivity extends AppCompatActivity {
                         toMain();
                         pager.setCurrentItem(2);
                         break;
+                    case R.id.resh1:
+                        mode_fragments.get("main").set(2, new Resh1Fragment());
+                        actionBarNames.get("main").set(2, "Решатор");
+                        toMain();
+                        pager.setCurrentItem(2);
+                        break;
                     case R.id.resh13:
                         mode_fragments.get("main").set(2, new Resh13Fragment());
                         actionBarNames.get("main").set(2, "Решатор");
@@ -452,6 +458,8 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
     public void onClickCheckAnswer(View view) {
         ((TaskViewFragment)

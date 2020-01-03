@@ -20,6 +20,7 @@
     </android.support.v4.view.ViewPager>
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="#1444"
