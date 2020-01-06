@@ -34,7 +34,7 @@ class Resh1Fragment : Fragment() {
 
                 val reg = Regex("(?<=[ *+-])|(?=[ *+-])")
                 val text = resh1_enter!!.text.split(reg)
-                var new_text = ArrayList<String>()
+                val new_text = ArrayList<String>()
                 textView7!!.text = ""
 
                 for (i in text) {

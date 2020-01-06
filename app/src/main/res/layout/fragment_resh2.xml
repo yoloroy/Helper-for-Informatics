@@ -71,6 +71,13 @@
                     android:ems="10"
                     android:hint=" Логическое выражение"
                     android:inputType="textPersonName" />
+
+                <fragment
+                    android:id="@+id/fragment2"
+                    android:name="e.pmart.project.AppendableDictsTableFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:layout="@layout/fragment_appendable_dicts_table" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

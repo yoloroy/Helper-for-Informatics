@@ -3,7 +3,6 @@ package e.pmart.project;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +48,6 @@ public class EducationGridAdapter extends ArrayAdapter<String> {
         SharedPreferences mSettings =
                 context.getSharedPreferences(APP_TEMP, Context.MODE_PRIVATE);
         if (mSettings.contains(mode_names[position])) {
-            Log.i("-ed", "getView: "+mSettings.contains(mode_names[position]));
             if (mSettings.getBoolean(mode_names[position], false)) {
                 holder.finished.getBackground()
                         .setTint(context.getResources().getColor(R.color.colorAppTrue));
@@ -60,12 +58,10 @@ public class EducationGridAdapter extends ArrayAdapter<String> {
                 holder.finished.setText("Непройдено");
             }
         } else {
-            Log.i("-ed", "getView: course settings not contains");
             holder.finished.getBackground()
                     .setTint(context.getResources().getColor(R.color.colorAppFalse));
             holder.finished.setText("Непройдено");
         }
-        Log.i("-ed", "getView: "+mode_names[position]);
 
         return rowView;
     }
