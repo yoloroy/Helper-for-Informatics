@@ -8,6 +8,52 @@
     tools:context=".Resh26Fragment">
 
 
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="8dp"
+        android:elevation="4dp"
+        android:foregroundGravity="bottom|right"
+        android:stateListAnimator="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/run26_start"
+            style="@style/Widget.AppCompat.Button.Small"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/ic_play_circle_filled_black_24dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:elevation="4dp"
+            android:translationZ="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/run26_back"
+            style="@style/Widget.AppCompat.Button.Small"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/ic_play_circle_filled_black_24dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:elevation="4dp"
+            android:rotation="180"
+            android:translationZ="2dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
     <ScrollView
         android:id="@+id/scrollView5"
         android:layout_width="match_parent"
@@ -31,7 +77,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="64dp">
 
             <TextView
                 android:id="@+id/textView28"
@@ -363,50 +410,6 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:background="@color/colorBackground" />
-
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="bottom"
-                android:foregroundGravity="bottom|right"
-                android:stateListAnimator="@null">
-
-                <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/run26_start"
-                    style="@style/Widget.AppCompat.Button.Small"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/ic_play_circle_filled_black_24dp"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:elevation="4dp"
-                    android:onClick="onClickRun26"
-                    android:translationZ="2dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/run26_back"
-                    style="@style/Widget.AppCompat.Button.Small"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/ic_play_circle_filled_black_24dp"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:elevation="4dp"
-                    android:onClick="onClickBack26"
-                    android:rotation="180"
-                    android:translationZ="2dp"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </android.support.constraint.ConstraintLayout>
 
         </LinearLayout>
     </ScrollView>

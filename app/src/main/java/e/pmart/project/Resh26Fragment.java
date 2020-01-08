@@ -97,6 +97,14 @@ public class Resh26Fragment extends Fragment {
         return root_view;
     }
 
+    @Override
+    public void onStart() {
+        getView().findViewById(R.id.run26_start).setOnClickListener(this::onClickRun26);
+        getView().findViewById(R.id.run26_back).setOnClickListener(this::onClickBack26);
+
+        super.onStart();
+    }
+
     public void corrEdits(View view) {
         View corr_obj;
 
@@ -208,6 +216,7 @@ public class Resh26Fragment extends Fragment {
         root_view.findViewById(R.id.scrollView5).setVisibility(View.INVISIBLE);
         root_view.findViewById(R.id.answer_26_papa).setVisibility(View.VISIBLE);
         root_view.findViewById(R.id.run26_back).setVisibility(View.VISIBLE);
+        root_view.findViewById(R.id.run26_start).setVisibility(View.INVISIBLE);
 
         create_res_to_visualisation(tree);
 
@@ -236,6 +245,7 @@ public class Resh26Fragment extends Fragment {
         getActivity().findViewById(R.id.scrollView5).setVisibility(View.VISIBLE);
         getActivity().findViewById(R.id.answer_26_papa).setVisibility(View.INVISIBLE);
         getActivity().findViewById(R.id.run26_back).setVisibility(View.INVISIBLE);
+        getActivity().findViewById(R.id.run26_start).setVisibility(View.VISIBLE);
     }
 
     private void create_res_to_visualisation(Map<String, Object> tree, Integer parent) {
@@ -283,7 +293,8 @@ public class Resh26Fragment extends Fragment {
         for (int i = 0; i < steps.length; i++) {
             steps[i] = ((EditText) steps_26.getChildAt(i)).getText().toString().toUpperCase()
                     .replace("ОДИН", "ONE")
-                    .replace("ВСЕ", "ALL");
+                    .replace("ВСЕ", "ALL")
+                    .replace("ВСЁ", "ALL");
         }
         return steps;
     }
@@ -296,6 +307,7 @@ public class Resh26Fragment extends Fragment {
             ends[i] = ((EditText) ends_26.getChildAt(i)).getText().toString().toUpperCase()
                     .replace("ЛЮБОЙ", "ANY")
                     .replace("ВСЕ", "ALL")
+                    .replace("ВСЁ", "ALL")
                     .replace("СУММА", "SUM");
         }
         return ends;

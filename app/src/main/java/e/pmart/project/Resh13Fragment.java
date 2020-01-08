@@ -52,6 +52,14 @@ public class Resh13Fragment extends Fragment {
         return root_view;
     }
 
+
+    @Override
+    public void onStart() {
+        getView().findViewById(R.id.run13).setOnClickListener(this::onClickStart);
+
+        super.onStart();
+    }
+
     // helper functions
     private String[] createData() {
         String[] data = new String[5];

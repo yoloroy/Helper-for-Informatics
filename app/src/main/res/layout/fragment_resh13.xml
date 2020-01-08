@@ -342,7 +342,6 @@
             android:background="@drawable/ic_play_circle_filled_black_24dp"
             android:backgroundTint="@color/colorPrimary"
             android:elevation="8dp"
-            android:onClick="onClickStart"
             android:src="@drawable/ic_play_circle_filled_black_24dp"
             android:tint="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
