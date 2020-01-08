@@ -46,13 +46,12 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:text="\?"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="26sp" />
+                    <e.pmart.project.QuadImage
+                        android:id="@+id/quadImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_search"
+                        android:tint="@color/colorPrimary" />
 
                     <Spinner
                         android:id="@+id/resh1_num_type"

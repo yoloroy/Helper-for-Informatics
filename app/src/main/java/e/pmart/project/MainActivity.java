@@ -179,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
     public void onClickNext(View view) {
         if (mode.startsWith("course")) {
             if (!((FactoryEducationFragment)
@@ -205,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
 
         pager.setCurrentItem(pager.getCurrentItem()+1);
     }
+
     public void changeMode(View view) {
         mode_fragments.remove(mode);
         mode_fragments
@@ -232,6 +234,7 @@ public class MainActivity extends AppCompatActivity {
         }
         toInnerPages();
     }
+
     public void changeMode(String mode) {
         mode_fragments.remove(this.mode);
         mode_fragments
@@ -255,6 +258,7 @@ public class MainActivity extends AppCompatActivity {
         this.mode = mode;
         toInnerPages();
     }
+
     public void toMain() {
         mode = "main";
         ActionBar actionBar = getSupportActionBar();
@@ -270,6 +274,7 @@ public class MainActivity extends AppCompatActivity {
 
         ((MyFragmentPagerAdapter) pager.getAdapter()).setList(mode_fragments.get(mode));
     }
+
     public void toInnerPages() {
         findViewById(R.id.down_menu_main).setVisibility(View.GONE);
 
@@ -285,6 +290,7 @@ public class MainActivity extends AppCompatActivity {
         ((MyFragmentPagerAdapter) pager.getAdapter()).setList(mode_fragments.get(mode));
         pager.setCurrentItem(0);
     }
+
     public void create_fragment_unions() {
         /*     main     */
         mode_fragments.put("main", new ArrayList<Fragment>());
@@ -330,6 +336,7 @@ public class MainActivity extends AppCompatActivity {
         mode_fragments.get("about").add(new AboutFragment());
         actionBarNames.get("about").add("О программе");
     }
+
     private void upload_courses() {
         // if you update courses - go to educationFragment too
 
@@ -353,7 +360,6 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(actionBarNames.get(mode).get(position));
         }
     }
-
 
     @Override
     public void onBackPressed() {
@@ -408,19 +414,25 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.resh1:
                         mode_fragments.get("main").set(2, new Resh1Fragment());
-                        actionBarNames.get("main").set(2, "Решатор");
+                        actionBarNames.get("main").set(2, "Решатор №1");
+                        toMain();
+                        pager.setCurrentItem(2);
+                        break;
+                    case R.id.resh2:
+                        mode_fragments.get("main").set(2, new Resh2Fragment());
+                        actionBarNames.get("main").set(2, "Решатор №2");
                         toMain();
                         pager.setCurrentItem(2);
                         break;
                     case R.id.resh13:
                         mode_fragments.get("main").set(2, new Resh13Fragment());
-                        actionBarNames.get("main").set(2, "Решатор");
+                        actionBarNames.get("main").set(2, "Решатор №13");
                         toMain();
                         pager.setCurrentItem(2);
                         break;
                     case R.id.resh26:
                         mode_fragments.get("main").set(2, new Resh26Fragment());
-                        actionBarNames.get("main").set(2, "Решатор");
+                        actionBarNames.get("main").set(2, "Решатор №26");
                         toMain();
                         pager.setCurrentItem(2);
                         break;
@@ -458,8 +470,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 
     public void onClickCheckAnswer(View view) {
         ((TaskViewFragment)
@@ -510,6 +520,7 @@ public class MainActivity extends AppCompatActivity {
         calc_text.clear();
         calc_text.add(ToNumSystem.run(e.calculate(), 10));
     }
+
     public void calc_onClickInstantEvaluate(View view) {
         Expression e = new Expression(new ExtraCalcFuncs().getExtraCalcFuncs());
         
@@ -557,6 +568,7 @@ public class MainActivity extends AppCompatActivity {
                     .setText(" = " + ToNumSystem.run(e.calculate(),
                                     (int)((Spinner) findViewById(R.id.calc_num_system_spinner)).getSelectedItem()));
     }
+
     public void calc_onClickButton(View view) {
         String text = (String) ((TextView) findViewById(R.id.calc_enter)).getText();
         switch (view.getId()) {
@@ -618,7 +630,6 @@ public class MainActivity extends AppCompatActivity {
         calc_onClickInstantEvaluate(view);
     }
 
-
     // 13
     public void onClickStart(View view) {
         ((Resh13Fragment) ((MyFragmentPagerAdapter) pager.getAdapter())
@@ -630,10 +641,12 @@ public class MainActivity extends AppCompatActivity {
         ((Resh26Fragment) ((MyFragmentPagerAdapter) pager.getAdapter())
                 .getItem(pager.getCurrentItem())).onClickRun26(view);
     }
+
     public void onClickBack26(View view) {
         ((Resh26Fragment) ((MyFragmentPagerAdapter) pager.getAdapter())
                 .getItem(pager.getCurrentItem())).onClickBack26(view);
     }
+
     public void corrEdits(View view) {
         ((Resh26Fragment) ((MyFragmentPagerAdapter) pager.getAdapter())
                 .getItem(pager.getCurrentItem())).corrEdits(view);

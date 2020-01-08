@@ -4,6 +4,7 @@ package e.pmart.project
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,11 +23,11 @@ class AppendableDictsTableFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_appendable_dicts_table, container, false)
     }
 
-    override fun onStart() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         createGrid()
         createOnClicks()
-
-        super.onStart()
     }
 
     private fun createGrid() {
@@ -46,7 +47,7 @@ class AppendableDictsTableFragment : Fragment() {
         columnView.addView(cell)
         columnView.addView(createEmptyCell())
 
-        grid.addView(columnView)
+        grid.addView(columnView, 0)
     }
 
     private fun createOnClicks() {
@@ -104,11 +105,11 @@ class AppendableDictsTableFragment : Fragment() {
             columnView.addView(createEmptyCell())
         }
 
-        grid.addView(columnView)
+        grid.addView(columnView, width-1)
     }
 
     private fun onClickDelColumn() {
-        grid.removeViewAt(grid.childCount-1)
+        grid.removeViewAt(grid.childCount-2)
         width--
     }
 
@@ -145,13 +146,16 @@ class AppendableDictsTableFragment : Fragment() {
     fun getMatrix(): ArrayList<ArrayList<String>> {
         val table = ArrayList<ArrayList<String>>()
         for (x in 0 until width) {
-            table.add(getByY(x))
+            table.add(getByX(x))
         }
         return table
     }
 
     fun getByX(x: Int): ArrayList<String> {
         val column = ArrayList<String>()
+
+        Log.i(grid.childCount.toString(), width.toString())
+        Log.i((grid.getChildAt(x) as LinearLayout).childCount.toString(), height.toString())
         for (y in 0 until height)
             column.add(get(x, y))
         return column
@@ -160,7 +164,7 @@ class AppendableDictsTableFragment : Fragment() {
     fun getByY(y: Int): ArrayList<String> {
         val row = ArrayList<String>()
         for (x in 0 until width)
-            get(x, y)
+            row.add(get(x, y))
         return row
     }
 

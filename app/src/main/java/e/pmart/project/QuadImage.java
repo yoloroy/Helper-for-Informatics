@@ -25,6 +25,10 @@ public class QuadImage extends AppCompatImageView {
     @Override
     protected void onMeasure(int wSpec, int hSpec) {
         super.onMeasure(wSpec, hSpec);
-        setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth());
+
+        if (getMeasuredWidth() > getMeasuredHeight())
+            setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth());
+        else
+            setMeasuredDimension(getMeasuredHeight(), getMeasuredHeight());
     }
 }

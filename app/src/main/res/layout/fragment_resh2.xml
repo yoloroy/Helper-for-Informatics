@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Resh2Fragment">
 
     <ScrollView
@@ -37,22 +38,29 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:id="@+id/info_resh2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="#0000"
                         android:src="@drawable/ic_info_outlined"
                         android:tint="@color/colorPrimary" />
 
-                    <TextView
-                        android:id="@+id/textView13"
+                    <Button
+                        android:id="@+id/openInfo_resh2"
+                        style="@style/Widget.AppCompat.Button"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="‣" />
+                        android:layout_height="wrap_content"
+                        android:background="#0000"
+                        android:elevation="0dp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:text="‣"
+                        android:textColor="#555"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/resh2_hint"
@@ -73,13 +81,49 @@
                     android:inputType="textPersonName" />
 
                 <fragment
-                    android:id="@+id/fragment2"
+                    android:id="@+id/resh2_desk"
                     android:name="e.pmart.project.AppendableDictsTableFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:layout="@layout/fragment_appendable_dicts_table" />
+
+                <LinearLayout
+                    android:id="@+id/resh2_answerLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ответ: "
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/resh2_answer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="#000"
+                        android:textSize="20sp" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/resh2_evaluate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:src="@drawable/ic_media_play_dark"
+        android:tint="#fff"
+        app:backgroundTint="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
