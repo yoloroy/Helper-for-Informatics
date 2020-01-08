@@ -40,7 +40,7 @@
 
     <!--> calc colors </-->
     <color name="colorCalcNums">#fff</color>
-    <color name="colorCalcMain">#555</color>
+    <color name="colorCalcMain">#555555</color>
     <color name="colorCalcData">#F70</color>
     <color name="colorCalcMath">@color/colorAppRed</color>
     <color name="colorCalcInf">@color/colorAppBlue</color>
