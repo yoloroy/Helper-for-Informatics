@@ -4,6 +4,7 @@ package e.pmart.project
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -71,14 +72,23 @@ class Resh2Fragment : Fragment() {
         }
 
         computeResult(toCharArray(toHorizontal(matrix)[0]), 0, "")
+
+        var temp_matrix: ArrayList<ArrayList<String>> = ArrayList()
         for (i in resultList) {
-            val temp_matrix: ArrayList<ArrayList<String>> = ArrayList(toHorizontal(shuffleByMask(matrix, toMask((toStringArray(i.toCharArray())).toList() as ArrayList<String>, toHorizontal(matrix)[0]) as Collection<Int>) as ArrayList<ArrayList<String>>))
+            val mask = toMask(toHorizontal(matrix)[0], toStringArray((i.replace("F", "")+"F").toCharArray()).toList() as ArrayList<String>)
+            temp_matrix = ArrayList()
+            temp_matrix = shuffleByMask(matrix, mask) as ArrayList<ArrayList<String>>
+
+            temp_matrix = toHorizontal(temp_matrix)
+            Log.i("resh2", temp_matrix.toString())
+            Log.i("resh2", mask.toString())
 
             if (full_matrix.containsAll(temp_matrix.slice(1 until temp_matrix.size) as ArrayList<ArrayList<String>>)) {
                 viewAnswer(i, full_matrix)
                 break
             }
         }
+        Log.i("resh2", full_matrix.toString())
     }
 
     private fun viewAnswer(answer: String, matrix: ArrayList<ArrayList<String>>) {
@@ -151,10 +161,11 @@ class Resh2Fragment : Fragment() {
 
     private fun toHorizontal(verticalArray: Collection<Collection<String>>): ArrayList<ArrayList<String>> {
         val temp = ArrayList<ArrayList<String>>()
-        for (i in 0 until verticalArray.elementAt(0).size) {
+
+        for (x in 0 until verticalArray.elementAt(0).size) {
             temp.add(ArrayList())
-            for (j in 0 until verticalArray.size)
-                temp[i].add(verticalArray.elementAt(j).elementAt(i))
+            for (y in 0 until verticalArray.size)
+                temp[x].add(verticalArray.elementAt(y).elementAt(x))
         }
 
         return temp
