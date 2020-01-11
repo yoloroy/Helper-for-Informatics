@@ -4,7 +4,6 @@ package e.pmart.project
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -75,23 +74,17 @@ class Resh2Fragment : Fragment() {
 
         var temp_matrix: ArrayList<ArrayList<String>> = ArrayList()
         for (i in resultList) {
-            val mask = toMask(toHorizontal(matrix)[0], toStringArray(i.replace("F", "").toCharArray()).toList() as ArrayList<String>)
+            val mask = toMask(toHorizontal(matrix)[0], toStringArray((i.replace("F", "") + "F").toCharArray()).toList() as ArrayList<String>)
             temp_matrix = ArrayList()
             temp_matrix = shuffleByMask(matrix, mask) as ArrayList<ArrayList<String>>
 
-            for (j in 0 until temp_matrix.size)
-                temp_matrix[j].add(matrix[j].last())
-
             temp_matrix = toHorizontal(temp_matrix)
-            Log.i("resh2", temp_matrix.toString())
-            Log.i("resh2", mask.toString())
 
             if (full_matrix.containsAll(temp_matrix.slice(1 until temp_matrix.size) as ArrayList<ArrayList<String>>)) {
                 viewAnswer(i, full_matrix)
                 break
             }
         }
-        Log.i("resh2", full_matrix.toString())
     }
 
     private fun viewAnswer(answer: String, matrix: ArrayList<ArrayList<String>>) {
