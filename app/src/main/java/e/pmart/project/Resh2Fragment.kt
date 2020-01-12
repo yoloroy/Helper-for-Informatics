@@ -17,8 +17,7 @@ import java.lang.Math.pow
 
 
 class Resh2Fragment : Fragment() {
-    // TODO: перекодить всё это заново + надо AppendableDictsTableFragment переделать в нормальный view или fragment для создания библиотеки создания таблиц
-    // TODO: сделать решение с пустыми клетками
+    // TODO: перенести решатор в отдельный класс и вынести решение номера в отдельный поток
     private val NAMES = arrayOf("x", "y", "z", "w")
     private var resultList: ArrayList<String> = ArrayList()
     var width = 1
@@ -59,6 +58,35 @@ class Resh2Fragment : Fragment() {
     private fun onClickRun() {
         // code for tasks without empty cells
         val matrix = getMatrix()
+        val coords = ArrayList<Array<Int>>()
+
+        for (x in 0 until matrix.size) {
+            for (y in 0 until matrix[0].size) {
+                if (matrix[x][y] == "")
+                    coords.add(arrayOf(x, y))
+            }
+        }
+
+        if (coords.isNotEmpty())
+            for (z in 0 until pow(2.toDouble(), coords.size.toDouble()).toInt()) {
+                var num = z
+                var symbol: Int
+
+                for (i in coords) {
+                    symbol = num % 2
+                    num /= 2
+                    matrix[i[0]][i[1]] = symbol.toString()
+                }
+
+                if (matrix.toSet().size == matrix.size)
+                    if (run(matrix))
+                        return
+            }
+        else
+            run(matrix)
+    }
+
+    private fun run(matrix: ArrayList<ArrayList<String>>): Boolean {
         val full_matrix: ArrayList<ArrayList<String>> = ArrayList()
         val max_char_index = width-1
 
@@ -82,9 +110,11 @@ class Resh2Fragment : Fragment() {
 
             if (full_matrix.containsAll(temp_matrix.slice(1 until temp_matrix.size) as ArrayList<ArrayList<String>>)) {
                 viewAnswer(i, full_matrix)
-                break
+                return true
             }
         }
+
+        return false
     }
 
     private fun viewAnswer(answer: String, matrix: ArrayList<ArrayList<String>>) {
