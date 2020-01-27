@@ -36,7 +36,7 @@ class Resh2Fragment : Fragment() {
     }
 
     private fun createOnClicks() {
-        resh2_evaluate.setOnClickListener {onClickRun()}
+        resh2_evaluate.setOnClickListener { onClickRun() }
         info_resh2.setOnClickListener {
             viewHint()
             openInfo_resh2.scaleX = -openInfo_resh2.scaleX
@@ -87,6 +87,7 @@ class Resh2Fragment : Fragment() {
     }
 
     private fun run(matrix: ArrayList<ArrayList<String>>): Boolean {
+        // создаём полную таблицу истинности
         val full_matrix: ArrayList<ArrayList<String>> = ArrayList()
         val max_char_index = width-1
 
@@ -98,12 +99,13 @@ class Resh2Fragment : Fragment() {
             full_matrix[i].add(calculate(full_matrix[i]))
         }
 
+        // создаётся список всех вариантов перестановок колонок таблицы
         computeResult(toCharArray(toHorizontal(matrix)[0]), 0, "")
 
-        var temp_matrix: ArrayList<ArrayList<String>> = ArrayList()
+        // перебор всех вариантов перестановок
         for (i in resultList) {
             val mask = toMask(toHorizontal(matrix)[0], toStringArray((i.replace("F", "") + "F").toCharArray()).toList() as ArrayList<String>)
-            temp_matrix = ArrayList()
+            var temp_matrix: ArrayList<ArrayList<String>> = ArrayList()
             temp_matrix = shuffleByMask(matrix, mask) as ArrayList<ArrayList<String>>
 
             temp_matrix = toHorizontal(temp_matrix)
@@ -137,6 +139,10 @@ class Resh2Fragment : Fragment() {
 
     private fun calculate(params: ArrayList<String>): String {
         var temp = resh2_enter.text.toString().toLowerCase()
+                .replace("a", "x")
+                .replace("b", "y")
+                .replace("c", "z")
+                .replace("d", "w")
 
         for (i in 0 until params.size) {
             temp = temp.replace(NAMES[i], params[i])
@@ -273,7 +279,7 @@ class Resh2Fragment : Fragment() {
 
         val cell = createEmptyCell()
         cell.setBackgroundResource(R.color.colorPrimaryLight)
-        cell.setText(NAMES[width-1])
+        cell.setText("???")
         cell.setTextColor(resources.getColor(R.color.colorBackContrast))
 
         cell.isLongClickable = false

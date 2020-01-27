@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".TestFragment">
+
+    <de.blox.graphview.GraphView
+        android:id="@+id/graphView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </de.blox.graphview.GraphView>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end">
+
+        <TextView
+            android:id="@+id/textGraphStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/rect_corners_s_8"
+            android:backgroundTint="#fff"
+            android:elevation="2dp"
+            android:padding="2dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:scaleX="0"
+            android:scaleY="0"
+            android:text="Начало"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/test_graph_start"
+            app:layout_constraintEnd_toStartOf="@+id/test_graph_start"
+            app:layout_constraintTop_toTopOf="@+id/test_graph_start" />
+
+        <TextView
+            android:id="@+id/textGraphEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/rect_corners_s_8"
+            android:backgroundTint="#fff"
+            android:elevation="2dp"
+            android:padding="2dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:scaleX="0"
+            android:scaleY="0"
+            android:text="Конец"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/test_graph_end"
+            app:layout_constraintEnd_toStartOf="@+id/test_graph_end"
+            app:layout_constraintTop_toTopOf="@id/test_graph_end" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/test_graph_end"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:scaleType="center"
+            android:scaleX="0"
+            android:scaleY="0"
+            android:src="@drawable/ic_location_on"
+            android:tint="@color/colorPrimary"
+            android:visibility="gone"
+            app:backgroundTint="#fff"
+            app:layout_constraintBottom_toTopOf="@+id/test_graph_start"
+            app:layout_constraintEnd_toEndOf="@+id/test_graph_add"
+            app:layout_constraintStart_toStartOf="@+id/test_graph_add"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/test_graph_start"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="12dp"
+            android:clickable="true"
+            android:foregroundGravity="center"
+            android:scaleType="center"
+            android:scaleX="0"
+            android:src="@drawable/ic_my_location"
+            android:tint="@color/colorPrimary"
+            android:visibility="gone"
+            app:backgroundTint="#fff"
+            app:layout_constraintBottom_toTopOf="@id/test_graph_add"
+            app:layout_constraintEnd_toEndOf="@+id/test_graph_add"
+            app:layout_constraintStart_toStartOf="@+id/test_graph_add" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/test_graph_add"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_margin="16dp"
+            android:clickable="true"
+            android:src="@drawable/ic_add"
+            android:tint="#fff"
+            app:backgroundTint="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/LogMatrix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LogMatrix" />
+
+</FrameLayout>

@@ -31,9 +31,7 @@ import de.blox.graphview.tree.BuchheimWalkerAlgorithm;
 import de.blox.graphview.tree.BuchheimWalkerConfiguration;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class Resh26Fragment extends Fragment {
     View root_view;
 

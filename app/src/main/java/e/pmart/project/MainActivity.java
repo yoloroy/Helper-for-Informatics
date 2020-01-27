@@ -327,10 +327,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void upload_courses() {
-        // if you update courses - go to educationFragment too
-
-        mode_fragments.put("course_graphs", new ArrayList<Fragment>());
-        actionBarNames.put("course_graphs", new ArrayList<String>());
+        mode_fragments.put("course_graphs", new ArrayList<>());
+        actionBarNames.put("course_graphs", new ArrayList<>());
 
         mode_fragments.get("course_graphs").add(new FactoryEducationFragment()
                 .newTitle(R.string.graphs_1)
@@ -413,6 +411,12 @@ public class MainActivity extends AppCompatActivity {
                         toMain();
                         pager.setCurrentItem(2);
                         break;
+                    case R.id.resh3:
+                        mode_fragments.get("main").set(2, new Resh3Fragment());
+                        actionBarNames.get("main").set(2, "Решатор №3");
+                        toMain();
+                        pager.setCurrentItem(2);
+                        break;
                     case R.id.resh13:
                         mode_fragments.get("main").set(2, new Resh13Fragment());
                         actionBarNames.get("main").set(2, "Решатор №13");
@@ -422,6 +426,12 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.resh26:
                         mode_fragments.get("main").set(2, new Resh26Fragment());
                         actionBarNames.get("main").set(2, "Решатор №26");
+                        toMain();
+                        pager.setCurrentItem(2);
+                        break;
+                    case R.id.test:
+                        mode_fragments.get("main").set(2, new TestFragment());
+                        actionBarNames.get("main").set(2, "Test");
                         toMain();
                         pager.setCurrentItem(2);
                         break;

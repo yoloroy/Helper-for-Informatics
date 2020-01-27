@@ -15,11 +15,18 @@
                 android:id="@+id/resh2"
                 android:title="№ 2" />
             <item
+                android:id="@+id/resh3"
+                android:title="№ 3" />
+            <item
                 android:id="@+id/resh13"
                 android:title="№ 13" />
             <item
                 android:id="@+id/resh26"
                 android:title="№ 26" />
+
         </menu>
     </item>
+    <item
+        android:id="@+id/test"
+        android:title="Test" />
 </menu>
