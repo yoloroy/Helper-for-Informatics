@@ -36,7 +36,15 @@ class Resh2Fragment : Fragment() {
     }
 
     private fun createOnClicks() {
-        resh2_evaluate.setOnClickListener { onClickRun() }
+        resh2_evaluate.setOnClickListener {
+            try {
+                onClickRun()
+            } catch (e: Exception) {
+                Snackbar.make(it, "Проверьте введённые данные", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null)
+                        .show()
+            }
+        }
         info_resh2.setOnClickListener {
             viewHint()
             openInfo_resh2.scaleX = -openInfo_resh2.scaleX
@@ -56,7 +64,6 @@ class Resh2Fragment : Fragment() {
     }
 
     private fun onClickRun() {
-        // code for tasks without empty cells
         val matrix = getMatrix()
         val coords = ArrayList<Array<Int>>()
 
@@ -82,8 +89,11 @@ class Resh2Fragment : Fragment() {
                     if (run(matrix))
                         return
             }
-        else
-            run(matrix)
+        else {
+            if (run(matrix))
+                return
+        }
+        throw Exception("wrong entered data or algorithm")
     }
 
     private fun run(matrix: ArrayList<ArrayList<String>>): Boolean {
@@ -279,7 +289,7 @@ class Resh2Fragment : Fragment() {
 
         val cell = createEmptyCell()
         cell.setBackgroundResource(R.color.colorPrimaryLight)
-        cell.setText("???")
+        cell.setText(NAMES[width-1])
         cell.setTextColor(resources.getColor(R.color.colorBackContrast))
 
         cell.isLongClickable = false
