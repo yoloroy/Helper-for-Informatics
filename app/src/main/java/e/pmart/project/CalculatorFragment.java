@@ -16,9 +16,6 @@ import android.widget.TextView;
 import org.mariuszgromada.math.mxparser.Expression;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class CalculatorFragment extends Fragment {
     View root_view;
     MyArrayList<String> calc_text = new MyArrayList<>();
