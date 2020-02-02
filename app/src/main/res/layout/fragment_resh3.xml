@@ -67,6 +67,74 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:layout="@layout/fragment_symmetry_matrix" />
+
+                <fragment
+                    android:id="@+id/resh3_graph"
+                    android:name="e.pmart.project.Resh3GraphFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    tools:layout="@layout/fragment_resh3_graph" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/rect_corners_s_18"
+                    android:elevation="2dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <e.pmart.project.QuadImage
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_search"
+                        android:tint="@color/colorPrimary" />
+
+                    <Spinner
+                        android:id="@+id/resh3_ans_type"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
+                        tools:listitem="@layout/simple_scalable_list_item_1" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/resh3_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Решение:"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:id="@+id/resh3_matrix"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical" />
+
+                <LinearLayout
+                    android:id="@+id/resh3_answerLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ответ: "
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/resh3_answer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="#000"
+                        android:textSize="20sp" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

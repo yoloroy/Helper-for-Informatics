@@ -430,7 +430,7 @@ public class MainActivity extends AppCompatActivity {
                         pager.setCurrentItem(2);
                         break;
                     case R.id.test:
-                        mode_fragments.get("main").set(2, new TestFragment());
+                        mode_fragments.get("main").set(2, new Resh3GraphFragment());
                         actionBarNames.get("main").set(2, "Test");
                         toMain();
                         pager.setCurrentItem(2);
