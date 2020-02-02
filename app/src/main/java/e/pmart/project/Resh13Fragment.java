@@ -3,7 +3,6 @@ package e.pmart.project;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class Resh13Fragment extends Fragment {
     View root_view;
 
@@ -30,12 +26,6 @@ public class Resh13Fragment extends Fragment {
     QuadButton run;
 
     String[] variableData;  // variants of variables in task
-
-
-    public Resh13Fragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,7 +41,6 @@ public class Resh13Fragment extends Fragment {
 
         return root_view;
     }
-
 
     @Override
     public void onStart() {
@@ -112,7 +101,6 @@ public class Resh13Fragment extends Fragment {
             zee.main(variable4.getUnits());
             String y = zee.getSolution();
 
-            Log.d("STATE", y);
             if (zee.answer.isNaN())
                 textView.setText(y + "\nОтвет не может быть получен из-за неверных входных данных");
             else
@@ -129,5 +117,4 @@ public class Resh13Fragment extends Fragment {
             run.setRotation(0.0f);
         }
     }
-
 }

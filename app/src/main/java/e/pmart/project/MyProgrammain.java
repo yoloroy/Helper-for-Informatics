@@ -59,10 +59,6 @@ class Formulas {
     }
 
     String getName (String var, String path) {
-        /*
-          Need to index formula
-          (for avoid a situation, where decision process walks in a circle)
-         */
         switch (var) {
             case "i":
                 switch (path) {

@@ -33,13 +33,7 @@ public class FactoryEducationFragment extends Fragment {
     boolean enable_continue = true;
 
     EditText enter;
-
     View root_view;
-
-
-    public FactoryEducationFragment() {
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

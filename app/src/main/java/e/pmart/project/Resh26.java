@@ -112,15 +112,14 @@ class Resh26 {
         return arg == 1;
     }
 
-    public static Boolean all(Collection<Boolean> bools) {
+    private static Boolean all(Collection<Boolean> bools) {
         for (Boolean bool: bools) {
             if (!bool)
                 return false;
         }
         return true;
     }
-
-    public static Boolean any(Collection<Boolean> bools) {
+    private static Boolean any(Collection<Boolean> bools) {
         for (Boolean bool: bools) {
             if (bool)
                 return true;
@@ -128,7 +127,7 @@ class Resh26 {
         return false;
     }
 
-    public static String toPoint(Object[] arr) {
+    private static String toPoint(Object[] arr) {
         String temp = "(";
         for (Object i: arr) {
             temp += i.toString() + ", ";
@@ -136,7 +135,6 @@ class Resh26 {
         return temp.substring(0, temp.length()-2) + ")";
     }
 }
-
 
 class StepResh26 {
     static Integer[] run(Integer[] arr, String expression) {
@@ -153,7 +151,6 @@ class StepResh26 {
         return temp_arr;
     }
 }
-
 
 class EndResh26 {
     static Boolean run(Integer[] arr, String expression) {

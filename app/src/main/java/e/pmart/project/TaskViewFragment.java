@@ -1,7 +1,6 @@
 package e.pmart.project;
 
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -24,11 +23,7 @@ import java.util.Random;
 public class TaskViewFragment extends Fragment {
     View rootView;
     int curr;
-    int num;
-    String[] tasks = new String[] {"We have't tasks for this number yet, *answer is \"\"*", ""};
-
-    private DatabaseHelper mDBHelper;
-    private SQLiteDatabase mDb;
+    String[] tasks = new String[] {"", ""};
 
     FloatingActionButton fab;
     BottomSheetBehavior bottomSheetBehavior;
@@ -91,27 +86,15 @@ public class TaskViewFragment extends Fragment {
         curr = i;
     }
     public void startTaskSet() {
-        mDBHelper = new DatabaseHelper(rootView.getContext());
-
-        try {
-            mDBHelper.updateDataBase();
-        } catch (IOException mIOException) {
-            throw new Error("UnableToUpdateDatabase");
-        }
-
-        try {
-            mDb = mDBHelper.getWritableDatabase();
-        } catch (SQLException mSQLException) {
-            throw mSQLException;
-        }
-
-        Cursor cursor;
         Random random = new Random();
 
-        cursor = mDb.rawQuery("SELECT task, answer FROM tasks WHERE number="+curr, null);
+        DatabaseHelper mDBHelper = new DatabaseHelper(rootView.getContext());
+        SQLiteDatabase mDb = getCheckedDb(mDBHelper);
+
+        Cursor cursor = mDb.rawQuery("SELECT task, answer FROM tasks WHERE number="+curr, null);
         cursor.moveToFirst();
 
-        num = random.nextInt(cursor.getCount() / 2);
+        int num = random.nextInt(cursor.getCount() / 2);
         cursor.moveToPosition(num*2);
         tasks = new String[]{cursor.getString(0), cursor.getString(1)};
         cursor.close();
@@ -120,13 +103,19 @@ public class TaskViewFragment extends Fragment {
         WebView task_text = rootView.findViewById(R.id.task_text);
         task_text.loadDataWithBaseURL(null, tasks[0].replaceFirst("\"width:650px\"", "\"width:94%\""),
                 "text/html", "en_US", null);
-        //task_text.setBackgroundColor(Color.TRANSPARENT);
+
         task_text.getSettings().setBuiltInZoomControls(true);
         task_text.getSettings().setMinimumFontSize(16);
+    }
 
-        //(rootView.findViewById(R.id.task_answer))
-        //        .setMinimumWidth(  (int)((EditText) rootView.findViewById(R.id.task_answer))
-        //                .getTextSize() * tasks[1].length());
+    private SQLiteDatabase getCheckedDb(DatabaseHelper DBHelper) {
+        try {
+            DBHelper.updateDataBase();
+        } catch (IOException mIOException) {
+            throw new Error("UnableToUpdateDatabase");
+        }
+
+        return DBHelper.getWritableDatabase();
     }
 
     public void onClickCheckAnswer(View view) {
@@ -135,7 +124,7 @@ public class TaskViewFragment extends Fragment {
             ((EditText) rootView.findViewById(R.id.task_answer)).setText("");
             ((EditText) rootView.findViewById(R.id.task_blackovik)).setText("");
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-            //setTask(curr);
+
             startTaskSet();
         }
         else

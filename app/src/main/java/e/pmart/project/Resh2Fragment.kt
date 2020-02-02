@@ -75,6 +75,7 @@ class Resh2Fragment : Fragment() {
         }
 
         if (coords.isNotEmpty())
+            // заполнение пустых клеток
             for (z in 0 until pow(2.toDouble(), coords.size.toDouble()).toInt()) {
                 var num = z
                 var symbol: Int

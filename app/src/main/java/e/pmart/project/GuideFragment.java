@@ -25,10 +25,6 @@ public class GuideFragment extends Fragment {
     String[] themesList;
     ArrayAdapter<String> themesAdapter;
 
-    int curr;
-    int num;
-    String[] tasks;
-
     ActionBar supportActionBar;
     FragmentManager supportFragmentManager;
 
@@ -52,12 +48,6 @@ public class GuideFragment extends Fragment {
             new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    {{/*ActionBar actionBar = supportActionBar;
-                    if (actionBar != null) {
-                        actionBar.setHomeButtonEnabled(true);
-                        actionBar.setDisplayHomeAsUpEnabled(true);
-                    }*/}}
-                    //Log.i("-4", "onItemClick: "+mainActivity.mode_fragments);
                     mainActivity.mode_fragments.get("guide_inner").clear();
                     mainActivity.mode_fragments.get("guide_inner")
                             .add(new FactoryEducationFragment()

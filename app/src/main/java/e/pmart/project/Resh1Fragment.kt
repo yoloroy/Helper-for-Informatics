@@ -34,6 +34,7 @@ class Resh1Fragment : Fragment() {
                     textView6!!.visibility = View.VISIBLE
                     textView7!!.visibility = View.VISIBLE
 
+                    // Вывод решения
                     val reg = Regex("(?<=[ *+-])|(?=[ *+-])")
                     val text = resh1_enter!!.text.split(reg)
                     val new_text = ArrayList<String>()
@@ -47,15 +48,15 @@ class Resh1Fragment : Fragment() {
                         } else
                             new_text.add(i)
                     }
+
+                    // Вычисление ответа
                     val e = Expression()
                     e.expressionString = new_text.joinToString("")
                     if (e.calculate() == NaN)
                         throw Exception("bad expression")
 
                     val temp = e.calculate().toInt()
-
                     textView7!!.text = "${textView7!!.text}${new_text.joinToString("")} = $temp"
-
                     resh1_answerLayout!!.visibility = View.VISIBLE
 
                     when (resh1_num_type!!.selectedItemPosition) {
