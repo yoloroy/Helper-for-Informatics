@@ -39,6 +39,9 @@ class Resh3GraphFragment : Fragment() {
         graphView.adapter.algorithm.setEdgeRenderer(NoArrowEdgeRenderer())
         graphView.adapter.graph = Graph()
 
+        graphView.setMaxZoom(1f, ZoomApi.MAX_ZOOM_DEFAULT_TYPE)
+        graphView.setMinZoom(1f, ZoomApi.MIN_ZOOM_DEFAULT_TYPE)
+
         createOnClicks()
     }
 
