@@ -61,6 +61,7 @@ public class CalculatorFragment extends Fragment {
         calc_text.add("0");
         for (int i = 1; i < ((GridLayout) root_view.findViewById(R.id.calcButtons)).getChildCount(); i++)
             ((GridLayout) root_view.findViewById(R.id.calcButtons)).getChildAt(i).setOnClickListener(this::calc_onClickButton);
+        root_view.findViewById(R.id.calc_evaluate).setOnClickListener(this::calc_onClickButton);
 
         super.onStart();
     }
@@ -158,6 +159,7 @@ public class CalculatorFragment extends Fragment {
     public void calc_onClickButton(View view) {
         String text = (String) ((TextView) root_view.findViewById(R.id.calc_enter)).getText();
         switch (view.getId()) {
+            case (R.id.calc_evaluate):
             case (R.id.calc_eval):
                 calc_onClickEvaluate(view);
                 return;
