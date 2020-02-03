@@ -56,12 +56,14 @@ public class MyArrayList<E> extends ArrayList<E> {
     }
 
     public String toText() {
-        if (getLast().getClass().equals("".getClass())) {
-            String a = "";
-            for (int i = 0; i < size(); i++) {
-                a += (String) get(i);
-            }
-            return a;
-        } else throw new RuntimeException("method work only with strings!");
+        try {
+            if (getLast().getClass().equals("".getClass())) {
+                String a = "";
+                for (E i : this) {
+                    a += i;
+                }
+                return a;
+            } else throw new RuntimeException("method work only with strings!");
+        } catch (ArrayIndexOutOfBoundsException e) { return ""; }
     }
 }
