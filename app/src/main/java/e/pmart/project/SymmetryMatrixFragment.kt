@@ -3,6 +3,7 @@ package e.pmart.project
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,6 +42,7 @@ class SymmetryMatrixFragment : Fragment() {
     private fun createEmptyCell(): EditText {
         val cell = EditText(context)
         cell.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1f)
+        cell.inputType = InputType.TYPE_CLASS_NUMBER
         cell.setText("")
         cell.setEms(1)
         cell.textAlignment = EditText.TEXT_ALIGNMENT_CENTER

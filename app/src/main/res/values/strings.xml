@@ -19,5 +19,7 @@
     <string name="guide_title">Справочник</string>
     <string name="other_title">Дополнительно</string>
 
+    <string name="resh1_hint">Когда пишете логическое выражение, используйте:\n • "/\\" для обозначения логического "и"\n • "\\/" для обозначения логического "или"\n • "\~" для обозначения логического "не"\n • знак следования обозначается так: "\-\->"\n • знак эквиваленции записывайте так: "\u003c->"</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

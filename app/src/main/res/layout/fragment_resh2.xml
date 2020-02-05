@@ -67,9 +67,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text='Когда пишете логическое выражение, используйте:\n• "*", "&amp;", "и" вместо "/\\"\n• "+", "|", "или" вместо "\\/" \n• "-", "!", "не" вместо "¬"\n• знак следования обозначается так: "->"\n• знак эквиваленции записывайте, как обычный знак равенства ("=")'
+                        android:text="@string/resh1_hint"
+
                         android:textSize="14sp"
-                        android:visibility="gone" />
+                        android:visibility="visible" />
                 </LinearLayout>
 
                 <EditText
