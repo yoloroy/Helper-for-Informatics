@@ -423,15 +423,15 @@ public class MainActivity extends AppCompatActivity {
                         toMain();
                         pager.setCurrentItem(2);
                         break;
-                    case R.id.resh26:
-                        mode_fragments.get("main").set(2, new Resh26Fragment());
-                        actionBarNames.get("main").set(2, "Решатор №26");
+                    case R.id.resh15:
+                        mode_fragments.get("main").set(2, new Resh15Fragment());
+                        actionBarNames.get("main").set(2, "Решатор №15");
                         toMain();
                         pager.setCurrentItem(2);
                         break;
-                    case R.id.test:
-                        mode_fragments.get("main").set(2, new Resh3GraphFragment());
-                        actionBarNames.get("main").set(2, "Test");
+                    case R.id.resh26:
+                        mode_fragments.get("main").set(2, new Resh26Fragment());
+                        actionBarNames.get("main").set(2, "Решатор №26");
                         toMain();
                         pager.setCurrentItem(2);
                         break;

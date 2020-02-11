@@ -21,12 +21,12 @@
                 android:id="@+id/resh13"
                 android:title="№ 13" />
             <item
+                android:id="@+id/resh15"
+                android:title="№ 15" />
+            <item
                 android:id="@+id/resh26"
                 android:title="№ 26" />
 
         </menu>
     </item>
-    <item
-        android:id="@+id/test"
-        android:title="Test" />
 </menu>
