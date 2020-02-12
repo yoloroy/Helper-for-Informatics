@@ -14,11 +14,11 @@ import kotlinx.android.synthetic.main.fragment_resh15.*
 
 
 class Resh15Fragment : Fragment() {
-    private var nodeCount = 3
+    private var nodeCount = 2
     private var clicked_nodes: ArrayList<Any> = ArrayList()
     private var clicked_views: ArrayList<ViewHolder> = ArrayList()
 
-    private val nodesData = arrayListOf(1, 1, 1)
+    private val nodesData = arrayListOf(1, 1)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -31,7 +31,6 @@ class Resh15Fragment : Fragment() {
         graphView.adapter.graph = Graph()
         val temp = Node(1)
         graphView.adapter.graph.addEdge(Node(0), temp)
-        graphView.adapter.graph.addEdge(temp, Node(2))
         graphView.adapter.algorithm = SugiyamaAlgorithm()
 
         graphView.setMaxZoom(1f, ZoomApi.MAX_ZOOM_DEFAULT_TYPE)
@@ -51,13 +50,10 @@ class Resh15Fragment : Fragment() {
             val node = Node(nodeCount)
             if (clicked_nodes.size == 1) {
                 graph.addEdge(searchNodeByData(clicked_nodes[0]), node)
+                clicked_nodes.clear()
             } else {
                 try {
                     graph.addEdge(searchNodeByData(0), node)
-                    nodeCount ++
-                    nodesData.add(0)
-
-                    graph.addEdge(node, Node(nodeCount))
                 } catch (e: ArrayIndexOutOfBoundsException) {
                     graph.addEdge(Node(0), node)
                 }

@@ -36,9 +36,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:background="@drawable/rect_corners_s_8"
-                android:backgroundTint="@color/colorBackContrast"
-                android:foregroundGravity="center"
-                android:paddingBottom="44dp">
+                android:backgroundTint="@color/colorBackContrast">
 
             </de.blox.graphview.GraphView>
         </LinearLayout>
