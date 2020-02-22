@@ -237,6 +237,12 @@ public class MainActivity extends AppCompatActivity {
                     actionBar.setDisplayHomeAsUpEnabled(true);
                 }
                 break;
+            case "course_la":
+                if (actionBar != null) {
+                    actionBar.setHomeButtonEnabled(true);
+                    actionBar.setDisplayHomeAsUpEnabled(true);
+                }
+                break;
             case "gener_task":
                 if (actionBar != null) {
                     actionBar.setHomeButtonEnabled(true);
@@ -339,6 +345,14 @@ public class MainActivity extends AppCompatActivity {
                 .newText(R.string.graphs_task1)
                 .newChoice(R.array.choice_graphs_task1));
         actionBarNames.get("course_graphs").add("Графы");
+        /* algebra of logic */
+        mode_fragments.put("course_la", new ArrayList<>());
+        actionBarNames.put("course_la", new ArrayList<>());
+
+        mode_fragments.get("course_la").add(new FactoryEducationFragment()
+                .newTitle(R.string.course_la_1)
+                .newText(R.string.course_la_2));
+        actionBarNames.get("course_la").add("Алгебра логики");
     }
 
     public void setTitleFromModeNames(int position) {
@@ -355,6 +369,21 @@ public class MainActivity extends AppCompatActivity {
                 super.onBackPressed();
                 break;
             case "course_graphs":
+                ((FactoryEducationFragment)
+                        ((MyFragmentPagerAdapter) pager.getAdapter())
+                                .getItem(pager.getCurrentItem())).save();
+                if (pager.getCurrentItem() == 0) {
+                    mode_fragments.remove(mode);
+                    mode_fragments
+                            .put(mode, ((MyFragmentPagerAdapter) pager.getAdapter())
+                                    .getFragments());
+                    toMain();
+                    pager.setCurrentItem(1);
+                    return;
+                }
+                pager.setCurrentItem(pager.getCurrentItem() - 1);
+                break;
+            case "course_la":
                 ((FactoryEducationFragment)
                         ((MyFragmentPagerAdapter) pager.getAdapter())
                                 .getItem(pager.getCurrentItem())).save();
@@ -443,6 +472,12 @@ public class MainActivity extends AppCompatActivity {
                         onBackPressed();
                         return true;
             }
+            case "course_la":
+                switch (item.getItemId()) {
+                    case android.R.id.home:
+                        onBackPressed();
+                        return true;
+                }
             case "gener_task":
                 switch (item.getItemId()) {
                     case android.R.id.home:
@@ -468,13 +503,6 @@ public class MainActivity extends AppCompatActivity {
                 }
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void onClickCheckAnswer(View view) {
-        ((TaskViewFragment)
-            ((MyFragmentPagerAdapter) pager.getAdapter())
-                .getItem(pager.getCurrentItem())).onClickCheckAnswer(view);
-
     }
 
     // 26

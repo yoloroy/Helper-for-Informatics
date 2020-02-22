@@ -55,6 +55,7 @@ class Resh15Fragment : Fragment() {
                 try {
                     graph.addEdge(searchNodeByData(0), node)
                 } catch (e: ArrayIndexOutOfBoundsException) {
+                    // певрой ноды нет?
                     graph.addEdge(Node(0), node)
                 }
             }
@@ -62,10 +63,6 @@ class Resh15Fragment : Fragment() {
             nodesData.add(0)
             graphView.adapter.graph = graph
             graphView.adapter.notifyInvalidated()
-            graphView.adapter.notifySizeChanged()
-            graphView.destroyDrawingCache()
-            graphView.refreshDrawableState()
-
         }
     }
 
@@ -97,6 +94,7 @@ class Resh15Fragment : Fragment() {
 
         override fun onBindViewHolder(viewHolder: ViewHolder, data: Any, position: Int) {
             (viewHolder as SimpleViewHolder)
+            // соединяем/разъединяем
             viewHolder.textView.setOnClickListener {
                 clicked_nodes.add(data)
                 clicked_views.add(viewHolder)
@@ -137,12 +135,13 @@ class Resh15Fragment : Fragment() {
                     add.isClickable = true
                 }
             }
-
+            // удаляем
             viewHolder.textView.setOnLongClickListener {
                 if (data as Int != 0)
                     graph.removeNode(searchNodeByData(data.toString(), graph.nodes))
                 true
             }
+
             notifyInvalidated()
             viewHolder.textView.text = getItem(position).toString()
         }
@@ -151,6 +150,7 @@ class Resh15Fragment : Fragment() {
             return nodesData[position]
         }
 
+        // обновление выводимых чисел
         override fun notifyInvalidated() {
             for (i in 1 until nodeCount) {
                 findNum(i)
@@ -159,6 +159,7 @@ class Resh15Fragment : Fragment() {
             super.notifyInvalidated()
         }
 
+        // поиск числа
         private fun findNum(position: Int) {
             nodesData[position] = 0
             for (i in graph.predecessorsOf(Node(position))) {

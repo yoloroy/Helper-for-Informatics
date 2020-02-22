@@ -27,7 +27,7 @@ import java.util.List;
 
 public class FactoryEducationFragment extends Fragment {
     List<List> task_list = new ArrayList<>();
-    final String[] TASKS = {"image", "text", "title", "choice", "enter", "text_list"};
+    final String[] TASKS = {"image", "text", "title", "choice", "enter", "text_list", "view"};
     String answer = null;
     String user_answer = "";
     boolean enable_continue = true;
@@ -65,15 +65,18 @@ public class FactoryEducationFragment extends Fragment {
     public FactoryEducationFragment newTextList(int text_array_id) {
         return newTask("text_list", text_array_id);
     }
+    public FactoryEducationFragment newView(View view) {
+        return newTask("view", view);
+    }
     public FactoryEducationFragment enableContinue(boolean a) {
         enable_continue = a;
         return this;
     }
 
-    public FactoryEducationFragment newTask(String name, int obj_id) {
+    public FactoryEducationFragment newTask(String name, Object obj) {
         List<Object> temp_list = new ArrayList<>();
         temp_list.add(name);
-        temp_list.add(obj_id);
+        temp_list.add(obj);  // object or id for object
         task_list.add(temp_list);
 
         return this;
@@ -99,6 +102,8 @@ public class FactoryEducationFragment extends Fragment {
                 case 5:
                     addTextList(task_list.get(i));
                     break;
+                case 6:
+                    addView(task_list.get(i));
             }
         }
     }
@@ -201,6 +206,10 @@ public class FactoryEducationFragment extends Fragment {
         listView.setDividerHeight(2);
 
         ((LinearLayout) root_view.findViewById(R.id.factory_base)).addView(listView);
+    }
+    private void addView(List task) {
+        ((LinearLayout) root_view.findViewById(R.id.factory_base))
+                .addView((View) task.get(1));
     }
 
     public Boolean onClickNext() {

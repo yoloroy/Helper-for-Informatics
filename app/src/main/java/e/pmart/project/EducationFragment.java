@@ -23,8 +23,8 @@ public class EducationFragment extends Fragment {
         GridView gridView = rootView.findViewById(R.id.education_grid);
 
         gridView.setAdapter(new EducationGridAdapter(getActivity(),
-                new String[]{"Графы"},
-                new String[]{"course_graphs"}));
+                new String[]{"Графы", "Алгебра логики"},
+                new String[]{"course_graphs", "course_la"}));
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -26,5 +26,10 @@ public class QuadView extends CardView {
     protected void onMeasure(int wSpec, int hSpec) {
         super.onMeasure(wSpec, hSpec);
         setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth());
+        int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2,
+                MeasureSpec.AT_MOST);
+        for (int i = 0; i < getChildCount(); i++) {
+            getChildAt(i).measure(wSpec, expandSpec);
+        }
     }
 }

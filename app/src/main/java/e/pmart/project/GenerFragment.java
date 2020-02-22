@@ -2,6 +2,8 @@ package e.pmart.project;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
@@ -22,10 +24,6 @@ public class GenerFragment extends Fragment {
     String[] tasksList;
     ArrayAdapter<String> tasksAdapter;
 
-    int curr;
-    int num;
-    String[] tasks;
-
     ActionBar supportActionBar;
     FragmentManager supportFragmentManager;
 
@@ -38,15 +36,38 @@ public class GenerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         root_view = inflater.inflate(R.layout.fragment_gener, container, false);
-        createTasks();
         return root_view;
     }
 
+    @Override
+    public void onStart() {
+        createTasks();
+
+        super.onStart();
+    }
+
     private void createTasks() {
-        tasksView = root_view.findViewById(R.id.tasksList);
+        tasksView = getView().findViewById(R.id.tasksList);
         tasksList = getResources().getStringArray(R.array.inf_ege_tasks);
-        tasksAdapter = new ArrayAdapter<>
-                (getContext(), android.R.layout.simple_list_item_1, tasksList);
+        tasksAdapter = new ArrayAdapter<String>
+                (getContext(), android.R.layout.simple_list_item_1, tasksList) {
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View temp = super.getView(position, convertView, parent);
+
+                if (getCount() == 1)
+                    temp.setBackground(getResources().getDrawable(R.drawable.rect_corners_s_16));
+                else if (position == 0)
+                    temp.setBackground(getResources().getDrawable(R.drawable.rect_corners_u_16));
+                else if (position == getCount()-1)
+                    temp.setBackground(getResources().getDrawable(R.drawable.rect_corners_d_16));
+                else
+                    temp.setBackground(getResources().getDrawable(R.drawable.rect));
+
+                return temp;
+            }
+        };
         tasksView.setAdapter(tasksAdapter);
 
         tasksView.setOnItemClickListener(
