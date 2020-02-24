@@ -3,18 +3,16 @@ package e.pmart.project;
 
 import android.content.res.TypedArray;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -26,8 +24,10 @@ import java.util.List;
 
 
 public class FactoryEducationFragment extends Fragment {
-    List<List> task_list = new ArrayList<>();
     final String[] TASKS = {"image", "text", "title", "choice", "enter", "text_list", "view"};
+    float SCALE;
+
+    List<List> task_list = new ArrayList<>();
     String answer = null;
     String user_answer = "";
     boolean enable_continue = true;
@@ -39,6 +39,7 @@ public class FactoryEducationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         root_view = inflater.inflate(R.layout.fragment_factory_education, container, false);
+        SCALE = getContext().getResources().getDisplayMetrics().density;
         evaluateTasks();
         if (enable_continue)
             root_view.findViewById(R.id.button5).setVisibility(View.VISIBLE);
@@ -129,6 +130,7 @@ public class FactoryEducationFragment extends Fragment {
         textView.setText((int)task.get(1));
 
         LinearLayout.LayoutParams imageViewLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        imageViewLayoutParams.setMargins(0,8,0,8);
         textView.setLayoutParams(imageViewLayoutParams);
 
         TypedArray ta = getContext().obtainStyledAttributes(R.style.EducationText, R.styleable.StandartText);
@@ -142,6 +144,11 @@ public class FactoryEducationFragment extends Fragment {
         textView.setText((int)task.get(1));
 
         LinearLayout.LayoutParams imageViewLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        imageViewLayoutParams.setMargins(
+                0,
+                (int) (16*getContext().getResources().getDisplayMetrics().density+0.5),
+                0,
+                (int) (8/getContext().getResources().getDisplayMetrics().density+0.5));
         textView.setLayoutParams(imageViewLayoutParams);
 
         TypedArray ta = getContext().obtainStyledAttributes(R.style.EducationTitle, R.styleable.StandartText);
@@ -190,22 +197,24 @@ public class FactoryEducationFragment extends Fragment {
         ((LinearLayout) root_view.findViewById(R.id.factory_base)).addView(enter);
     }
     private void addTextList(List task) {
-        ListView listView = new ListView(getContext());
-
         String[] text_list = getResources().getStringArray((int) task.get(1));
-        listView.setAdapter(new ArrayAdapter<>(
-                getContext(), android.R.layout.simple_list_item_1, text_list));
 
-        ListView.LayoutParams imageViewLayoutParams = new
-        ListView.LayoutParams(ListView.LayoutParams.MATCH_PARENT,
-                              ListView.LayoutParams.WRAP_CONTENT);
-        listView.setLayoutParams(imageViewLayoutParams);
+        for (String i : text_list) {
+            TextView textView = new TextView(getContext());
+            textView.setTextColor(Color.BLACK);
+            textView.setTextSize(17);
 
-        ColorDrawable divcolor = new ColorDrawable(getResources().getColor(R.color.colorBackground));
-        listView.setDivider(divcolor);
-        listView.setDividerHeight(2);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            layoutParams.setMargins(
+                    pxToDp(16), pxToDp(8), 0, pxToDp(8)
+            );
+            textView.setLayoutParams(layoutParams);
+            textView.setText(i);
 
-        ((LinearLayout) root_view.findViewById(R.id.factory_base)).addView(listView);
+            ((LinearLayout) root_view.findViewById(R.id.factory_base)).addView(textView);
+        }
     }
     private void addView(List task) {
         ((LinearLayout) root_view.findViewById(R.id.factory_base))
@@ -223,5 +232,9 @@ public class FactoryEducationFragment extends Fragment {
             if (!user_answer.equals(""))
                 Log.i("-----------------------", "save: " + user_answer);
         }
+    }
+
+    public int pxToDp(int px) {
+        return (int) (px * SCALE + 0.5f);
     }
 }
