@@ -69,18 +69,18 @@ public class MainActivity extends AppCompatActivity {
 
                 if (positionOffset > 0.5) {
                     setTitleFromModeNames(position+1);
-                    goto_fragment.setSelection(position+1);
+                    if (mode.equals("main")) goto_fragment.setSelection(position+1);
                 }
                 else {
                     setTitleFromModeNames(position);
-                    goto_fragment.setSelection(position);
+                    if (mode.equals("main")) goto_fragment.setSelection(position);
                 }
             }
 
             @Override
             public void onPageSelected(int position) {
                 setTitleFromModeNames(position);
-                goto_fragment.setSelection(position);
+                if (mode.equals("main")) goto_fragment.setSelection(position);
 
                 if (getSupportActionBar() != null) {
                     getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
@@ -351,8 +351,55 @@ public class MainActivity extends AppCompatActivity {
 
         mode_fragments.get("course_la").add(new FactoryEducationFragment()
                 .newTitle(R.string.course_la_1)
-                .newText(R.string.course_la_2));
+                .newText(R.string.course_la_2)
+                .newTitle(R.string.course_la_3)
+                .newText(R.string.course_la_4));
         actionBarNames.get("course_la").add("Алгебра логики");
+        mode_fragments.get("course_la").add(new FactoryEducationFragment()
+                .newTitle(R.string.course_la_5)
+                .newTextList(R.array.course_la_signs));
+        actionBarNames.get("course_la").add("Алгебра логики");
+        mode_fragments.get("course_la").add(new FactoryEducationFragment()
+                .newTitle(R.string.course_la_6)
+                .newText(R.string.course_la_7)
+                .newText(R.string.course_la_8)
+                .newTextList(R.array.course_la_9));
+        actionBarNames.get("course_la").add("Основные символы");
+        mode_fragments.get("course_la").add(new FactoryEducationFragment()
+                .newTitle(R.string.course_la_10)
+                .newText(R.string.course_la_11)
+                .newText(R.string.course_la_12)
+                .newTextList(R.array.course_la_13));
+        actionBarNames.get("course_la").add("Основные символы");
+        mode_fragments.get("course_la").add(new FactoryEducationFragment()
+                .newTitle(R.string.course_la_14)
+                .newText(R.string.course_la_15)
+                .newText(R.string.course_la_16)
+                .newTitle(R.string.course_la_17)
+                .newTextList(R.array.course_la_18));
+        actionBarNames.get("course_la").add("Основные символы");
+        mode_fragments.get("course_la").add(new FactoryEducationFragment()
+                .newTitle(R.string.course_la_adv_title_1)
+                .newText(R.string.course_la_adv_text_1)
+                .newTextList(R.array.course_la_adv_list_1)
+                .newTitle(R.string.course_la_adv_title_2)
+                .newTextList(R.array.course_la_adv_list_2));
+        actionBarNames.get("course_la").add("Расширенные символы");
+        mode_fragments.get("course_la").add(new FactoryEducationFragment()
+                .newTitle(R.string.course_la_adv_title_3)
+                .newText(R.string.course_la_adv_text_2)
+                .newTextList(R.array.course_la_adv_list_3)
+                .newText(R.string.course_la_adv_text_3)
+                .newTitle(R.string.course_la_adv_title_4)
+                .newTextList(R.array.course_la_adv_list_4));
+        actionBarNames.get("course_la").add("Расширенные символы");
+        mode_fragments.get("course_la").add(new FactoryEducationFragment()
+                .newTitle(R.string.course_la_adv_title_5)
+                .newText(R.string.course_la_adv_text_4)
+                .newTextList(R.array.course_la_adv_list_5)
+                .newTitle(R.string.course_la_adv_title_6)
+                .newTextList(R.array.course_la_adv_list_6));
+        actionBarNames.get("course_la").add("Расширенные символы");
     }
 
     public void setTitleFromModeNames(int position) {

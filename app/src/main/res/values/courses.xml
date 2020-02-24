@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Logic algebra START -->
-    <string name="course_la_1">Алгебра логики</string>
+    <string name="course_la_1">Определение</string>
     <string name="course_la_2">
         <b>Логика высказываний, пропозициональная логика</b> (лат. <i>propositio</i> — «высказывание») или
         <b>исчисление высказываний</b> — это раздел символической логики, изучающий сложные высказывания,
@@ -9,8 +9,124 @@
         логика не рассматривает внутреннюю структуру простых высказываний, она лишь учитывает, с
         помощью каких союзов и в каком порядке простые высказывания сочленяются в сложные.
         \nНесмотря на свою важность и широкую сферу применения, логика высказываний является простейшей
-        логикой и имеет очень ограниченные средства для исследования суждений.
+        логикой и имеет очень ограниченные средства для исследования суждений.</string>
+    <string name="course_la_3">История</string>
+    <string name="course_la_4">
+        Своим существованием наука «алгебра логики» обязана английскому математику Джорджу Булю,
+        который исследовал <b>логику высказываний</b>. Первый в России курс по алгебре логики был прочитан
+        П. С. Порецким в Казанском государственном университете.</string>
+    <string name="course_la_5">Используемые символы</string>
+    <string-array name="course_la_signs">
+        <item>знак <i>отрицания</i> - ¬, НЕ, !</item>
+        <item>знак <i>коньюнкции</i> - ∧ или &amp;, И, •</item>
+        <item>знак <i>дизъюнкции</i> - ∨ или ||, ИЛИ, +</item>
+        <item>знак <i>строгой дизъюнкции</i> - ⊕, ⩒, ⊻, xor</item>
+        <item>знак <i>импликации </i> - →</item>
+        <item>знак <i>эквивалентности</i> - ⇔, ≡, ↔, ~</item>
+    </string-array>
+    <!-- Основные символы -->
+    <string name="course_la_6">Коньюнкция</string>
+    <string name="course_la_7"><u>∧, &amp;, И, •</u></string>
+    <string name="course_la_8">
+        <b>Конъю́нкция</b> (от лат. <i>conjunctio</i> — «союз, связь») — логическая
+        операция, <b>по смыслу максимально приближенная к союзу «<i>и</i>»</b>. Синонимы: логи́ческое
+        «И», логи́ческое умноже́ние, иногда просто «И».</string>
+    <string-array name="course_la_9"><!-- [\t] :: [\u0009] -->
+        <item>"a   b  a &amp; b"</item>
+        <item>"0   0     0"</item>
+        <item>"0   1     0"</item>
+        <item>"1   0     0"</item>
+        <item>"1   1     1"</item>
+    </string-array>
+    <string name="course_la_10">Дизъюнкция</string>
+    <string name="course_la_11"><u>∨, ||, ИЛИ, +</u></string>
+    <string name="course_la_12">
+        <b>Дизъю́нкция</b> (от лат. <i>disjunctio</i> — разобщение), инверсия, логи́ческое
+        сложе́ние, логи́ческое ИЛИ, включа́ющее ИЛИ; иногда просто ИЛИ — логическая операция, <b>по
+        своему применению максимально приближённая к союзу «или»</b> в смысле «или то, или это, или
+        оба сразу».</string>
+    <string-array name="course_la_13"><!-- [\t] :: [\u0009] -->
+        <item>"a   b  a || b"</item>
+        <item>"0   0     0"</item>
+        <item>"0   1     1"</item>
+        <item>"1   0     1"</item>
+        <item>"1   1     1"</item>
+    </string-array>
+    <string name="course_la_14">Отрицание</string>
+    <string name="course_la_15"><u>¬, НЕ, !</u></string>
+    <string name="course_la_16">
+        <b> Отрицание</b> — логическое отрицание, логическое НЕ, иногда просто НЕ — логическая операция,
+        схожая по своему смыслу с союзом НЕ, оно отрицает стоящее перед ним выражение или переменную</string>
+    <string name="course_la_17">Свойства</string>
+    <string-array name="course_la_18">
+        <item>¬1 = 0</item>
+        <item>¬0 = 1</item>
+        <item>¬¬A ↔ A — закон двойного отрицания</item>
+        <item>¬(A &amp; B) ↔ ¬A || ¬B</item>
+        <item>¬(A || B) ↔ ¬A &amp; ¬B</item>
+        <item>¬(A xor B) ↔ (A ≡ B)</item>
+    </string-array>
+    <!-- Расширенные символы -->
+    <string name="course_la_adv_title_1">Строгая дизъюнкция</string>
+    <string name="course_la_adv_text_1">
+        <b>Строгая дизъюнкция</b> - исключа́ющее «или», XOR. По своему действию схожа с союзом «или» в смысле
+        «либо первый аргумент, либо второй истенен». <b>А также сходна со знаком ≠</b></string>
+    <string-array name="course_la_adv_list_1"><!-- [\t] :: [\u0009] -->
+        <item>"a   b  a xor b"</item>
+        <item>"0   0      0"</item>
+        <item>"0   1      1"</item>
+        <item>"1   0      1"</item>
+        <item>"1   1      0"</item>
+    </string-array>
+    <string name="course_la_adv_title_2">Свойвства</string>
+    <string-array name="course_la_adv_list_2">
+        <item>A xor B xor B = A</item>
+        <item>¬(A xor B) = (A ≡ B)</item>
+    </string-array>
+
+    <string name="course_la_adv_title_3">Импликация</string>
+    <string name="course_la_adv_text_2">
+        <b>Импликация</b> (от лат. <i>implicatio</i> — «связь») — бинарная логическая связка, по своему
+        применению приближенная к союзам <b>«если…, то…»</b>. </string>
+    <string-array name="course_la_adv_list_3"><!-- [\t] :: [\u0009] -->
+        <item>"a   b  a → b"</item>
+        <item>"0   0     1"</item>
+        <item>"0   1     1"</item>
+        <item>"1   0     0"</item>
+        <item>"1   1     1"</item>
+    </string-array>
+    <string name="course_la_adv_text_3">
+        По своей работе импликация схожа со знаком ≤, при работе с ней можно заметить закономерность:
+        \n в выражении A → B → C → D → E → … = 1
+        \n если <i>A</i> будет являться 1, то для правильности выражение, все остальные переменные должны
+        быть равны 1, если же все переменные неизвестны кроме <i>D</i>=1, то все стоящие после <i>D</i> тоже = 1,
+        количество вариантов, что стоит перед <i>D</i> = количеству переменных перед ней + 1, т.е. в данном
+        случае = 3+1 = <b>4</b>
     </string>
+    <string name="course_la_adv_title_4">Свойвства</string>
+    <string-array name="course_la_adv_list_4">
+        <item>X → 1 = 1</item>
+        <item>1 → X = X</item>
+        <item>0 → X = 1</item>
+    </string-array>
+
+    <string name="course_la_adv_title_5">Эквиваленция</string>
+    <string name="course_la_adv_text_4">
+        <b>Логическая равнозначность</b> или <b>эквивале́нция</b> (или эквивале́нтность) — это логическое
+        выражение, которое является истинным тогда, когда оба простых логических выражения имеют
+        одинаковую истинность. Двуместная логическая операция обычно обозначается символом ≡ или ↔.</string>
+    <string-array name="course_la_adv_list_5"><!-- [\t] :: [\u0009] -->
+        <item>"a   b  a ≡ b"</item>
+        <item>"0   0     1"</item>
+        <item>"0   1     0"</item>
+        <item>"1   0     0"</item>
+        <item>"1   1     1"</item>
+    </string-array>
+    <string name="course_la_adv_title_6">Свойвства</string>
+    <string-array name="course_la_adv_list_6">
+        <item>A ≡ B; B = C; => A ≡ C</item>
+        <item>¬(A ≡ B) = (A xor B)</item>
+    </string-array>
     <!-- Boolean algebra END -->
 
     <!-- GRAPHS START -->
