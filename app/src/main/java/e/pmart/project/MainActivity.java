@@ -7,17 +7,21 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -556,5 +560,21 @@ public class MainActivity extends AppCompatActivity {
     public void corrEdits(View view) {
         ((Resh26Fragment) ((MyFragmentPagerAdapter) pager.getAdapter())
                 .getItem(pager.getCurrentItem())).corrEdits(view);
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        Log.i("keyUp", mode);
+        if (mode.equals("gener_task")) {
+            FloatingActionButton fab = findViewById(R.id.fab_task_view);
+            int len = ((EditText) findViewById(R.id.task_answer)).getText().toString().length();
+            if (len == 0) {
+                fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_edit));
+                fab.setScaleX(0.7f); fab.setScaleY(0.7f);
+                fab.animate().scaleX(1).scaleY(1).setDuration(200).start();
+            }
+            return true;
+        }
+        return super.onKeyUp(keyCode, event);
     }
 }

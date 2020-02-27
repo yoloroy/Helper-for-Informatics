@@ -65,7 +65,7 @@ public class TaskViewFragment extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 int len = ((EditText) rootView.findViewById(R.id.task_answer)).getText().toString().length();
-                if (len == 1) {
+                if (len >= 1) {
                     fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_check));
                     fab.setScaleX(0.7f); fab.setScaleY(0.7f);
                     fab.animate().scaleX(1).scaleY(1).setDuration(200).start();
@@ -74,7 +74,7 @@ public class TaskViewFragment extends Fragment {
                     fab.setScaleX(0.7f); fab.setScaleY(0.7f);
                     fab.animate().scaleX(1).scaleY(1).setDuration(200).start();
                 }
-                return false;
+                return true;
             }
         });
 
