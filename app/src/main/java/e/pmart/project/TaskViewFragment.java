@@ -8,7 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.view.KeyEvent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,20 +62,28 @@ public class TaskViewFragment extends Fragment {
         });
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
-        ((EditText) rootView.findViewById(R.id.task_answer)).setOnKeyListener(new View.OnKeyListener() {
+        ((EditText) rootView.findViewById(R.id.task_answer)).addTextChangedListener(new TextWatcher() {
             @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                int len = ((EditText) rootView.findViewById(R.id.task_answer)).getText().toString().length();
-                if (len >= 1) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() == 1) {
                     fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_check));
                     fab.setScaleX(0.7f); fab.setScaleY(0.7f);
                     fab.animate().scaleX(1).scaleY(1).setDuration(200).start();
-                } else if (len == 0) {
+                } else if (s.length() == 0) {
                     fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_edit));
                     fab.setScaleX(0.7f); fab.setScaleY(0.7f);
                     fab.animate().scaleX(1).scaleY(1).setDuration(200).start();
                 }
-                return true;
             }
         });
 
@@ -126,9 +135,9 @@ public class TaskViewFragment extends Fragment {
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
             startTaskSet();
-        }
-        else
+        } else {
             rootView.findViewById(R.id.fab_task_view).getBackground().setTint(getResources().getColor(R.color.colorAppFalse));
+        }
     }
     public void setRootView(View rootView) {
         this.rootView = rootView;
