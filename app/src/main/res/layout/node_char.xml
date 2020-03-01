@@ -6,8 +6,8 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="74dp"
+        android:layout_height="32dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -15,6 +15,7 @@
         android:background="@drawable/rect_corners_s_16"
         android:elegantTextHeight="true"
         android:elevation="0dp"
+        android:ellipsize="end"
         android:ems="1"
         android:paddingBottom="2dp"
         android:singleLine="true"

@@ -30,6 +30,12 @@
             android:paddingEnd="8dp"
             android:paddingBottom="12dp">
 
+            <Spinner
+                android:id="@+id/lang_controller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end" />
+
             <de.blox.graphview.GraphView
                 android:id="@+id/graphView"
                 android:layout_width="match_parent"

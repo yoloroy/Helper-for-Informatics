@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.otaliastudios.zoom.ZoomApi
 import de.blox.graphview.*
@@ -26,9 +28,17 @@ class Resh15Fragment : Fragment() {
     }
 
     override fun onStart() {
-        graphView.adapter = SimpleGraphAdapter()
+        createLangController()
+        createGraphView()
+        createOnClicks()
 
+        super.onStart()
+    }
+
+    private fun createGraphView() {
+        graphView.adapter = SimpleGraphAdapter()
         graphView.adapter.graph = Graph()
+
         val temp = Node(1)
         graphView.adapter.graph.addEdge(Node(0), temp)
         graphView.adapter.algorithm = SugiyamaAlgorithm()
@@ -38,10 +48,26 @@ class Resh15Fragment : Fragment() {
 
         graphView.refreshDrawableState()
         graphView.adapter.notifySizeChanged()
+    }
 
-        createOnClicks()
+    private fun createLangController() {
+        ArrayAdapter.createFromResource(
+                context,
+                R.array.languages,
+                android.R.layout.simple_spinner_item
+        ).also {
+            it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            lang_controller.adapter = it
+        }
+        lang_controller.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                graphView.adapter.notifyInvalidated()
+            } // to close the onItemSelected
 
-        super.onStart()
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
     }
 
     private fun createOnClicks() {
@@ -66,12 +92,23 @@ class Resh15Fragment : Fragment() {
         }
     }
 
-    fun searchNodeByData(data: Any, nodes: List<Node>): Node {
-        return nodes[nodes.binarySearchBy(data.toString()) { it.data.toString() }]
+    fun searchNodeByData(data: Any): Node {
+        for (x in graphView.adapter.graph.nodes)
+            if (x.data.toString() == data.toString()) return x
+
+        throw IndexOutOfBoundsException()
+
+       // return graphView.adapter.graph.nodes[graphView.adapter.graph.nodes.binarySearchBy(data.toString()) { it.data.toString() }]
     }
 
-    fun searchNodeByData(data: Any): Node {
-        return graphView.adapter.graph.nodes[graphView.adapter.graph.nodes.binarySearchBy(data.toString()) { it.data.toString() }]
+    fun getChar(pos: Int): Char {
+        when (lang_controller.selectedItem) {
+            "Русский" -> return getString(R.string.lang_ru)[pos]
+            "Український" -> return getString(R.string.lang_ua)[pos]
+            "Қазақ" -> return getString(R.string.lang_kz)[pos]
+            "English" -> return getString(R.string.lang_en)[pos]
+        }
+        throw IndexOutOfBoundsException()
     }
 
     internal inner class SimpleViewHolder(var view: View) : ViewHolder(view) {
@@ -137,13 +174,15 @@ class Resh15Fragment : Fragment() {
             }
             // удаляем
             viewHolder.textView.setOnLongClickListener {
-                if (data as Int != 0)
-                    graph.removeNode(searchNodeByData(data.toString(), graph.nodes))
+                if (data as Int != 0) {
+                    graph.removeNode(searchNodeByData(data.toString()))
+                }
+
                 true
             }
 
             notifyInvalidated()
-            viewHolder.textView.text = getItem(position).toString()
+            viewHolder.textView.text = String.format("%s, %s", getChar(data as Int), getItem(data as Int).toString())
         }
 
         override fun getItem(position: Int): Any {
@@ -163,8 +202,11 @@ class Resh15Fragment : Fragment() {
         private fun findNum(position: Int) {
             nodesData[position] = 0
             for (i in graph.predecessorsOf(Node(position))) {
-                if (nodesData[i.data as Int] == 0)
-                    findNum(i.data as Int)
+                if (nodesData[i.data as Int] == 0) {
+                    try {
+                        findNum(i.data as Int)
+                    } catch (e: Exception) {}
+                }
 
                 nodesData[position] += nodesData[i.data as Int]
             }
