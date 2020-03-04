@@ -39,7 +39,8 @@
                 android:scaleType="center"
                 android:src="@drawable/ic_location_on"
                 android:tint="#bbb"
-                app:backgroundTint="#fff" />
+                app:backgroundTint="#fff"
+                app:elevation="2dp" />
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/graph_start"
@@ -52,7 +53,8 @@
                 android:scaleType="center"
                 android:src="@drawable/ic_my_location"
                 android:tint="#bbb"
-                app:backgroundTint="#fff" />
+                app:backgroundTint="#fff"
+                app:elevation="2dp" />
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/graph_refresh"
@@ -65,6 +67,7 @@
                 android:src="@drawable/ic_refresh_black_24dp"
                 android:tint="@color/colorPrimary"
                 app:backgroundTint="#fff"
+                app:elevation="4dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -81,7 +84,8 @@
                 android:scaleType="center"
                 android:src="@drawable/ic_add"
                 android:tint="#fff"
-                app:backgroundTint="@color/colorPrimary" />
+                app:backgroundTint="@color/colorPrimary"
+                app:elevation="4dp" />
 
         </LinearLayout>
 

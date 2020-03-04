@@ -116,6 +116,7 @@ class Resh3GraphFragment : Fragment() {
         }
 
         override fun onBindViewHolder(viewHolder: ViewHolder, data: Any, position: Int) {
+            // TODO: добавить смену языка и нумерацию как в 15м решаторе
             (viewHolder as SimpleViewHolder).textView.text = if (data.toString() == start_data) "S" else if (data.toString() == end_data) "Ɛ" else data.toString()
             viewHolder.textView.setOnClickListener {
                 clicked_nodes.add(data.toString())

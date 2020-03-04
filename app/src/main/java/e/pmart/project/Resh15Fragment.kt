@@ -16,6 +16,20 @@ import kotlinx.android.synthetic.main.fragment_resh15.*
 
 
 class Resh15Fragment : Fragment() {
+    private var ALPHABET_RU = "RU"
+    private var ALPHABET_EN = "EN"
+    private var ALPHABET_UA = "UA"
+    private var ALPHABET_KZ = "KZ"
+    private val LOWER_NUMS = "₀₁₂₃₄₅₆₇₈₉"
+
+    /*
+    * 0 - русский
+    * 1 - украинский
+    * 2 - казахский
+    * 3 - английский
+    * */
+    var curr_lang = 0
+
     private var nodeCount = 2
     private var clicked_nodes: ArrayList<Any> = ArrayList()
     private var clicked_views: ArrayList<ViewHolder> = ArrayList()
@@ -28,11 +42,19 @@ class Resh15Fragment : Fragment() {
     }
 
     override fun onStart() {
+        createAlphabets()
         createLangController()
         createGraphView()
         createOnClicks()
 
         super.onStart()
+    }
+
+    fun createAlphabets() {
+        ALPHABET_RU = getString(R.string.lang_ru)
+        ALPHABET_EN = getString(R.string.lang_en)
+        ALPHABET_UA = getString(R.string.lang_ua)
+        ALPHABET_KZ = getString(R.string.lang_kz)
     }
 
     private fun createGraphView() {
@@ -61,6 +83,7 @@ class Resh15Fragment : Fragment() {
         }
         lang_controller.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                curr_lang = position
                 graphView.adapter.notifyInvalidated()
             } // to close the onItemSelected
 
@@ -103,12 +126,21 @@ class Resh15Fragment : Fragment() {
 
     fun getChar(pos: Int): Char {
         when (lang_controller.selectedItem) {
-            "Русский" -> return getString(R.string.lang_ru)[pos]
-            "Український" -> return getString(R.string.lang_ua)[pos]
-            "Қазақ" -> return getString(R.string.lang_kz)[pos]
-            "English" -> return getString(R.string.lang_en)[pos]
+            "Русский" -> return ALPHABET_RU[pos]
+            "Український" -> return ALPHABET_UA[pos]
+            "Қазақ" -> return ALPHABET_KZ[pos]
+            "English" -> return ALPHABET_EN[pos]
         }
         throw IndexOutOfBoundsException()
+    }
+
+    fun getNumber(pos: Int): String {
+        val alphabet_len = arrayOf(ALPHABET_RU, ALPHABET_UA, ALPHABET_KZ, ALPHABET_EN)[curr_lang].length
+        if (alphabet_len <= pos)
+            return String.format("%s%s", getChar(pos % alphabet_len),
+                                                    LOWER_NUMS[pos / alphabet_len])
+        else
+            return getChar(pos).toString()
     }
 
     internal inner class SimpleViewHolder(var view: View) : ViewHolder(view) {
@@ -125,7 +157,7 @@ class Resh15Fragment : Fragment() {
 
     internal inner class SimpleGraphAdapter : BaseGraphAdapter<ViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.node_char, parent, false)
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.node_line, parent, false)
             return SimpleViewHolder(view)
         }
 
@@ -182,7 +214,7 @@ class Resh15Fragment : Fragment() {
             }
 
             notifyInvalidated()
-            viewHolder.textView.text = String.format("%s, %s", getChar(data as Int), getItem(data as Int).toString())
+            viewHolder.textView.text = String.format("%s, %s", getNumber(data as Int), getItem(data).toString())
         }
 
         override fun getItem(position: Int): Any {
