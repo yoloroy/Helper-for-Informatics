@@ -1,9 +1,8 @@
 package e.pmart.project
 
-public class Resh3t1 {
-    private fun swap (a:ArrayList<ArrayList<Int>>, x:Int, y:Int):ArrayList<ArrayList<Int>>
-    {
-val b:ArrayList<ArrayList<Int>> = ArrayList()
+class Resh3t1 {
+    private fun swap(a: ArrayList<ArrayList<Int>>, x: Int, y: Int): ArrayList<ArrayList<Int>> {
+        val b: ArrayList<ArrayList<Int>> = ArrayList()
         for (i in 0 until a.size) {
             b.add(ArrayList())
             for (j in 0 until a.size) {
@@ -16,16 +15,18 @@ val b:ArrayList<ArrayList<Int>> = ArrayList()
         return b
     }
 
-    private fun check (a:ArrayList<ArrayList<Int>>,b:ArrayList<ArrayList<Int>>):Boolean {
+    private fun check(a: ArrayList<ArrayList<Int>>, b: ArrayList<ArrayList<Int>>): Boolean {
         for (i in 0 until a.size) {
             for (j in 0 until a.size) {
-                if (!((a[i][j] - b[i][j] == 0) || (a[i][j] > 0 && b[i][j] > 0))) {return false}
+                if (!((a[i][j] - b[i][j] == 0) || (a[i][j] > 0 && b[i][j] > 0))) {
+                    return false
+                }
             }
         }
         return true
     }
 
-    fun run(a:ArrayList<ArrayList<Int>>,bb:ArrayList<ArrayList<Int>>): ArrayList<Int> {
+    fun run(a: ArrayList<ArrayList<Int>>, bb: ArrayList<ArrayList<Int>>): ArrayList<Int> {
 
         val x = ArrayList<Int>()
         var b = bb
@@ -43,20 +44,20 @@ val b:ArrayList<ArrayList<Int>> = ArrayList()
                 }
             }
             var l = 0
-            for (i in j+1 until x.size) {
+            for (i in j + 1 until x.size) {
                 if (x[i] > x[j]) {
                     l = i
                 }
             }
             if (j == 0 && l == 0) break;
-            x[j]=x[l].also {x[l]=x[j]}
+            x[j] = x[l].also { x[l] = x[j] }
             b = swap(b, j, l)
-            for (r in 0 until (b.size - j + 1) /2 ) {
-                x[r + j + 1]=x[b.size - 1 - r].also {x[b.size - 1 - r]=x[r + j + 1]}
+            for (r in 0 until (b.size - j + 1) / 2) {
+                x[r + j + 1] = x[b.size - 1 - r].also { x[b.size - 1 - r] = x[r + j + 1] }
                 b = swap(b, r + j + 1, b.size - 1 - r);
             }
         }
-        if (!check(a, b)) throw Exception ("Что-то не сходится")
+        if (!check(a, b)) throw Exception("Что-то не сходится")
 
         return x
     }
