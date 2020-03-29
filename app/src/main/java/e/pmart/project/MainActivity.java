@@ -17,7 +17,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.view.animation.Animation;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -27,21 +26,19 @@ import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
-    GotoFragment goto_fragment;
+    public static final String APP_TEMP = "temp";
+    public static final String APP_TEMP_OPENED = "opened";
+    private SharedPreferences mSettings;
+
     Menu menu;
+
+    GotoFragment goto_fragment;
+    ViewPager pager;
 
     FragmentStatePagerAdapter slides;
     String mode = "main";
     Map<String, List<Fragment>> mode_fragments = new HashMap<>();
     Map<String, List<String>> actionBarNames = new HashMap<>();
-
-    ViewPager pager;
-
-    Animation animAlpha;
-
-    public static final String APP_TEMP = "temp";
-    public static final String APP_TEMP_OPENED = "opened";
-    private SharedPreferences mSettings;
 
 
     @Override
@@ -133,6 +130,157 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    @Override
+    public void onBackPressed() {
+        switch (mode) {
+            case "main":
+                super.onBackPressed();
+                break;
+            case "course_graphs":
+                ((FactoryEducationFragment)
+                        ((MyFragmentPagerAdapter) pager.getAdapter())
+                                .getItem(pager.getCurrentItem())).save();
+                if (pager.getCurrentItem() == 0) {
+                    mode_fragments.remove(mode);
+                    mode_fragments
+                            .put(mode, ((MyFragmentPagerAdapter) pager.getAdapter())
+                                    .getFragments());
+                    toMain();
+                    pager.setCurrentItem(1);
+                    return;
+                }
+                pager.setCurrentItem(pager.getCurrentItem() - 1);
+                break;
+            case "course_la":
+                ((FactoryEducationFragment)
+                        ((MyFragmentPagerAdapter) pager.getAdapter())
+                                .getItem(pager.getCurrentItem())).save();
+                if (pager.getCurrentItem() == 0) {
+                    mode_fragments.remove(mode);
+                    mode_fragments
+                            .put(mode, ((MyFragmentPagerAdapter) pager.getAdapter())
+                                    .getFragments());
+                    toMain();
+                    pager.setCurrentItem(1);
+                    return;
+                }
+                pager.setCurrentItem(pager.getCurrentItem() - 1);
+                break;
+            case "gener_task":
+                //if (((EditText) findViewById(R.id.task_answer))
+                //        .getText().toString().equals("")) {
+                toMain();
+                pager.setCurrentItem(3);
+                //}
+                //else {
+                //    ((EditText) findViewById(R.id.task_answer)).setText("");
+                //}
+                break;
+            case "guide_inner":
+                toMain();
+                pager.setCurrentItem(0);
+                break;
+            case "about":
+                toMain();
+                pager.setCurrentItem(4);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (mode) {
+            case "main":
+                switch(item.getItemId()) {
+                    case R.id.calc:
+                        mode_fragments.get("main").set(2, new CalculatorFragment());
+                        actionBarNames.get("main").set(2, "Калькулятор");
+                        toMain();
+                        pager.setCurrentItem(2);
+                        break;
+                    case R.id.resh1:
+                        mode_fragments.get("main").set(2, new Resh1Fragment());
+                        actionBarNames.get("main").set(2, "Решатор №1");
+                        toMain();
+                        pager.setCurrentItem(2);
+                        break;
+                    case R.id.resh2:
+                        mode_fragments.get("main").set(2, new Resh2Fragment());
+                        actionBarNames.get("main").set(2, "Решатор №2");
+                        toMain();
+                        pager.setCurrentItem(2);
+                        break;
+                    case R.id.resh3:
+                        mode_fragments.get("main").set(2, new Resh3Fragment());
+                        actionBarNames.get("main").set(2, "Решатор №3");
+                        toMain();
+                        pager.setCurrentItem(2);
+                        break;
+                    case R.id.resh8:
+                        mode_fragments.get("main").set(2, new Resh8Fragment());
+                        actionBarNames.get("main").set(2, "Решатор №8");
+                        toMain();
+                        pager.setCurrentItem(2);
+                        break;
+                    case R.id.resh13:
+                        mode_fragments.get("main").set(2, new Resh13Fragment());
+                        actionBarNames.get("main").set(2, "Решатор №13");
+                        toMain();
+                        pager.setCurrentItem(2);
+                        break;
+                    case R.id.resh15:
+                        mode_fragments.get("main").set(2, new Resh15Fragment());
+                        actionBarNames.get("main").set(2, "Решатор №15");
+                        toMain();
+                        pager.setCurrentItem(2);
+                        break;
+                    case R.id.resh26:
+                        mode_fragments.get("main").set(2, new Resh26Fragment());
+                        actionBarNames.get("main").set(2, "Решатор №26");
+                        toMain();
+                        pager.setCurrentItem(2);
+                        break;
+                }
+                return super.onOptionsItemSelected(item);
+            case "course_graphs":
+                switch (item.getItemId()) {
+                    case android.R.id.home:
+                        onBackPressed();
+                        return true;
+                }
+            case "course_la":
+                switch (item.getItemId()) {
+                    case android.R.id.home:
+                        onBackPressed();
+                        return true;
+                }
+            case "gener_task":
+                switch (item.getItemId()) {
+                    case android.R.id.home:
+                        toMain();
+                        pager.setCurrentItem(3);
+                        return true;
+                    case R.id.sdamgia_link:
+                        Intent open_link = new Intent(Intent.ACTION_VIEW, Uri.parse("https://inf-ege.sdamgia.ru/"));
+                        startActivity(open_link);
+                        return true;
+                }
+            case "guide_inner":
+                switch (item.getItemId()) {
+                    case android.R.id.home:
+                        onBackPressed();
+                        return true;
+                }
+            case "about":
+                switch (item.getItemId()) {
+                    case android.R.id.home:
+                        onBackPressed();
+                        return true;
+                }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         this.menu = menu;
         menu.clear();
@@ -157,8 +305,7 @@ public class MainActivity extends AppCompatActivity {
         alert.show();
     }
 
-    //  main part
-    public void onClickGoto (View view) {
+    public void onClickGoto(View view) {
         LinearLayout goto_layout = findViewById(R.id.goto_layout);
 
         for (int i = 0; i < goto_layout.getChildCount(); i++) {
@@ -204,14 +351,6 @@ public class MainActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         switch (view.getId()) {
-            /*case R.id.course_graphs:
-                mode = "course_graphs";
-
-                if (actionBar != null) {
-                    actionBar.setHomeButtonEnabled(true);
-                    actionBar.setDisplayHomeAsUpEnabled(true);
-                }
-                break;*/
             case R.id.goto_about:
                 mode = "about";
 
@@ -407,149 +546,6 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowTitleEnabled(true);
             getSupportActionBar().setTitle(actionBarNames.get(mode).get(position));
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        switch (mode) {
-            case "main":
-                super.onBackPressed();
-                break;
-            case "course_graphs":
-                ((FactoryEducationFragment)
-                        ((MyFragmentPagerAdapter) pager.getAdapter())
-                                .getItem(pager.getCurrentItem())).save();
-                if (pager.getCurrentItem() == 0) {
-                    mode_fragments.remove(mode);
-                    mode_fragments
-                            .put(mode, ((MyFragmentPagerAdapter) pager.getAdapter())
-                                    .getFragments());
-                    toMain();
-                    pager.setCurrentItem(1);
-                    return;
-                }
-                pager.setCurrentItem(pager.getCurrentItem() - 1);
-                break;
-            case "course_la":
-                ((FactoryEducationFragment)
-                        ((MyFragmentPagerAdapter) pager.getAdapter())
-                                .getItem(pager.getCurrentItem())).save();
-                if (pager.getCurrentItem() == 0) {
-                    mode_fragments.remove(mode);
-                    mode_fragments
-                            .put(mode, ((MyFragmentPagerAdapter) pager.getAdapter())
-                                    .getFragments());
-                    toMain();
-                    pager.setCurrentItem(1);
-                    return;
-                }
-                pager.setCurrentItem(pager.getCurrentItem() - 1);
-                break;
-            case "gener_task":
-                //if (((EditText) findViewById(R.id.task_answer))
-                //        .getText().toString().equals("")) {
-                    toMain();
-                    pager.setCurrentItem(3);
-                //}
-                //else {
-                //    ((EditText) findViewById(R.id.task_answer)).setText("");
-                //}
-                break;
-            case "guide_inner":
-                toMain();
-                pager.setCurrentItem(0);
-                break;
-            case "about":
-                toMain();
-                pager.setCurrentItem(4);
-        }
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (mode) {
-            case "main":
-                switch(item.getItemId()) {
-                    case R.id.calc:
-                        mode_fragments.get("main").set(2, new CalculatorFragment());
-                        actionBarNames.get("main").set(2, "Калькулятор");
-                        toMain();
-                        pager.setCurrentItem(2);
-                        break;
-                    case R.id.resh1:
-                        mode_fragments.get("main").set(2, new Resh1Fragment());
-                        actionBarNames.get("main").set(2, "Решатор №1");
-                        toMain();
-                        pager.setCurrentItem(2);
-                        break;
-                    case R.id.resh2:
-                        mode_fragments.get("main").set(2, new Resh2Fragment());
-                        actionBarNames.get("main").set(2, "Решатор №2");
-                        toMain();
-                        pager.setCurrentItem(2);
-                        break;
-                    case R.id.resh3:
-                        mode_fragments.get("main").set(2, new Resh3Fragment());
-                        actionBarNames.get("main").set(2, "Решатор №3");
-                        toMain();
-                        pager.setCurrentItem(2);
-                        break;
-                    case R.id.resh13:
-                        mode_fragments.get("main").set(2, new Resh13Fragment());
-                        actionBarNames.get("main").set(2, "Решатор №13");
-                        toMain();
-                        pager.setCurrentItem(2);
-                        break;
-                    case R.id.resh15:
-                        mode_fragments.get("main").set(2, new Resh15Fragment());
-                        actionBarNames.get("main").set(2, "Решатор №15");
-                        toMain();
-                        pager.setCurrentItem(2);
-                        break;
-                    case R.id.resh26:
-                        mode_fragments.get("main").set(2, new Resh26Fragment());
-                        actionBarNames.get("main").set(2, "Решатор №26");
-                        toMain();
-                        pager.setCurrentItem(2);
-                        break;
-                }
-                return super.onOptionsItemSelected(item);
-            case "course_graphs":
-                switch (item.getItemId()) {
-                    case android.R.id.home:
-                        onBackPressed();
-                        return true;
-            }
-            case "course_la":
-                switch (item.getItemId()) {
-                    case android.R.id.home:
-                        onBackPressed();
-                        return true;
-                }
-            case "gener_task":
-                switch (item.getItemId()) {
-                    case android.R.id.home:
-                        toMain();
-                        pager.setCurrentItem(3);
-                        return true;
-                    case R.id.sdamgia_link:
-                        Intent open_link = new Intent(Intent.ACTION_VIEW, Uri.parse("https://inf-ege.sdamgia.ru/"));
-                        startActivity(open_link);
-                        return true;
-                }
-            case "guide_inner":
-                switch (item.getItemId()) {
-                    case android.R.id.home:
-                        onBackPressed();
-                        return true;
-                }
-            case "about":
-                switch (item.getItemId()) {
-                    case android.R.id.home:
-                        onBackPressed();
-                        return true;
-                }
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     // 26
