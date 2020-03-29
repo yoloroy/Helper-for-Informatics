@@ -20,4 +20,8 @@
             Найдите количество нулей в двоичной системе счисления
         </item>
     </string-array>
+    <string-array name="code_languages">
+        <item>Blockly</item>
+        <item>Алгоритмический</item>
+    </string-array>
 </resources>
