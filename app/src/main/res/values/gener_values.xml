@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="inf_ege_tasks">
+        <item>  Составить тест</item>
         <item>1. Системы счисления</item>
         <item>2. Таблица истинности логической функции</item>
         <item>3. Анализ информационных моделей</item>
