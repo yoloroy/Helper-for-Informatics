@@ -1,4 +1,4 @@
-package e.pmart.project;
+package e.pmart.project.slides;
 
 
 import android.graphics.Typeface;
@@ -17,6 +17,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import e.pmart.project.MainActivity;
+import e.pmart.project.R;
+import e.pmart.project.TaskViewFragment;
 
 
 public class GenerFragment extends Fragment {
@@ -105,7 +109,8 @@ public class GenerFragment extends Fragment {
                     actionBar.setDisplayHomeAsUpEnabled(true);
                 }
                 ((TaskViewFragment)
-                        (mainActivity.mode_fragments.get("gener_task").get(0))).setRootView(root_view);
+                        (mainActivity.mode_fragments.get("gener_task").get(0)))
+                        .setRootView(root_view);
                 ((TaskViewFragment)
                         (mainActivity.mode_fragments.get("gener_task").get(0)))
                         .setTask(position);

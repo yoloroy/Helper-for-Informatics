@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Resh3Fragment">
+    tools:context=".solvers.faces.Resh3Fragment">
 
     <ScrollView
         android:id="@+id/scrollView3"
@@ -70,7 +70,7 @@
 
                 <fragment
                     android:id="@+id/resh3_graph"
-                    android:name="e.pmart.project.Resh3GraphFragment"
+                    android:name="e.pmart.project.solvers.Resh3GraphFragment"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     tools:layout="@layout/fragment_resh3_graph" />

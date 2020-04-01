@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="e.pmart.project.GuideFragment">
+    tools:context="e.pmart.project.slides.GuideFragment">
 
     <!-- TODO: для того, чтоб всё крутилось так, как хочется, нужно менять элементы, а не список, чтоб скругление крутилось тоже -->
     <ListView

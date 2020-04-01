@@ -1,4 +1,4 @@
-package e.pmart.project;
+package e.pmart.project.solvers;
 
 
 import org.mariuszgromada.math.mxparser.Expression;
@@ -11,12 +11,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class Resh26 {
+public class Resh26 {
     private String[] steps;
     private String[] end;
 
 
-    Map<String, Object> call(Object[] start_pos,
+    public Map<String, Object> call(Object[] start_pos,
                              String[] end,
                              String[] steps) {
         this.end = end;
@@ -75,7 +75,7 @@ class Resh26 {
         return temp;
     }
 
-    String calculate_winner(Map<String, Object> tree, String[] players) {
+    public String calculate_winner(Map<String, Object> tree, String[] players) {
         if (tree_logic_and(tree))
             return players[0];
         return players[1];

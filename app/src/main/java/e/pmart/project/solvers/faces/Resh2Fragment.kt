@@ -1,4 +1,4 @@
-package e.pmart.project
+package e.pmart.project.solvers.faces
 
 
 import android.os.Bundle
@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import e.pmart.project.R
 import kotlinx.android.synthetic.main.fragment_appendable_dicts_table.*
 import kotlinx.android.synthetic.main.fragment_resh2.*
 import org.mariuszgromada.math.mxparser.Expression
@@ -117,10 +118,9 @@ class Resh2Fragment : Fragment() {
         // перебор всех вариантов перестановок
         for (i in resultList) {
             val mask = toMask(toHorizontal(matrix)[0], toStringArray((i.replace("F", "") + "F").toCharArray()).toList() as ArrayList<String>)
-            var temp_matrix: ArrayList<ArrayList<String>> = ArrayList()
-            temp_matrix = shuffleByMask(matrix, mask) as ArrayList<ArrayList<String>>
+            var temp_matrix = shuffleByMask(matrix, mask)
 
-            temp_matrix = toHorizontal(temp_matrix)
+            temp_matrix = toHorizontal(temp_matrix as Collection<Collection<String>>)
 
             if (full_matrix.containsAll(temp_matrix.slice(1 until temp_matrix.size) as ArrayList<ArrayList<String>>)) {
                 viewAnswer(i, full_matrix)
@@ -132,7 +132,7 @@ class Resh2Fragment : Fragment() {
     }
 
     private fun viewAnswer(answer: String, matrix: ArrayList<ArrayList<String>>) {
-        resh2_answer.setText(answer.slice(0..answer.length-2) + ".")
+        resh2_answer.text = answer.slice(0..answer.length-2) + "."
 
         resh2_answerLayout.visibility = LinearLayout.VISIBLE
     }

@@ -1,4 +1,4 @@
-package e.pmart.project;
+package e.pmart.project.solvers.faces;
 
 
 import android.os.Bundle;
@@ -14,6 +14,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.mariuszgromada.math.mxparser.Expression;
+
+import e.pmart.project.ExtraCalcFuncs;
+import e.pmart.project.MyArrayList;
+import e.pmart.project.R;
+import e.pmart.project.ToNumSystem;
+import e.pmart.project.solvers.Resh13;
 
 
 public class CalculatorFragment extends Fragment {
@@ -150,7 +156,7 @@ public class CalculatorFragment extends Fragment {
         else
             ((TextView) root_view.findViewById(R.id.calc_preview)).setText("");
 
-        if (!MyProgram.StripInt(e.calculate()).equals("NaN"))
+        if (!Resh13.StripInt(e.calculate()).equals("NaN"))
             ((TextView) root_view.findViewById(R.id.calc_answer))
                     .setText(" = " + ToNumSystem.run(e.calculate(),
                             (int)((Spinner) root_view.findViewById(R.id.calc_num_system_spinner)).getSelectedItem()));

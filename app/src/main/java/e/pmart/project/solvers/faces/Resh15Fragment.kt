@@ -1,4 +1,4 @@
-package e.pmart.project
+package e.pmart.project.solvers.faces
 
 
 import android.os.Bundle
@@ -12,6 +12,8 @@ import android.widget.TextView
 import com.otaliastudios.zoom.ZoomApi
 import de.blox.graphview.*
 import de.blox.graphview.layered.SugiyamaAlgorithm
+import e.pmart.project.R
+import e.pmart.project.solvers.Resh3GraphFragment
 import kotlinx.android.synthetic.main.fragment_resh15.*
 
 
@@ -31,8 +33,8 @@ class Resh15Fragment : Fragment() {
     var curr_lang = 0
 
     private var nodeCount = 2
-    private var clicked_nodes: ArrayList<Any> = ArrayList()
-    private var clicked_views: ArrayList<ViewHolder> = ArrayList()
+    private var clickedNodes: ArrayList<Any> = ArrayList()
+    private var clickedViews: ArrayList<ViewHolder> = ArrayList()
 
     private val nodesData = arrayListOf(1, 1)
 
@@ -97,9 +99,9 @@ class Resh15Fragment : Fragment() {
         add.setOnClickListener{
             val graph = graphView.adapter.graph
             val node = Node(nodeCount)
-            if (clicked_nodes.size == 1) {
-                graph.addEdge(searchNodeByData(clicked_nodes[0]), node)
-                clicked_nodes.clear()
+            if (clickedNodes.size == 1) {
+                graph.addEdge(searchNodeByData(clickedNodes[0]), node)
+                clickedNodes.clear()
             } else {
                 try {
                     graph.addEdge(searchNodeByData(0), node)
@@ -165,39 +167,39 @@ class Resh15Fragment : Fragment() {
             (viewHolder as SimpleViewHolder)
             // соединяем/разъединяем
             viewHolder.textView.setOnClickListener {
-                clicked_nodes.add(data)
-                clicked_views.add(viewHolder)
+                clickedNodes.add(data)
+                clickedViews.add(viewHolder)
                 viewHolder.textView.background.setTint(resources.getColor(R.color.colorPrimaryLight))
                 viewHolder.textView.refreshDrawableState()
 
-                if (clicked_nodes.size == 2) {
+                if (clickedNodes.size == 2) {
                     add.background.setTint(resources.getColor(android.R.color.darker_gray))
                     add.isClickable = false
 
-                    if (clicked_nodes[0] == clicked_nodes[1]) {
-                        clicked_nodes.clear()
+                    if (clickedNodes[0] == clickedNodes[1]) {
+                        clickedNodes.clear()
                         viewHolder.textView.background.setTint(resources.getColor(R.color.colorPrimary))
                         return@setOnClickListener
                     }
 
                     try {
-                        val edge = Edge(searchNodeByData(clicked_nodes[0]),
-                                searchNodeByData(clicked_nodes[1]))
+                        val edge = Edge(searchNodeByData(clickedNodes[0]),
+                                searchNodeByData(clickedNodes[1]))
 
-                        if (searchNodeByData(clicked_nodes[1]) in graph.predecessorsOf(searchNodeByData(clicked_nodes[0])))
-                            graph.removeEdge(searchNodeByData(clicked_nodes[1]),
-                                    searchNodeByData(clicked_nodes[0]))
-                        else if (searchNodeByData(clicked_nodes[0]) in graph.predecessorsOf(searchNodeByData(clicked_nodes[1])))
-                            graph.removeEdge(searchNodeByData(clicked_nodes[0]),
-                                    searchNodeByData(clicked_nodes[1]))
+                        if (searchNodeByData(clickedNodes[1]) in graph.predecessorsOf(searchNodeByData(clickedNodes[0])))
+                            graph.removeEdge(searchNodeByData(clickedNodes[1]),
+                                    searchNodeByData(clickedNodes[0]))
+                        else if (searchNodeByData(clickedNodes[0]) in graph.predecessorsOf(searchNodeByData(clickedNodes[1])))
+                            graph.removeEdge(searchNodeByData(clickedNodes[0]),
+                                    searchNodeByData(clickedNodes[1]))
                         else
                             graph.addEdge(edge)
 
                         viewHolder.textView.background.setTint(resources.getColor(R.color.colorPrimary))
-                        (graphView.adapter.getItem(clicked_nodes[0] as Int) as Resh3GraphFragment.SimpleViewHolder).textView.background.setTint(resources.getColor(R.color.colorPrimary))
+                        (graphView.adapter.getItem(clickedNodes[0] as Int) as Resh3GraphFragment.SimpleViewHolder).textView.background.setTint(resources.getColor(R.color.colorPrimary))
                     } catch (aioobe: Exception) {}
-                    clicked_nodes.clear()
-                    clicked_views.clear()
+                    clickedNodes.clear()
+                    clickedViews.clear()
                     notifyInvalidated()
                 } else {
                     add.background.setTint(resources.getColor(R.color.colorCalcMain))

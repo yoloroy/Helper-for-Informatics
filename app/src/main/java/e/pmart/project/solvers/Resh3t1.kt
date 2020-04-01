@@ -1,4 +1,4 @@
-package e.pmart.project
+package e.pmart.project.solvers
 
 class Resh3t1 {
     private fun swap(a: ArrayList<ArrayList<Int>>, x: Int, y: Int): ArrayList<ArrayList<Int>> {

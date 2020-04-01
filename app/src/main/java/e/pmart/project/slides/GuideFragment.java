@@ -1,4 +1,4 @@
-package e.pmart.project;
+package e.pmart.project.slides;
 
 
 import android.os.Bundle;
@@ -13,6 +13,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import e.pmart.project.FactoryEducationFragment;
+import e.pmart.project.MainActivity;
+import e.pmart.project.R;
 
 
 /**

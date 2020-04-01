@@ -1,4 +1,4 @@
-package e.pmart.project;
+package e.pmart.project.slides;
 
 
 import android.os.Bundle;
@@ -8,6 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+
+import e.pmart.project.EducationGridAdapter;
+import e.pmart.project.MainActivity;
+import e.pmart.project.R;
 
 
 public class EducationFragment extends Fragment {

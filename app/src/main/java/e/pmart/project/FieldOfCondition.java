@@ -3,7 +3,6 @@ package e.pmart.project;
 
 import android.content.Context;
 import android.text.Editable;
-import android.text.Spannable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,7 +14,7 @@ import org.mariuszgromada.math.mxparser.Expression;
 import java.util.HashMap;
 
 
-class FieldOfСondition {
+public class FieldOfCondition {
     @SuppressWarnings("FieldCanBeLocal")
     private Spinner spinner;
     private Spinner unitsSpinner;
@@ -25,15 +24,13 @@ class FieldOfСondition {
     @SuppressWarnings("FieldCanBeLocal")
     private EditText field;
     @SuppressWarnings("FieldCanBeLocal")
-    private Spannable[] data_plus_description;
-    @SuppressWarnings("FieldCanBeLocal")
     private String[] data;
     @SuppressWarnings("FieldCanBeLocal")
     private int simple_spinner_item;
     private HashMap<String, Double[]> unitsData;  // variants of units of measurement in the received data
     private HashMap<String, String[]> unitsDataNames;
 
-    FieldOfСondition(View spinnerID, View unitsSpinnerID, Context context, String[] data_,
+    public FieldOfCondition(View spinnerID, View unitsSpinnerID, Context context, String[] data_,
                      int simple_spinner_item_) {
         simple_spinner_item = simple_spinner_item_;
         data = data_;
@@ -61,7 +58,7 @@ class FieldOfСondition {
             }
         });
     }
-    FieldOfСondition(View spinnerID, View unitsSpinnerID, Context context, String[] data_,
+    public FieldOfCondition(View spinnerID, View unitsSpinnerID, Context context, String[] data_,
                      int simple_spinner_item_, View field_) {
         simple_spinner_item = simple_spinner_item_;
         data = data_;
@@ -119,20 +116,20 @@ class FieldOfСondition {
     Editable getText() {
         return field.getText();
     }
-    Double getUnits() {
+    public Double getUnits() {
         return unitsData.get(data[spinner.getSelectedItemPosition()])[unitsSpinner.getSelectedItemPosition()];
     }
-    Double getValue() {
+    public Double getValue() {
         Expression e = new Expression();
 
         e.setExpressionString(getText().toString());
 
         return e.calculate() * getUnits();
     }
-    Object getSelectedItem() {
+    public Object getSelectedItem() {
         return spinner.getSelectedItem();
     }
-    void setSelectedItem(int selectedItem) {
+    public void setSelectedItem(int selectedItem) {
         spinner.setSelection(selectedItem);
     }
     void setValue(String text) {

@@ -1,4 +1,4 @@
-package e.pmart.project;
+package e.pmart.project.solvers.faces;
 
 
 import android.graphics.Color;
@@ -29,7 +29,8 @@ import de.blox.graphview.Node;
 import de.blox.graphview.ViewHolder;
 import de.blox.graphview.tree.BuchheimWalkerAlgorithm;
 import de.blox.graphview.tree.BuchheimWalkerConfiguration;
-
+import e.pmart.project.R;
+import e.pmart.project.solvers.Resh26;
 
 
 public class Resh26Fragment extends Fragment {

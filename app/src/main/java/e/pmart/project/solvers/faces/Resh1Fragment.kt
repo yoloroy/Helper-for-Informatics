@@ -1,4 +1,4 @@
-package e.pmart.project
+package e.pmart.project.solvers.faces
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.SpinnerAdapter
+import e.pmart.project.R
 import kotlinx.android.synthetic.main.fragment_resh1.*
 import org.mariuszgromada.math.mxparser.Expression
 import java.lang.Double.NaN

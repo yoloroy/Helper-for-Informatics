@@ -1,4 +1,4 @@
-package e.pmart.project
+package e.pmart.project.solvers
 
 
 import android.os.Bundle
@@ -11,6 +11,8 @@ import android.widget.TextView
 import com.otaliastudios.zoom.ZoomApi
 import de.blox.graphview.*
 import de.blox.graphview.energy.FruchtermanReingoldAlgorithm
+import e.pmart.project.NoArrowEdgeRenderer
+import e.pmart.project.R
 import kotlinx.android.synthetic.main.fragment_resh3_graph.*
 
 

@@ -1,6 +1,5 @@
 package e.pmart.project;
 
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.mariuszgromada.math.mxparser.Function;
@@ -8,7 +7,7 @@ import org.mariuszgromada.math.mxparser.FunctionExtension;
 
 import static android.support.constraint.Constraints.TAG;
 
-class ExtraCalcFuncs {
+public class ExtraCalcFuncs {
     final Function[] extra_calc_funcs = {
             new Function("bnot", new BinaryNot()),
             new Function("square_root", new MathRoot() {
@@ -151,42 +150,5 @@ class ExtraCalcFuncs {
         public MyLog2 clone() {
             return new MyLog2(a);
         }
-    }
-}
-
-class ToNumSystem {
-    @NonNull
-    static String run(double num, int num_syst) {
-        String answer = "";
-
-        if (num_syst > 37 || num_syst < 2)
-            throw new RuntimeException("Wrong numeral system");
-
-        // before point part
-        answer += Integer.toString((int) num, num_syst);
-
-        // after point part
-        double temp = num - (int) num;
-
-        if (temp != 0.0d) {
-            answer += ".";
-
-            for (int i = 0; i <= 16; i++) {
-                answer += (int) (temp * num_syst);
-
-                temp = temp * num_syst - (int) (temp * num_syst);
-
-                if (temp == 0)
-                    break;
-            }
-
-            while (answer.endsWith("0"))
-                answer = answer.substring(0, answer.length() - 1);
-
-            if (answer.endsWith("."))
-                answer = answer.substring(0, answer.length() - 1);
-        }
-
-        return answer;
     }
 }

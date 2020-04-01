@@ -1,4 +1,4 @@
-package e.pmart.project
+package e.pmart.project.solvers.faces
 
 
 import android.annotation.SuppressLint
@@ -18,6 +18,8 @@ import android.webkit.WebView
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
+import e.pmart.project.AlgJsTranslator
+import e.pmart.project.R
 import kotlinx.android.synthetic.main.fragment_resh8.*
 
 
@@ -26,13 +28,6 @@ class Resh8Fragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_resh8, container, false)
     }
-    /*
-    * web_view.loadUrl("file:///android_asset/blockly/webview.html")
-
-        resh8_evaluate.setOnClickListener {
-            web_view.loadUrl("javascript:runCode()")
-        }
-        */
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onStart() {

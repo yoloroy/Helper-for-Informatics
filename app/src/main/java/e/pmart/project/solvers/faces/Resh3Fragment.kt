@@ -1,4 +1,4 @@
-package e.pmart.project
+package e.pmart.project.solvers.faces
 
 
 import android.os.Bundle
@@ -14,6 +14,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import de.blox.graphview.Graph
 import de.blox.graphview.Node
+import e.pmart.project.Deikstra
+import e.pmart.project.R
+import e.pmart.project.solvers.Resh3t1
 import kotlinx.android.synthetic.main.fragment_resh3.*
 import kotlinx.android.synthetic.main.fragment_resh3_graph.*
 import kotlinx.android.synthetic.main.fragment_symmetry_matrix.*

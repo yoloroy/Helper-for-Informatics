@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".Resh26Fragment">
+    tools:context=".solvers.faces.Resh26Fragment">
 
 
     <android.support.constraint.ConstraintLayout
