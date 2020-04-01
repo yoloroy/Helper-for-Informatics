@@ -1,7 +1,6 @@
 package e.pmart.project;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
@@ -24,6 +23,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import e.pmart.project.slides.AboutFragment;
+import e.pmart.project.slides.EducationFragment;
+import e.pmart.project.slides.EvalFragment;
+import e.pmart.project.slides.GenerFragment;
+import e.pmart.project.slides.GuideFragment;
+import e.pmart.project.solvers.faces.CalculatorFragment;
+import e.pmart.project.solvers.faces.Resh13Fragment;
+import e.pmart.project.solvers.faces.Resh15Fragment;
+import e.pmart.project.solvers.faces.Resh1Fragment;
+import e.pmart.project.solvers.faces.Resh26Fragment;
+import e.pmart.project.solvers.faces.Resh2Fragment;
+import e.pmart.project.solvers.faces.Resh3Fragment;
+import e.pmart.project.solvers.faces.Resh8Fragment;
+
 
 public class MainActivity extends AppCompatActivity {
     public static final String APP_TEMP = "temp";
@@ -37,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
 
     FragmentStatePagerAdapter slides;
     String mode = "main";
-    Map<String, List<Fragment>> mode_fragments = new HashMap<>();
-    Map<String, List<String>> actionBarNames = new HashMap<>();
+    public Map<String, List<Fragment>> mode_fragments = new HashMap<>();
+    public Map<String, List<String>> actionBarNames = new HashMap<>();
 
 
     @Override
@@ -128,6 +141,13 @@ public class MainActivity extends AppCompatActivity {
 
         editor.putBoolean(APP_TEMP_OPENED, true);
         editor.apply();
+    }
+
+    @Override
+    protected void onStart() {
+        test();
+
+        super.onStart();
     }
 
     @Override
@@ -294,15 +314,9 @@ public class MainActivity extends AppCompatActivity {
                 .setMessage("Мы вам поможем справиться с заданиями по информатике и легче усвоить материал.")
                 .setCancelable(false)
                 .setNegativeButton("Спасибо",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-        AlertDialog alert = builder.create();
-        //alert.setFeatureDrawable(Color.WHITE, getDrawable(R.drawable.rect_corners_s));
-        alert.show();
+                        (dialog, id) -> dialog.cancel())
+                .create()
+                .show();
     }
 
     public void onClickGoto(View view) {
@@ -552,5 +566,38 @@ public class MainActivity extends AppCompatActivity {
     public void corrEdits(View view) {
         ((Resh26Fragment) ((MyFragmentPagerAdapter) pager.getAdapter())
                 .getItem(pager.getCurrentItem())).corrEdits(view);
+    }
+
+    void test() {
+        /*PythonDebugInterpreter interpreter = new PythonDebugInterpreter("" +
+                "s = 0\n" +
+                "n = 170\n" +
+                "while s + n < 325:\n" +
+                "    s = s + 25\n" +
+                "    n = n - 5\n" +
+                "print(s)"
+        ) {
+            @Override
+            public void output(String message) {
+                // debugging message handling
+            }
+        };
+        for (DebugInfo debugInfo: interpreter.run()) {
+            Log.i("PythonDebug", " \n" +
+                    "/**\n" +
+                    " * line: " + debugInfo.getLine() + "\n" +
+                    " * index: " + debugInfo.getIndex() + "\n" +
+                    " * vars: " + beautifyDebugVars(debugInfo.getVars()) +
+                    ((!debugInfo.getPrint().isEmpty())? "\n * print: "+debugInfo.getPrint() : "")
+            );
+        }
+    }
+
+    String beautifyDebugVars(Map<String, Double> vars) {
+        StringBuilder temp = new StringBuilder();
+        for (Map.Entry entry: vars.entrySet()) {
+            temp.append("\n *  name: ").append(entry.getKey()).append("\t value: ").append(entry.getValue());
+        }
+        return temp.toString();*/
     }
 }
