@@ -12,17 +12,22 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import e.pmart.project.interpreters.DebugInfo;
+import e.pmart.project.interpreters.PythonInterpreter;
 import e.pmart.project.slides.AboutFragment;
 import e.pmart.project.slides.EducationFragment;
 import e.pmart.project.slides.EvalFragment;
@@ -569,7 +574,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void test() {
-        /*PythonDebugInterpreter interpreter = new PythonDebugInterpreter("" +
+        simpleRun();
+        debugRun();
+    }
+
+    void simpleRun() {
+        MainActivity context = this;
+        (new PythonInterpreter("" +
                 "s = 0\n" +
                 "n = 170\n" +
                 "while s + n < 325:\n" +
@@ -578,11 +589,29 @@ public class MainActivity extends AppCompatActivity {
                 "print(s)"
         ) {
             @Override
-            public void output(String message) {
-                // debugging message handling
+            public void output(@NotNull String message) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Python пишет:")
+                        .setMessage(message)
+                        .setCancelable(false)
+                        .setNegativeButton("ОК",
+                                (dialog, id) -> dialog.cancel())
+                        .create()
+                        .show();
             }
-        };
-        for (DebugInfo debugInfo: interpreter.run()) {
+        }).run();
+    }
+
+    void debugRun() {
+        PythonInterpreter interpreter = new PythonInterpreter("" +
+                "s = 0\n" +
+                "n = 170\n" +
+                "while s + n < 325:\n" +
+                "    s = s + 25\n" +
+                "    n = n - 5\n" +
+                "print(s)"
+        );
+        for (DebugInfo debugInfo: interpreter.runDebug()) {
             Log.i("PythonDebug", " \n" +
                     "/**\n" +
                     " * line: " + debugInfo.getLine() + "\n" +
@@ -598,6 +627,6 @@ public class MainActivity extends AppCompatActivity {
         for (Map.Entry entry: vars.entrySet()) {
             temp.append("\n *  name: ").append(entry.getKey()).append("\t value: ").append(entry.getValue());
         }
-        return temp.toString();*/
+        return temp.toString();
     }
 }

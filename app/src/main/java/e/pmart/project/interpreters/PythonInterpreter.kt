@@ -1,15 +1,13 @@
 package e.pmart.project.interpreters
 
-import android.util.Log
 import org.mariuszgromada.math.mxparser.Expression
 
 
 private const val CONTINUE = -1
 
-open class PythonInterpreter(open var code: String): Interpreter {
-    var vars: LinkedHashMap<String, Double> = LinkedHashMap()  // значения всех известных переменных
+open class PythonInterpreter(val code: String): Interpreter {
+    private var vars: LinkedHashMap<String, Double> = LinkedHashMap()  // значения всех известных переменных
     private var funcs: LinkedHashMap<String, Int> = LinkedHashMap()  // номера строк объявления функций
-
 
     constructor(code: String,
                 _vars: LinkedHashMap<String, Double>,
@@ -17,6 +15,9 @@ open class PythonInterpreter(open var code: String): Interpreter {
         vars = _vars
         funcs = _funcs
     }
+
+    private var debugInfo = ArrayList<DebugInfo>()
+    private var debugInfoTemp = ArrayList<DebugInfo>()
 
     init {
         vars["True"] = 1.0
@@ -31,6 +32,36 @@ open class PythonInterpreter(open var code: String): Interpreter {
             if (pass == CONTINUE)
                 pass = execLine(s, index)
         }
+    }
+
+    override fun runDebug(): Iterable<DebugInfo> {
+        return runDebug(0)
+    }
+
+    private fun runDebug(parentIndex: Int): Iterable<DebugInfo> {
+        debugInfo = ArrayList()
+        debugInfoTemp = ArrayList()
+        var pass = CONTINUE
+        code.trimEnd().split("\n").forEachIndexed { index, s ->
+            if (index > pass)
+                pass = CONTINUE
+            if (pass == CONTINUE)
+                debugExecLine(s, index + parentIndex).also {
+                    pass = it.first
+                    if (s.startsWith("print"))
+                        if ('"' in s)
+                            it.second.print = s.substring(7, s.length-2)
+                        else
+                            Expression().also { e ->
+                                e.mySetExpressionString(fillExpression(s.substring(6, s.length-1)))
+                                it.second.print = e.calculate().toString()
+                            }
+                    debugInfo.add(it.second)
+                    debugInfo.addAll(debugInfoTemp)
+                    debugInfoTemp = ArrayList()
+                }
+        }
+        return debugInfo
     }
 
     private fun execLine(line: String, index: Int): Int {
@@ -58,7 +89,7 @@ open class PythonInterpreter(open var code: String): Interpreter {
     }
 
     private fun execSet(line: String): Int {
-        Expression().also {e ->
+        Expression().also { e ->
             e.mySetExpressionString(fillExpression(line.split("=").subList(1).joinToString("")))
             vars[line.split("=")[0].trim()] = e.calculate()
         }
@@ -77,7 +108,11 @@ open class PythonInterpreter(open var code: String): Interpreter {
                         temp += i.substring(4) + "\n"
                     else {
                         PythonInterpreter(temp, vars, funcs).also { inner ->
-                            inner.run()
+                            inner.runDebug(index+1).forEach(
+                                    action = {
+                                        info -> debugInfoTemp.add(info)
+                                    }
+                            )
                             vars = inner.vars
                             funcs = inner.funcs
                         }
@@ -106,7 +141,11 @@ open class PythonInterpreter(open var code: String): Interpreter {
 
                     if (temp != "")
                         PythonInterpreter(temp, vars, funcs).also { inner ->
-                            inner.run()
+                            inner.runDebug(index+1).forEach(
+                                    action = {
+                                        info -> debugInfoTemp.add(info)
+                                    }
+                            )
                             vars = inner.vars
                             funcs = inner.funcs
                         }
@@ -128,7 +167,7 @@ open class PythonInterpreter(open var code: String): Interpreter {
 
     /* Нужно переопределять при инициализации */
     override fun output(message: String) {
-        Log.i("output", message)
+        // do something
     }
 
     private fun Expression.mySetExpressionString(string: String) {
@@ -164,6 +203,3 @@ open class PythonInterpreter(open var code: String): Interpreter {
                 }
             }
 }
-
-
-
