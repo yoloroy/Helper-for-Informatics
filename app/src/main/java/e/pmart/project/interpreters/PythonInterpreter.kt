@@ -34,11 +34,11 @@ open class PythonInterpreter(val code: String): Interpreter {
         }
     }
 
-    override fun runDebug(): Iterable<DebugInfo> {
+    override fun runDebug(): List<DebugInfo> {
         return runDebug(0)
     }
 
-    private fun runDebug(parentIndex: Int): Iterable<DebugInfo> {
+    private fun runDebug(parentIndex: Int): List<DebugInfo> {
         debugInfo = ArrayList()
         debugInfoTemp = ArrayList()
         var pass = CONTINUE
@@ -85,7 +85,12 @@ open class PythonInterpreter(val code: String): Interpreter {
     }
 
     private fun debugExecLine(line: String, index: Int): Pair<Int, DebugInfo> {
-        return Pair(execLine(line, index), DebugInfo(line.replace("\n", "\\n"), index, vars))
+        vars.also {temp ->
+            temp.remove("True")
+            temp.remove("False")
+
+            return Pair(execLine(line, index), DebugInfo(line.replace("\n", "\\n"), index, vars))
+        }
     }
 
     private fun execSet(line: String): Int {

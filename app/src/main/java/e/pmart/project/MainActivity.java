@@ -574,8 +574,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void test() {
-        simpleRun();
-        debugRun();
+        //simpleRun();
+        //debugRun();
     }
 
     void simpleRun() {

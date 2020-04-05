@@ -21,7 +21,6 @@
         </item>
     </string-array>
     <string-array name="code_languages">
-        <item>Blockly</item>
-        <item>Алгоритмический</item>
+        <item>Python</item>
     </string-array>
 </resources>
