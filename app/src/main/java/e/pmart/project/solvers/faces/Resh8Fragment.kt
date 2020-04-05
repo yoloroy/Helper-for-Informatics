@@ -77,7 +77,7 @@ class Resh8Fragment : Fragment() {
             code_enter.visibility = GONE
             highlight.visibility = VISIBLE
 
-            debug_shadow.visibility = VISIBLE
+            //debug_shadow.visibility = VISIBLE
             resh8_step.visibility = VISIBLE
             debug_content.visibility = VISIBLE
         }
@@ -92,7 +92,7 @@ class Resh8Fragment : Fragment() {
             code_enter.visibility = VISIBLE
             highlight.visibility = GONE
 
-            debug_shadow.visibility = INVISIBLE
+            //debug_shadow.visibility = INVISIBLE
             resh8_step.visibility = INVISIBLE
             debug_content.visibility = INVISIBLE
         }
