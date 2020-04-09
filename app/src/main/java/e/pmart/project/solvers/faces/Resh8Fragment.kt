@@ -25,6 +25,7 @@ import kotlinx.android.synthetic.main.fragment_resh8.*
 private const val EDIT = 0
 private const val RUN = 1
 
+@Suppress("DEPRECATION")
 class Resh8Fragment : Fragment() {
     private var mode = EDIT
     private var debugInfo: List<DebugInfo> = ArrayList()
@@ -38,7 +39,7 @@ class Resh8Fragment : Fragment() {
     @SuppressLint("SetJavaScriptEnabled")
     override fun onStart() {
         resh8_language.adapter = ArrayAdapter<String>(
-                context,
+                context!!,
                 R.layout.simple_scalable_list_item_1,
                 resources.getStringArray(R.array.code_languages))
 
@@ -49,9 +50,6 @@ class Resh8Fragment : Fragment() {
 
     private fun setOnClicks() {
         resh8_evaluate.setOnClickListener {
-            if (mode != EDIT)
-                return@setOnClickListener
-
             highlight.loadDataWithBaseURL(null,
                     """
                     <html>
@@ -77,7 +75,6 @@ class Resh8Fragment : Fragment() {
             code_enter.visibility = GONE
             highlight.visibility = VISIBLE
 
-            //debug_shadow.visibility = VISIBLE
             resh8_step.visibility = VISIBLE
             debug_content.visibility = VISIBLE
         }
@@ -92,18 +89,20 @@ class Resh8Fragment : Fragment() {
             code_enter.visibility = VISIBLE
             highlight.visibility = GONE
 
-            //debug_shadow.visibility = INVISIBLE
             resh8_step.visibility = INVISIBLE
             debug_content.visibility = INVISIBLE
+
+            resh8_evaluate.setImageDrawable(resources.getDrawable(R.drawable.ic_replay))
         }
 
         resh8_step.setOnClickListener {
             if (step < debugInfo.size) {
-                viewDebugInfo(debugInfo.elementAt(step))
                 step += 1
+                viewDebugInfo(debugInfo.elementAt(step-1))
             } else
                 Snackbar.make(it, "Произведение завершено", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null)
+                        .setAction("Заново") { resh8_evaluate.callOnClick() }
+                        .setActionTextColor(resources.getColor(R.color.colorPrimary))
                         .show()
         }
     }
@@ -164,7 +163,7 @@ class Resh8Fragment : Fragment() {
                 layout.orientation = LinearLayout.HORIZONTAL
 
                 TextView(ContextThemeWrapper(context, R.style.CodeDebugValueName)).also { name ->
-                    name.text = variable.key
+                    name.text = "%s: ".format(variable.key)
                     layout.addView(name)
                 }
                 TextView(ContextThemeWrapper(context, R.style.CodeDebugValueValue)).also { value ->

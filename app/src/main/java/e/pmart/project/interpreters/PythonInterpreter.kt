@@ -42,20 +42,16 @@ open class PythonInterpreter(val code: String): Interpreter {
         debugInfo = ArrayList()
         debugInfoTemp = ArrayList()
         var pass = CONTINUE
-        code.trimEnd().split("\n").forEachIndexed { index, s ->
-            if (index > pass)
+        "${code.trimEnd()}\n".split("\n").forEachIndexed { index, s ->if (index > pass)
                 pass = CONTINUE
-            if (pass == CONTINUE)
+            if ((pass == CONTINUE) and s.isNotBlank())
                 debugExecLine(s, index + parentIndex).also {
                     pass = it.first
                     if (s.startsWith("print"))
                         if ('"' in s)
                             it.second.print = s.substring(7, s.length-2)
                         else
-                            Expression().also { e ->
-                                e.mySetExpressionString(fillExpression(s.substring(6, s.length-1)))
-                                it.second.print = e.calculate().toString()
-                            }
+                            it.second.print = eval(s.substring(6, s.length-1))
                     debugInfo.add(it.second)
                     debugInfo.addAll(debugInfoTemp)
                     debugInfoTemp = ArrayList()
@@ -69,7 +65,11 @@ open class PythonInterpreter(val code: String): Interpreter {
             funcs[line.substring(4, line.indexOf("("))] = index
             return CONTINUE
         }
-        if (line.count("=") % 2 == 1)
+        if ((line.count("=")
+                        - line.count("==")*2
+                        - line.count("!=")
+                        - line.count("<=")
+                        - line.count(">=")) == 1)
             return execSet(line)
 
         if (line.startsWith("if"))
@@ -89,90 +89,81 @@ open class PythonInterpreter(val code: String): Interpreter {
             temp.remove("True")
             temp.remove("False")
 
-            return Pair(execLine(line, index), DebugInfo(line.replace("\n", "\\n"), index, vars))
+            // этот костыль нужен чтоб переопределения порядка выполнения
+            // + с ним return выглядит проще
+            DebugInfo(line.replace("\n", "\\n"), index, vars).also {info ->
+                return Pair(execLine(line, index), info)
+            }
         }
     }
 
     private fun execSet(line: String): Int {
-        Expression().also { e ->
-            e.mySetExpressionString(fillExpression(line.split("=").subList(1).joinToString("")))
-            vars[line.split("=")[0].trim()] = e.calculate()
-        }
+        vars[line.split("=")[0].trim()] = eval(line.split("=").subList(1).joinToString("=")).toDouble()
         vars = vars.sortedByKeyLength()
         return CONTINUE
     }
 
     private fun execIf(line: String, index: Int): Int {
         var temp = ""
-        Expression().also {
-            it.mySetExpressionString(fillExpression(line.substring(3 until line.length-1)))
-            if (it.calculate() == 1.0) {
-                temp = ""
-                for (i in code.split("\n").subList(index+1)) {
-                    if (i.startsWith("    "))
-                        temp += i.substring(4) + "\n"
-                    else {
-                        PythonInterpreter(temp, vars, funcs).also { inner ->
-                            inner.runDebug(index+1).forEach(
-                                    action = {
-                                        info -> debugInfoTemp.add(info)
-                                    }
-                            )
-                            vars = inner.vars
-                            funcs = inner.funcs
-                        }
-                    }
+        if (eval(line.substring(3 until line.length-1)) == "1.0") {
+            for (i in code.split("\n").subList(index+1)) {
+                if (i.startsWith("    "))
+                    temp += i.substring(4) + "\n"
+                else
+                    break
+            }
+            PythonInterpreter(temp, vars, funcs).also { inner ->
+                inner.runDebug(index + 1).forEach { info ->
+                    debugInfoTemp.add(info)
                 }
+                vars = inner.vars
+                funcs = inner.funcs
             }
         }
-        return index + temp.split("\n").size -1
+        return index + temp.split("\n").size - 1
     }
 
     private fun execWhile(line: String, index: Int): Int {
         var temp = ""
-        while (true) {
-            Expression().also {
-                it.mySetExpressionString(fillExpression(line.substring(6 until line.length - 1)))
-                if (it.calculate() == 1.0) {
-                    temp = ""
-
-                    // нахождение всех строк, принадлежащих while
-                    for (i in code.split("\n").subList(index + 1)) {
-                        if (i.startsWith("    "))
-                            temp += i.substring(4) + "\n"
-                        else
-                            break
-                    }
-
-                    if (temp != "")
-                        PythonInterpreter(temp, vars, funcs).also { inner ->
-                            inner.runDebug(index+1).forEach(
-                                    action = {
-                                        info -> debugInfoTemp.add(info)
-                                    }
-                            )
-                            vars = inner.vars
-                            funcs = inner.funcs
-                        }
-                } else return index + temp.split("\n").size -1
-            }
+        // нахождение всех строк, принадлежащих while
+        for (i in code.split("\n").subList(index + 1)) {
+            if (i.startsWith("    "))
+                temp += i.substring(4) + "\n"
+            else
+                break
         }
+        while (eval("(${line.substring(6 until line.length - 1)})") == "1.0") {
+            if (temp != "")
+                PythonInterpreter(temp, vars, funcs).also { inner ->
+                    inner.runDebug(index+1).forEach { info ->
+                        debugInfoTemp.add(info)
+                    }
+                    vars = inner.vars
+                    funcs = inner.funcs
+                }
+        }
+        return index + temp.split("\n").size -1
     }
 
     private fun execPrint(line: String): Int {
         if ('"' in line)
             output(line.substring(7, line.length-2))
         else
-            Expression().also {
-                it.mySetExpressionString(fillExpression(line.substring(6, line.length-1)))
-                output(it.calculate().toString())
-            }
+            output(eval(line.substring(6, line.length-1)))
         return CONTINUE
     }
 
     /* Нужно переопределять при инициализации */
     override fun output(message: String) {
         // do something
+    }
+
+    // TODO: create own expression evaluator
+    private fun eval(expression: String): String {
+        Expression().also {
+            it.mySetExpressionString(fillExpression(expression))
+            return it.calculate().toString()
+        }
     }
 
     private fun Expression.mySetExpressionString(string: String) {
