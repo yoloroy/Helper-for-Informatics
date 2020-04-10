@@ -29,9 +29,9 @@ import java.util.Map;
 import e.pmart.project.interpreters.DebugInfo;
 import e.pmart.project.interpreters.PythonInterpreter;
 import e.pmart.project.slides.AboutFragment;
-import e.pmart.project.slides.EducationFragment;
-import e.pmart.project.slides.EvalFragment;
-import e.pmart.project.slides.GenerFragment;
+import e.pmart.project.slides.EducationSlide;
+import e.pmart.project.slides.EvalSlide;
+import e.pmart.project.slides.GenerSlide;
 import e.pmart.project.slides.GuideFragment;
 import e.pmart.project.solvers.faces.CalculatorFragment;
 import e.pmart.project.solvers.faces.Resh13Fragment;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String APP_TEMP_OPENED = "opened";
     private SharedPreferences mSettings;
 
-    Menu menu;
+    public Menu menu;
 
     GotoFragment goto_fragment;
     ViewPager pager;
@@ -103,21 +103,24 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (mode) {
                     case "main":
-                        if (pager.getCurrentItem() == 2) {
-                            if (menu != null) {
-                                menu.clear();
-                                getMenuInflater().inflate(R.menu.calc_bar, menu);
-                            }
-                        } else {
-                            if (menu != null) {
-                                menu.clear();
-                            }
-                        }
-                        break;
-                    case "gener_task":
-                        if (menu != null) {
-                            menu.clear();
-                            getMenuInflater().inflate(R.menu.task_view_bar, menu);
+                        switch (pager.getCurrentItem()) {
+                            case 2:
+                                if (menu != null) {
+                                    menu.clear();
+                                    getMenuInflater().inflate(R.menu.calc_bar, menu);
+                                }
+                                break;
+                            case 3:
+                                if (menu != null) {
+                                    menu.clear();
+                                    if (findViewById(R.id.task_view).getVisibility() == View.VISIBLE)
+                                        getMenuInflater().inflate(R.menu.gener_bar, menu);
+                                }
+                                break;
+                            default:
+                                if (menu != null) {
+                                    menu.clear();
+                                }
                         }
                         break;
                 }
@@ -191,16 +194,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 pager.setCurrentItem(pager.getCurrentItem() - 1);
                 break;
-            case "gener_task":
-                //if (((EditText) findViewById(R.id.task_answer))
-                //        .getText().toString().equals("")) {
-                toMain();
-                pager.setCurrentItem(3);
-                //}
-                //else {
-                //    ((EditText) findViewById(R.id.task_answer)).setText("");
-                //}
-                break;
             case "guide_inner":
                 toMain();
                 pager.setCurrentItem(0);
@@ -264,6 +257,14 @@ public class MainActivity extends AppCompatActivity {
                         toMain();
                         pager.setCurrentItem(2);
                         break;
+                    case R.id.list:
+                        mode_fragments.get("main").get(3).onStart();
+                        menu.clear();
+                        break;
+                    case R.id.sdamgia_link:
+                        Intent open_link = new Intent(Intent.ACTION_VIEW, Uri.parse("https://inf-ege.sdamgia.ru/"));
+                        startActivity(open_link);
+                        return true;
                 }
                 return super.onOptionsItemSelected(item);
             case "course_graphs":
@@ -276,17 +277,6 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case android.R.id.home:
                         onBackPressed();
-                        return true;
-                }
-            case "gener_task":
-                switch (item.getItemId()) {
-                    case android.R.id.home:
-                        toMain();
-                        pager.setCurrentItem(3);
-                        return true;
-                    case R.id.sdamgia_link:
-                        Intent open_link = new Intent(Intent.ACTION_VIEW, Uri.parse("https://inf-ege.sdamgia.ru/"));
-                        startActivity(open_link);
                         return true;
                 }
             case "guide_inner":
@@ -401,12 +391,6 @@ public class MainActivity extends AppCompatActivity {
                     actionBar.setDisplayHomeAsUpEnabled(true);
                 }
                 break;
-            case "gener_task":
-                if (actionBar != null) {
-                    actionBar.setHomeButtonEnabled(true);
-                    actionBar.setDisplayHomeAsUpEnabled(true);
-                }
-                break;
         }
         this.mode = mode;
         toInnerPages();
@@ -454,11 +438,11 @@ public class MainActivity extends AppCompatActivity {
                 .setSupportFragmentManager(getSupportFragmentManager())
                 .setMainActivity(this));
         actionBarNames.get("main").add("Справочник");
-        mode_fragments.get("main").add(new EducationFragment());
+        mode_fragments.get("main").add(new EducationSlide());
         actionBarNames.get("main").add("Курсы");
-        mode_fragments.get("main").add(new EvalFragment());
+        mode_fragments.get("main").add(new EvalSlide());
         actionBarNames.get("main").add("Калькулятор");
-        mode_fragments.get("main").add(new GenerFragment()
+        mode_fragments.get("main").add(new GenerSlide()
                 .setSupportActionBar(getSupportActionBar())
                 .setSupportFragmentManager(getSupportFragmentManager())
                 .setMainActivity(this));
@@ -470,13 +454,6 @@ public class MainActivity extends AppCompatActivity {
 
         /*     courses     */
         upload_courses();
-
-        /*     task     */
-        mode_fragments.put("gener_task", new ArrayList<Fragment>());
-        actionBarNames.put("gener_task", new ArrayList<String>());
-
-        mode_fragments.get("gener_task").add(new TaskViewFragment());
-        actionBarNames.get("gener_task").add("Задача");
 
         /*     guide page     */
         mode_fragments.put("guide_inner", new ArrayList<Fragment>());

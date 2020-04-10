@@ -35,16 +35,17 @@ public class TaskViewFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         rootView =
                 inflater.inflate(R.layout.task_view, container, false);
+        return rootView;
+    }
 
+    @Override
+    public void onStart() {
         fab = rootView.findViewById(R.id.fab_task_view);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN)
-                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                if (!((EditText) rootView.findViewById(R.id.task_answer)).getText().toString().equals(""))
-                    onClickCheckAnswer(view);
-            }
+        fab.setOnClickListener(view -> {
+            if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN)
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            if (!((EditText) rootView.findViewById(R.id.task_answer)).getText().toString().equals(""))
+                onClickCheckAnswer(view);
         });
         View llBottomSheet = rootView.findViewById(R.id.bottom_sheet);
 
@@ -87,8 +88,9 @@ public class TaskViewFragment extends Fragment {
             }
         });
 
-        startTaskSet();
-        return rootView;
+        //startTaskSet();
+
+        super.onStart();
     }
 
     public void setTask(int i) {

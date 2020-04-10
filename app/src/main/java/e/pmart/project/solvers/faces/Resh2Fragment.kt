@@ -11,10 +11,14 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+
 import e.pmart.project.R
+
 import kotlinx.android.synthetic.main.fragment_appendable_dicts_table.*
 import kotlinx.android.synthetic.main.fragment_resh2.*
+
 import org.mariuszgromada.math.mxparser.Expression
+
 import java.lang.Math.pow
 
 
