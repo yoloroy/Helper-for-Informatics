@@ -110,9 +110,9 @@ public class TaskViewFragment extends Fragment {
         tasks = new String[]{cursor.getString(0), cursor.getString(1)};
         cursor.close();
 
-        ((TextView) rootView.findViewById(R.id.task_theme)).setText("№ " + curr);
+        ((TextView) rootView.findViewById(R.id.task_theme)).setText("Задание " + curr);
         WebView task_text = rootView.findViewById(R.id.task_text);
-        task_text.loadDataWithBaseURL(null, tasks[0].replaceFirst("\"width:650px\"", "\"width:94%\""),
+        task_text.loadDataWithBaseURL(null, tasks[0].replace("\"width:650px\"", "\"width:94%\""),
                 "text/html", "en_US", null);
 
         task_text.getSettings().setBuiltInZoomControls(true);

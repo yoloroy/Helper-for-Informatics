@@ -165,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
                 super.onBackPressed();
                 break;
             case "course_graphs":
+            case "course_la":
                 ((FactoryEducationFragment)
                         ((MyFragmentPagerAdapter) pager.getAdapter())
                                 .getItem(pager.getCurrentItem())).save();
@@ -179,17 +180,15 @@ public class MainActivity extends AppCompatActivity {
                 }
                 pager.setCurrentItem(pager.getCurrentItem() - 1);
                 break;
-            case "course_la":
-                ((FactoryEducationFragment)
-                        ((MyFragmentPagerAdapter) pager.getAdapter())
-                                .getItem(pager.getCurrentItem())).save();
+            case "test_end":
+            case "test":
                 if (pager.getCurrentItem() == 0) {
                     mode_fragments.remove(mode);
                     mode_fragments
                             .put(mode, ((MyFragmentPagerAdapter) pager.getAdapter())
                                     .getFragments());
                     toMain();
-                    pager.setCurrentItem(1);
+                    pager.setCurrentItem(3);
                     return;
                 }
                 pager.setCurrentItem(pager.getCurrentItem() - 1);
@@ -267,24 +266,11 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                 }
                 return super.onOptionsItemSelected(item);
+            case "test":
+            case "test_end":
             case "course_graphs":
-                switch (item.getItemId()) {
-                    case android.R.id.home:
-                        onBackPressed();
-                        return true;
-                }
             case "course_la":
-                switch (item.getItemId()) {
-                    case android.R.id.home:
-                        onBackPressed();
-                        return true;
-                }
             case "guide_inner":
-                switch (item.getItemId()) {
-                    case android.R.id.home:
-                        onBackPressed();
-                        return true;
-                }
             case "about":
                 switch (item.getItemId()) {
                     case android.R.id.home:
@@ -329,7 +315,7 @@ public class MainActivity extends AppCompatActivity {
         if (mode.startsWith("course")) {
             if (!((FactoryEducationFragment)
                     ((MyFragmentPagerAdapter) pager.getAdapter())
-                            .getItem(pager.getCurrentItem())).onClickNext()) {
+                            .getItem(pager.getCurrentItem())).checkAnswer()) {
 
                 ((FactoryEducationFragment)
                         ((MyFragmentPagerAdapter) pager.getAdapter())
@@ -433,10 +419,7 @@ public class MainActivity extends AppCompatActivity {
         mode_fragments.put("main", new ArrayList<Fragment>());
         actionBarNames.put("main", new ArrayList<String>());
 
-        mode_fragments.get("main").add(new GuideFragment()
-                .setSupportActionBar(getSupportActionBar())
-                .setSupportFragmentManager(getSupportFragmentManager())
-                .setMainActivity(this));
+        mode_fragments.get("main").add(new GuideFragment());
         actionBarNames.get("main").add("Справочник");
         mode_fragments.get("main").add(new EducationSlide());
         actionBarNames.get("main").add("Курсы");
