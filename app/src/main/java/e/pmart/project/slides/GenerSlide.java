@@ -1,6 +1,8 @@
 package e.pmart.project.slides;
 
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,6 +10,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,9 +21,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
+
+import e.pmart.project.DatabaseHelper;
+import e.pmart.project.FactoryEducationFragment;
 import e.pmart.project.MainActivity;
 import e.pmart.project.R;
 import e.pmart.project.TaskViewFragment;
+import e.pmart.project.TestEndFragment;
 
 
 public class GenerSlide extends Fragment {
@@ -99,7 +110,10 @@ public class GenerSlide extends Fragment {
         };
         tasksView.setAdapter(tasksAdapter);
 
-        tasksView.setOnItemClickListener((adapterView, view, position, l) -> onTaskChosen(position));
+        tasksView.setOnItemClickListener((adapterView, view, position, l) -> {
+            if (position > 0) onTaskChosen(position);
+            else onVariantChosen();
+        });
     }
 
     private void onTaskChosen(int position) {
@@ -115,6 +129,72 @@ public class GenerSlide extends Fragment {
         ((TaskViewFragment)
                 getChildFragmentManager().findFragmentById(R.id.task_fragment))
                 .startTaskSet();
+    }
+
+    private void onVariantChosen() {
+        ArrayList<Fragment> fragments = new ArrayList();
+        ArrayList<String> actionBarNames = new ArrayList();
+
+        Random random = new Random();
+        DatabaseHelper mDBHelper = new DatabaseHelper(getContext());
+        SQLiteDatabase mDb = getCheckedDb(mDBHelper);
+
+        Cursor cursor;
+        int num;
+
+        for (int i = 1; i <= 23; i++) {
+            cursor = mDb.rawQuery("SELECT task, answer FROM tasks WHERE number="+i, null);
+            cursor.moveToFirst();
+
+            num = random.nextInt(cursor.getCount() / 2);
+            cursor.moveToPosition(num*2);
+
+            int finalI = i;
+            fragments.add(new FactoryEducationFragment()
+                    .setTextWatcher(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+                        @Override
+                        public void afterTextChanged(Editable s) {
+                            if (s.length() == 0) {
+                                ((TestEndFragment) fragments.get(fragments.size() - 1))
+                                        .delAnswered(finalI);
+                            } else {
+                                ((TestEndFragment) fragments.get(fragments.size() - 1))
+                                        .addAnswered(finalI);
+                            }
+                        }
+            })
+                    .newWebview(cursor
+                            .getString(0)
+                            .replace("\"width:650px\"", "\"width:94%\""))
+                    .newEnter(cursor.getString(1)));
+            actionBarNames.add("Задание "+i);
+
+            cursor.close();
+        }
+
+        fragments.add(new TestEndFragment());
+        actionBarNames.add("Оканчание");
+
+        ((MainActivity) getActivity()).mode_fragments.put("test", fragments);
+        ((MainActivity) getActivity()).actionBarNames.put("test", actionBarNames);
+
+        ((MainActivity) getActivity()).changeMode("test");
+    }
+
+    private SQLiteDatabase getCheckedDb(DatabaseHelper DBHelper) {
+        try {
+            DBHelper.updateDataBase();
+        } catch (IOException mIOException) {
+            throw new Error("UnableToUpdateDatabase");
+        }
+
+        return DBHelper.getWritableDatabase();
     }
 
     private int dpToPx(int dp) {

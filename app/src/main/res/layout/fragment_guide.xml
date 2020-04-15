@@ -1,25 +1,102 @@
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="e.pmart.project.slides.GuideFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="e.pmart.project.slides.GuideFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: для того, чтоб всё крутилось так, как хочется, нужно менять элементы, а не список, чтоб скругление крутилось тоже -->
-    <ListView
-        android:id="@+id/inf_themes"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/rect_corners_u"
+        android:background="@drawable/rect_corners_s"
         android:backgroundTint="#fff"
         android:elevation="2dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</android.support.constraint.ConstraintLayout>
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:visibility="visible">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:layout_gravity="center|top"
+                android:src="@drawable/baseline_school_24"
+                tools:src="@tools:sample/avatars" />
+
+            <Button
+                android:id="@+id/share_stats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end"
+                android:text="Поделиться"
+                android:textAllCaps="false"
+                android:textSize="12sp" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Решено заданий: "
+                android:textColor="#111"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tasks_solved"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#111"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tasks_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Решённые варианты:  "
+                android:textColor="#111"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/variants_solved"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#111"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/variants_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"></LinearLayout>
+    </LinearLayout>
+</ScrollView>

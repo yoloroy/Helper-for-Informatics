@@ -1,5 +1,7 @@
 package e.pmart.project;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -130,11 +132,19 @@ public class TaskViewFragment extends Fragment {
     }
 
     public void onClickCheckAnswer(View view) {
+        SharedPreferences sp = getActivity().getSharedPreferences("solved_tasks", Context.MODE_PRIVATE);
+        sp.edit().putInt("num", sp.getInt("num", 0)+1).apply();
+
         if (tasks[1].equals(((EditText) rootView.findViewById(R.id.task_answer)).getText().toString())) {
             rootView.findViewById(R.id.fab_task_view).getBackground().setTint(getResources().getColor(R.color.colorAppGreen));
             ((EditText) rootView.findViewById(R.id.task_answer)).setText("");
             ((EditText) rootView.findViewById(R.id.task_blackovik)).setText("");
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
+            sp.edit().putInt(
+                    "solved_"+curr,
+                    sp.getInt("solved_"+curr, 0) + 1)
+                    .apply();
 
             startTaskSet();
         } else {

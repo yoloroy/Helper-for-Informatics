@@ -420,7 +420,7 @@ public class MainActivity extends AppCompatActivity {
         actionBarNames.put("main", new ArrayList<String>());
 
         mode_fragments.get("main").add(new GuideFragment());
-        actionBarNames.get("main").add("Справочник");
+        actionBarNames.get("main").add("Личный кабинет");
         mode_fragments.get("main").add(new EducationSlide());
         actionBarNames.get("main").add("Курсы");
         mode_fragments.get("main").add(new EvalSlide());
@@ -454,6 +454,7 @@ public class MainActivity extends AppCompatActivity {
         mode_fragments.put("course_graphs", new ArrayList<>());
         actionBarNames.put("course_graphs", new ArrayList<>());
 
+        /* graphs (demo) */
         mode_fragments.get("course_graphs").add(new FactoryEducationFragment()
                 .newTitle(R.string.graphs_1)
                 .newText(R.string.graphs_2)
@@ -534,8 +535,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void test() {
-        //simpleRun();
-        //debugRun();
+        simpleRun();
+        debugRun();
     }
 
     void simpleRun() {

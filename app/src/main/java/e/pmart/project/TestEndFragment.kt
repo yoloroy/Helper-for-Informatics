@@ -2,6 +2,7 @@ package e.pmart.project
 
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -77,6 +78,14 @@ class TestEndFragment : Fragment() {
                 task.answer = null
                 temp.add(task)
             }
+            activity!!.getSharedPreferences("variants", Context.MODE_PRIVATE).also { sp ->
+                sp.getStringSet("variants_info", setOf())!!.also { variants_info ->
+                    var e = sp.edit()
+                    e.putStringSet("variants_info", variants_info + setOf("Вариант №${variants_info.size + 1} - ${correct+0}/23"))
+                    e.apply()
+                }
+            }
+
             (activity as MainActivity).mode_fragments["test_end"] = listOf(FactoryEducationFragment()
                     .newTitle("Решено верно: ${correct.size}")
                     .newText("№ ${correct.joinToString("\n№ ")}")
