@@ -46,7 +46,7 @@
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:colorPrimaryDark">@color/ic_launcher_background</item>
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 </resources>

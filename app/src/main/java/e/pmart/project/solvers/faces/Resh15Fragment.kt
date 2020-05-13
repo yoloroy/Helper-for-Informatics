@@ -202,7 +202,7 @@ class Resh15Fragment : Fragment() {
                     clickedViews.clear()
                     notifyInvalidated()
                 } else {
-                    add.background.setTint(resources.getColor(R.color.colorCalcMain))
+                    add.background.setTint(resources.getColor(R.color.colorPrimary))
                     add.isClickable = true
                 }
             }

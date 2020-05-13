@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        test();
+        //test();
 
         super.onStart();
     }

@@ -39,19 +39,6 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/textView22"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="8dp"
-                android:autoLink="all"
-                android:linksClickable="true"
-                android:text="Василиса Мурунова  (https://vk.com/murrrunovskaya )"
-                android:textColor="@color/color1st_test"
-                android:textColorLink="#22f"
-                android:textSize="16sp" />
-
-            <TextView
                 android:id="@+id/textView24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -72,14 +59,14 @@
                 android:layout_marginTop="16dp"
                 android:autoLink="all"
                 android:linksClickable="true"
-                android:text="Зачем это приожение?"
+                android:text="Зачем это приложение?"
                 android:textColor="@color/color1st_test"
                 android:textColorLink="#22f"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/textView26"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
@@ -88,23 +75,37 @@
                 android:freezesText="true"
                 android:linksClickable="true"
                 android:text="    Многие выпускники испытывают проблемы при подготовке к ЕГЭ по информатике большое количество формул, определений, типов задач не даёт покоя ни школьникам, ни учителям, ни их родителям, даже друзьям, что теряют своего товарища за справочниками, учебниками, задачниками, за подготовительными курсами, репетиторами. Есть различные приложения по обучению различным навыкам, как люди осваивают программирование в Sololearn, так и мы хотим, чтоб школьники готовились к ЕГЭ в нашем приложении."
+                android:textAllCaps="false"
                 android:textColor="#333"
                 android:textColorLink="#22f"
                 android:textIsSelectable="true"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textView27"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:autoLink="all"
+                android:linksClickable="true"
+                android:text="    Видео-справки по использованию приложения доступны по ссылке: https://www.youtube.com/playlist?list=PLAWckTMwQcTWpuijnCAxnyvGf3-22w1Ui"
+                android:textColor="#111"
+                android:textColorLink="#22f"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:autoLink="all"
                 android:linksClickable="true"
                 android:text="    Отдельная благодарность разработчикам библиотеки MXParser (с её помощью производятся вычисления в приложении)"
                 android:textColor="#111"
                 android:textColorLink="#22f"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
     </ScrollView>
