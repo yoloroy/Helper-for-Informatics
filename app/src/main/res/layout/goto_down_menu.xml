@@ -8,7 +8,7 @@
     <LinearLayout
         android:id="@+id/goto_layout"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:background="@color/colorBackContrast"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -17,72 +17,176 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
-        <ImageButton
-            android:id="@+id/toGuide"
-            style="@style/Base.Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="onClickGoto"
-            android:tint="@android:color/darker_gray"
-            app:srcCompat="@drawable/ic_library_outlined_switch"
-            tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="198dp" />
+            android:onClick="onClickGoto">
 
-        <ImageButton
-            android:id="@+id/toMain"
-            style="@style/Base.Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="onClickGoto"
-            android:scaleX="1"
-            android:scaleY="1"
-            android:tint="@android:color/darker_gray"
-            app:srcCompat="@drawable/ic_education_bottom_menu"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="435dp" />
+            <ImageView
+                android:id="@+id/toGuide"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:onClick="onClickGoto"
+                android:paddingTop="6dp"
+                android:tint="@android:color/darker_gray"
+                app:srcCompat="@drawable/ic_library_outlined_switch"
+                tools:layout_editor_absoluteX="148dp"
+                tools:layout_editor_absoluteY="198dp" />
 
-        <ImageButton
-            android:id="@+id/toEval"
-            style="@style/Base.Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="onClickGoto"
-            android:scaleX="1"
-            android:scaleY="1"
-            android:tint="@android:color/darker_gray"
-            app:srcCompat="@drawable/ic_play_outlined_switch"
-            tools:layout_editor_absoluteX="104dp"
-            tools:layout_editor_absoluteY="247dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="2dp"
+                android:onClick="onClickGoto"
+                android:text="Кабинет"
+                android:textColor="@android:color/darker_gray" />
+        </FrameLayout>
 
-        <ImageButton
-            android:id="@+id/toGener"
-            style="@style/Base.Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="onClickGoto"
-            android:scaleX="1"
-            android:scaleY="1"
-            android:tint="@android:color/darker_gray"
-            app:srcCompat="@drawable/ic_circle_checked_outlined_switch"
-            tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="285dp" />
+            android:onClick="onClickGoto">
 
-        <ImageButton
-            android:id="@+id/toOther"
-            style="@style/Base.Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/toMain"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:onClick="onClickGoto"
+                android:paddingTop="6dp"
+                android:scaleX="1"
+                android:scaleY="1"
+                android:tint="@android:color/darker_gray"
+                app:srcCompat="@drawable/ic_education_bottom_menu"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="435dp" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="2dp"
+                android:onClick="onClickGoto"
+                android:text="Курсы"
+                android:textColor="@android:color/darker_gray" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="onClickGoto"
-            android:scaleX="1"
-            android:scaleY="1"
-            android:tint="@android:color/darker_gray"
-            app:srcCompat="@drawable/ic_info_outlined_switch"
-            tools:layout_editor_absoluteX="288dp"
-            tools:layout_editor_absoluteY="435dp" />
+            android:onClick="onClickGoto">
+
+            <ImageView
+                android:id="@+id/toEval"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:onClick="onClickGoto"
+                android:paddingTop="6dp"
+                android:scaleX="1"
+                android:scaleY="1"
+                android:tint="@android:color/darker_gray"
+                app:srcCompat="@drawable/ic_play_outlined_switch"
+                tools:layout_editor_absoluteX="104dp"
+                tools:layout_editor_absoluteY="247dp" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="2dp"
+                android:onClick="onClickGoto"
+                android:text="Решаторы"
+                android:textColor="@android:color/darker_gray" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onClickGoto">
+
+            <ImageView
+                android:id="@+id/toGener"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:onClick="onClickGoto"
+                android:paddingTop="6dp"
+                android:scaleX="1"
+                android:scaleY="1"
+                android:tint="@android:color/darker_gray"
+                app:srcCompat="@drawable/ic_circle_checked_outlined_switch"
+                tools:layout_editor_absoluteX="148dp"
+                tools:layout_editor_absoluteY="285dp" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="2dp"
+                android:onClick="onClickGoto"
+                android:text="Задачник"
+                android:textColor="@android:color/darker_gray" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onClickGoto">
+
+            <ImageView
+                android:id="@+id/toOther"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:onClick="onClickGoto"
+                android:paddingTop="6dp"
+                android:scaleX="1"
+                android:scaleY="1"
+                android:tint="@android:color/darker_gray"
+                app:srcCompat="@drawable/ic_info_outlined_switch"
+                tools:layout_editor_absoluteX="288dp"
+                tools:layout_editor_absoluteY="435dp" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="2dp"
+                android:onClick="onClickGoto"
+                android:text="Инфо"
+                android:textColor="@android:color/darker_gray" />
+
+        </FrameLayout>
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

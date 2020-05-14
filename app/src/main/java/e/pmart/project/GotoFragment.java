@@ -6,8 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
 public class GotoFragment extends Fragment {
@@ -22,19 +24,26 @@ public class GotoFragment extends Fragment {
         return root_view;
     }
     public void setSelection(int num) {
-        ImageButton curr;
+        FrameLayout curr;
         LinearLayout goto_layout = ((LinearLayout) root_view.findViewById(R.id.goto_layout));
 
         for (int i = 0; i < goto_layout.getChildCount(); i++) {
-            curr = (ImageButton) goto_layout.getChildAt(i);
-            //curr.setBackgroundColor(getResources().getColor(R.color.colorMenuBackUnpressed));
-            curr.setColorFilter(getResources().getColor(android.R.color.darker_gray));
-            curr.setActivated(false);
+            curr = (FrameLayout) goto_layout.getChildAt(i);
+            //curr.setBackgroundColor(getResources().getColor(R.color.colorMenuBackUnpressed));а
+
+            ((ImageView) curr.getChildAt(0))
+                    .setColorFilter(getResources().getColor(android.R.color.darker_gray));
+            ((ImageView) curr.getChildAt(0)).setActivated(false);
+            ((TextView) curr.getChildAt(1))
+                    .setTextColor(getResources().getColor(android.R.color.darker_gray));
         }
 
-        curr = (ImageButton) goto_layout.getChildAt(num);
+        curr = (FrameLayout) goto_layout.getChildAt(num);
         //curr.setBackgroundColor(getResources().getColor(R.color.colorMenuBackPressed));
-        curr.setColorFilter(getResources().getColor(R.color.colorMenuBackUnpressed));
-        curr.setActivated(true);
+        ((ImageView) curr.getChildAt(0))
+                .setColorFilter(getResources().getColor(R.color.colorMenuBackUnpressed));
+        ((ImageView) curr.getChildAt(0)).setActivated(true);
+        ((TextView) curr.getChildAt(1))
+                .setTextColor(getResources().getColor(R.color.colorMenuBackUnpressed));
     }
 }

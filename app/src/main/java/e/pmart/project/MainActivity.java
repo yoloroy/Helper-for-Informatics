@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import org.jetbrains.annotations.NotNull;
@@ -101,26 +102,23 @@ public class MainActivity extends AppCompatActivity {
                     getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
                 }
 
+                if (menu != null)
+                    menu.clear();
+
                 switch (mode) {
                     case "main":
                         switch (pager.getCurrentItem()) {
                             case 2:
                                 if (menu != null) {
-                                    menu.clear();
                                     getMenuInflater().inflate(R.menu.calc_bar, menu);
                                 }
                                 break;
                             case 3:
                                 if (menu != null) {
-                                    menu.clear();
                                     if (findViewById(R.id.task_view).getVisibility() == View.VISIBLE)
                                         getMenuInflater().inflate(R.menu.gener_bar, menu);
                                 }
                                 break;
-                            default:
-                                if (menu != null) {
-                                    menu.clear();
-                                }
                         }
                         break;
                 }
@@ -292,7 +290,7 @@ public class MainActivity extends AppCompatActivity {
     public void showHello() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Добро пожаловать в \"Инфу на 5\"!")
-                .setMessage("Мы вам поможем справиться с заданиями по информатике и легче усвоить материал.")
+                .setMessage("Мы вам поможем справиться с заданиями по информатике и легче усвоить материал.\n    Видео-справки по использованию приложения доступны в Инфо (Последняя вкладка) и по ссылке: https://www.youtube.com/playlist?list=PLAWckTMwQcTWpuijnCAxnyvGf3-22w1Ui")
                 .setCancelable(false)
                 .setNegativeButton("Спасибо",
                         (dialog, id) -> dialog.cancel())
@@ -302,6 +300,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickGoto(View view) {
         LinearLayout goto_layout = findViewById(R.id.goto_layout);
+        if (view.getClass() != FrameLayout.class)
+            view = (View) view.getParent();
 
         for (int i = 0; i < goto_layout.getChildCount(); i++) {
             if (goto_layout.getChildAt(i).equals(view)) {

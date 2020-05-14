@@ -35,30 +35,30 @@
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/graph_end"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_margin="8dp"
                 android:layout_weight="1"
                 android:clickable="true"
-                android:scaleType="center"
                 android:src="@drawable/ic_location_on"
                 android:tint="#bbb"
                 app:backgroundTint="#fff"
-                app:elevation="2dp" />
+                app:elevation="2dp"
+                app:fabSize="mini" />
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/graph_start"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_margin="8dp"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:foregroundGravity="center"
-                android:scaleType="center"
                 android:src="@drawable/ic_my_location"
                 android:tint="#bbb"
                 app:backgroundTint="#fff"
-                app:elevation="2dp" />
+                app:elevation="2dp"
+                app:fabSize="mini" />
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/graph_refresh"
@@ -72,6 +72,7 @@
                 android:tint="@color/colorPrimary"
                 app:backgroundTint="#fff"
                 app:elevation="4dp"
+                app:fabSize="mini"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -89,7 +90,8 @@
                 android:src="@drawable/ic_add"
                 android:tint="#fff"
                 app:backgroundTint="@color/colorPrimary"
-                app:elevation="4dp" />
+                app:elevation="4dp"
+                app:fabSize="mini" />
 
         </LinearLayout>
 
